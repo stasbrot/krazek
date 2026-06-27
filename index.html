@@ -1,0 +1,953 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" id="metaTheme" content="#F2F2F7">
+<meta name="description" content="Independent CD printing. Custom artwork on real discs, 100% printed in Poland.">
+<title>KRĄŻEK</title>
+<style>
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+
+  :root{
+    --bg:#F2F2F7; --surface:#ffffff; --surface-2:#F5F5F7;
+    --ink:#1C1C1E; --ink-2:#86868B; --ink-3:#AEAEB2;
+    --sep:rgba(60,60,67,0.12);
+    --fill:rgba(120,120,128,0.12);
+    --accent:#0A84FF; --accent-press:#0066D6;
+    --nav-bg:rgba(242,242,247,0.72);
+    --shadow:0 14px 44px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+    --radius:22px; --radius-lg:30px;
+    --holo:linear-gradient(135deg,#ff7ad9 0%,#ffb86c 24%,#73f7ff 50%,#b3a4ff 72%,#8dffb6 100%);
+    --maxw:1080px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#000000; --surface:#1C1C1E; --surface-2:#2C2C2E;
+      --ink:#FFFFFF; --ink-2:#98989F; --ink-3:#636366;
+      --sep:rgba(255,255,255,0.10);
+      --fill:rgba(120,120,128,0.24);
+      --nav-bg:rgba(0,0,0,0.62);
+      --shadow:0 14px 44px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#000000; --surface:#1C1C1E; --surface-2:#2C2C2E;
+    --ink:#FFFFFF; --ink-2:#98989F; --ink-3:#636366;
+    --sep:rgba(255,255,255,0.10);
+    --fill:rgba(120,120,128,0.24);
+    --nav-bg:rgba(0,0,0,0.62);
+    --shadow:0 14px 44px rgba(0,0,0,0.55);
+  }
+
+  html{ scroll-behavior:smooth; scroll-padding-top:74px; }
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+  a{ color:inherit; }
+  :focus-visible{ outline:2px solid var(--accent); outline-offset:2px; border-radius:8px; }
+
+  /* ---------- Disc ---------- */
+  .disc{
+    position:relative; width:var(--disc,240px); aspect-ratio:1; border-radius:50%;
+    box-shadow:0 22px 50px rgba(0,0,0,.28), inset 0 0 0 1px rgba(255,255,255,.18);
+    isolation:isolate; flex:none;
+  }
+  .disc__spin{
+    position:absolute; inset:0; border-radius:50%; overflow:hidden;
+    animation:spin 16s linear infinite; animation-play-state:paused; will-change:transform;
+  }
+  .disc--ambient .disc__spin{ animation-play-state:running; }
+  .disc__art{ position:absolute; inset:0; background:var(--art,#ddd); background-size:cover; background-position:center; }
+  .disc__sheen{
+    position:absolute; inset:0;
+    background:conic-gradient(from 0deg,
+      rgba(255,0,128,0), rgba(255,200,0,.45), rgba(0,255,200,0),
+      rgba(120,120,255,.45), rgba(255,0,200,0), rgba(255,200,0,.45),
+      rgba(0,255,200,0), rgba(120,120,255,.45), rgba(255,0,128,0));
+    mix-blend-mode:overlay; opacity:.55;
+  }
+  .disc__rings{
+    position:absolute; inset:0;
+    background:repeating-radial-gradient(circle at 50% 50%, rgba(255,255,255,.05) 0 1px, rgba(0,0,0,.05) 1px 2px);
+    mix-blend-mode:soft-light;
+  }
+  .disc__hub{
+    position:absolute; top:50%; left:50%; width:34%; height:34%; transform:translate(-50%,-50%); border-radius:50%;
+    background:radial-gradient(circle, rgba(255,255,255,.28), rgba(255,255,255,.04));
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.22), 0 0 0 1px rgba(0,0,0,.10);
+  }
+  .disc__hole{
+    position:absolute; top:50%; left:50%; width:11%; height:11%; transform:translate(-50%,-50%); border-radius:50%;
+    background:var(--bg); box-shadow:inset 0 2px 4px rgba(0,0,0,.45), 0 0 0 1px rgba(0,0,0,.15);
+  }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    font:600 17px/1 inherit; padding:15px 26px; border-radius:999px; border:0; cursor:pointer;
+    text-decoration:none; transition:transform .14s ease, background .2s ease, opacity .2s;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .btn:active{ transform:scale(.96); }
+  .btn--primary{ background:var(--accent); color:#fff; }
+  .btn--primary:hover{ background:var(--accent-press); }
+  .btn--ghost{ background:var(--fill); color:var(--ink); }
+  .btn--ghost:hover{ filter:brightness(.96); }
+
+  .icon-btn{
+    width:40px; height:40px; border-radius:999px; border:1px solid var(--sep);
+    background:var(--fill); color:var(--ink); display:grid; place-items:center; cursor:pointer;
+    transition:transform .12s ease, filter .2s; -webkit-tap-highlight-color:transparent; font-size:20px;
+  }
+  .icon-btn:hover{ filter:brightness(.96); }
+  .icon-btn:active{ transform:scale(.92); }
+
+  /* ---------- Nav ---------- */
+  .nav{
+    position:sticky; top:0; z-index:50;
+    backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px);
+    background:var(--nav-bg); border-bottom:1px solid var(--sep);
+  }
+  .nav__inner{ max-width:var(--maxw); margin:0 auto; padding:11px 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+  .brand{ font-weight:700; font-size:20px; letter-spacing:-0.02em; text-decoration:none; color:var(--ink); }
+  .nav__links{ display:flex; gap:26px; }
+  .nav__link{ color:var(--ink-2); font-size:15px; font-weight:500; text-decoration:none; transition:color .2s; }
+  .nav__link:hover{ color:var(--ink); }
+  .nav__actions{ display:flex; align-items:center; gap:8px; }
+  .cart-btn{ position:relative; }
+  .cart-badge{
+    position:absolute; top:-3px; right:-3px; min-width:18px; height:18px; padding:0 5px; border-radius:9px;
+    background:var(--accent); color:#fff; font-size:11px; font-weight:700; display:grid; place-items:center;
+    border:2px solid var(--nav-bg);
+  }
+  @media (max-width:720px){ .nav__links{ display:none; } }
+
+  /* ---------- Hero ---------- */
+  .hero{ position:relative; max-width:var(--maxw); margin:0 auto; padding:62px 20px 36px; text-align:center; }
+  .hero__glow{
+    position:absolute; top:34px; left:50%; transform:translateX(-50%);
+    width:min(440px,82vw); height:min(440px,82vw); background:var(--holo);
+    filter:blur(72px); opacity:.34; border-radius:50%; z-index:-1; pointer-events:none;
+  }
+  .hero__disc{ --disc:clamp(176px,40vw,288px); margin:0 auto 34px; }
+  .hero h1{ font-size:clamp(34px,6.2vw,60px); font-weight:700; letter-spacing:-0.03em; line-height:1.04; }
+  .hero p{ margin:18px auto 0; max-width:560px; font-size:clamp(16px,2.4vw,20px); color:var(--ink-2); line-height:1.45; }
+  .hero__cta{ margin-top:30px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+
+  /* ---------- Sections ---------- */
+  .section{ max-width:var(--maxw); margin:0 auto; padding:46px 20px; }
+  .eyebrow{ text-transform:uppercase; letter-spacing:.13em; font-size:12px; font-weight:700; color:var(--accent); }
+  .title{ font-size:clamp(26px,4vw,38px); font-weight:700; letter-spacing:-0.02em; margin-top:10px; }
+  .sub{ color:var(--ink-2); font-size:17px; margin-top:8px; max-width:540px; line-height:1.45; }
+  .price-tag{ font-weight:700; font-size:22px; color:var(--ink); }
+  .note{ color:var(--ink-3); font-size:14px; line-height:1.4; }
+
+  /* Custom */
+  .custom__card{
+    margin-top:26px; background:var(--surface); border:1px solid var(--sep);
+    border-radius:var(--radius-lg); box-shadow:var(--shadow); padding:34px;
+    display:grid; grid-template-columns:1fr auto; gap:34px; align-items:center;
+  }
+  .custom__disc{ --disc:clamp(150px,24vw,220px); }
+  .custom__buy{ margin-top:22px; display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+  @media (max-width:760px){
+    .custom__card{ grid-template-columns:1fr; text-align:center; justify-items:center; padding:30px 24px; }
+    .custom__buy{ justify-content:center; }
+  }
+
+  /* Editions */
+  .editions-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:22px; margin-top:26px; }
+  .product{
+    background:var(--surface); border:1px solid var(--sep); border-radius:var(--radius);
+    box-shadow:var(--shadow); padding:28px; display:flex; flex-direction:column; align-items:center; text-align:center;
+  }
+  .product .disc{ --disc:200px; margin-bottom:22px; }
+  .product__name{ font-weight:700; font-size:20px; }
+  .product__by{ color:var(--ink-2); font-size:14px; margin-top:3px; }
+  .product__desc{ color:var(--ink-2); font-size:15px; margin-top:11px; line-height:1.45; }
+  .product__foot{ margin-top:20px; width:100%; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+  .product:hover .disc__spin, .custom__card:hover .disc__spin{ animation-play-state:running; }
+  @media (max-width:680px){ .editions-grid{ grid-template-columns:1fr; } }
+
+  /* Photographer */
+  .photo-card{
+    background:var(--surface); border:1px solid var(--sep); border-radius:var(--radius-lg);
+    box-shadow:var(--shadow); padding:40px 36px; text-align:center; max-width:720px; margin:26px auto 0;
+  }
+  .photo-card .title{ margin-top:8px; }
+  .photo-role{ color:var(--accent); font-weight:600; font-size:15px; margin-top:4px; }
+  .photo-text{ max-width:560px; margin:14px auto 0; }
+  .flag-pair{ display:inline-flex; align-items:center; gap:12px; margin-bottom:6px; }
+  .flag-pair .flag-x{ color:var(--ink-3); font-weight:600; font-size:18px; }
+  .mini-flag{ position:relative; width:38px; height:26px; border-radius:5px; overflow:hidden; box-shadow:0 3px 10px rgba(0,0,0,.18); border:1px solid var(--sep); flex:none; }
+  .mini-flag .mf-w{ position:absolute; top:0; left:0; right:0; height:50%; background:#fff; }
+  .mini-flag .mf-r{ position:absolute; bottom:0; left:0; right:0; height:50%; background:#d4213d; }
+  .mini-flag--cz .mf-r{ background:#d7141a; }
+  .mini-flag--cz .mf-b{ position:absolute; top:0; left:0; width:55%; height:100%; background:#11457e; clip-path:polygon(0 0, 100% 50%, 0 100%); }
+  .collab-tag{
+    display:inline-block; margin-top:20px; padding:8px 16px; border-radius:999px;
+    background:var(--fill); color:var(--ink-2); font-size:13px; font-weight:600; letter-spacing:.01em;
+  }
+
+  /* Features strip */
+  .features{ max-width:var(--maxw); margin:0 auto; padding:8px 20px 8px; }
+  .features__row{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:14px;
+    background:var(--surface); border:1px solid var(--sep); border-radius:var(--radius); box-shadow:var(--shadow); padding:20px;
+  }
+  .feature{ display:flex; align-items:center; gap:11px; justify-content:center; text-align:left; }
+  .feature__ic{ width:34px; height:34px; border-radius:10px; background:var(--fill); display:grid; place-items:center; color:var(--accent); flex:none; }
+  .feature__tx{ font-size:14px; font-weight:600; color:var(--ink); line-height:1.2; }
+  @media (max-width:760px){
+    .features__row{ grid-template-columns:repeat(2,1fr); gap:16px 12px; }
+  }
+  @media (max-width:420px){
+    .features__row{ grid-template-columns:1fr; }
+    .feature{ justify-content:flex-start; }
+  }
+
+  /* Poland */
+  .poland__card{
+    position:relative; overflow:hidden; background:var(--surface); border:1px solid var(--sep);
+    border-radius:var(--radius-lg); box-shadow:var(--shadow); padding:48px 40px; text-align:center;
+  }
+  .flag{ width:64px; height:42px; border-radius:9px; overflow:hidden; margin:0 auto 20px; box-shadow:0 4px 14px rgba(0,0,0,.18); border:1px solid var(--sep); }
+  .flag__w{ height:50%; background:#fff; }
+  .flag__r{ height:50%; background:#D4213D; }
+  .poland__big{ font-size:clamp(28px,5vw,44px); font-weight:800; letter-spacing:-0.02em; line-height:1.1; }
+  .poland__big em{ font-style:normal; background:var(--holo); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .poland__desc{ color:var(--ink-2); max-width:560px; margin:16px auto 0; font-size:17px; line-height:1.5; }
+
+  /* Independent */
+  .indie{ max-width:var(--maxw); margin:0 auto; padding:24px 20px 72px; text-align:center; }
+  .indie__title{ font-size:clamp(24px,4vw,34px); font-weight:700; letter-spacing:-0.02em; }
+  .indie__text{ max-width:620px; margin:16px auto 0; color:var(--ink-2); font-size:18px; line-height:1.55; }
+
+  /* Footer */
+  .footer{ border-top:1px solid var(--sep); }
+  .footer__inner{ max-width:var(--maxw); margin:0 auto; padding:28px 20px; display:flex; flex-wrap:wrap; gap:14px; justify-content:space-between; align-items:center; color:var(--ink-2); font-size:14px; }
+  .footer a{ text-decoration:none; color:var(--ink-2); transition:color .2s; }
+  .footer a:hover{ color:var(--ink); }
+
+  /* ---------- Language overlay ---------- */
+  .lang-overlay{
+    position:fixed; inset:0; z-index:100; display:grid; place-items:center; padding:24px;
+    background:var(--nav-bg);
+    backdrop-filter:saturate(160%) blur(30px); -webkit-backdrop-filter:saturate(160%) blur(30px);
+    transition:opacity .4s ease, visibility .4s ease;
+  }
+  .lang-overlay.hide{ opacity:0; visibility:hidden; pointer-events:none; }
+  .lang-card{
+    width:min(420px,100%); background:var(--surface); border:1px solid var(--sep);
+    border-radius:var(--radius-lg); box-shadow:0 30px 80px rgba(0,0,0,.34); padding:30px; text-align:center;
+  }
+  .lang-card__disc{ --disc:86px; margin:0 auto 16px; }
+  .lang-card h2{ font-size:22px; font-weight:700; margin-top:4px; }
+  .lang-card p{ color:var(--ink-2); font-size:15px; margin-top:6px; }
+  .lang-list{ display:grid; gap:10px; margin-top:22px; max-height:56vh; overflow-y:auto; }
+  .lang-opt{
+    display:flex; align-items:center; gap:14px; width:100%; padding:14px 18px; border-radius:16px;
+    border:1px solid var(--sep); background:var(--fill); color:var(--ink); font-size:17px; font-weight:600;
+    cursor:pointer; transition:transform .12s ease, background .2s, color .2s; -webkit-tap-highlight-color:transparent;
+  }
+  .lang-opt:hover{ background:var(--accent); color:#fff; border-color:transparent; }
+  .lang-opt:hover .chev{ color:#fff; opacity:.85; }
+  .lang-opt:active{ transform:scale(.98); }
+  .lang-opt .flag-emoji{ font-size:24px; line-height:1; }
+  .lang-opt .chev{ margin-left:auto; color:var(--ink-3); display:inline-flex; }
+
+  /* ---------- Cart ---------- */
+  .cart-backdrop{
+    position:fixed; inset:0; z-index:80; background:rgba(0,0,0,.38);
+    opacity:0; visibility:hidden; transition:opacity .3s, visibility .3s;
+    backdrop-filter:blur(2px); -webkit-backdrop-filter:blur(2px);
+  }
+  .cart-backdrop.open{ opacity:1; visibility:visible; }
+  .cart{
+    position:fixed; top:0; right:0; bottom:0; z-index:90; width:min(420px,92vw);
+    background:var(--surface); box-shadow:-20px 0 60px rgba(0,0,0,.28);
+    transform:translateX(100%); transition:transform .38s cubic-bezier(.32,.72,0,1);
+    display:flex; flex-direction:column;
+  }
+  .cart.open{ transform:translateX(0); }
+  .cart__head{ padding:18px 22px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--sep); }
+  .cart__title{ font-weight:700; font-size:20px; }
+  .cart__body{ flex:1; overflow-y:auto; padding:8px 22px; -webkit-overflow-scrolling:touch; }
+  .cart__empty{ color:var(--ink-2); text-align:center; padding:48px 0; font-size:15px; }
+  .cart-item{ display:flex; gap:14px; align-items:center; padding:14px 0; border-bottom:1px solid var(--sep); }
+  .cart-item .disc{ --disc:54px; box-shadow:0 4px 12px rgba(0,0,0,.2); }
+  .cart-item__info{ flex:1; min-width:0; }
+  .cart-item__name{ font-weight:600; font-size:15px; }
+  .cart-item__price{ color:var(--ink-2); font-size:14px; margin-top:2px; }
+  .stepper{ display:inline-flex; align-items:center; background:var(--fill); border-radius:999px; }
+  .stepper button{ width:30px; height:30px; border:0; background:transparent; color:var(--ink); font-size:19px; line-height:1; cursor:pointer; border-radius:999px; -webkit-tap-highlight-color:transparent; }
+  .stepper button:active{ background:var(--sep); }
+  .stepper span{ min-width:26px; text-align:center; font-weight:600; font-size:14px; }
+  .cart__foot{ padding:18px 22px; border-top:1px solid var(--sep); }
+  .cart__total{ display:flex; justify-content:space-between; font-weight:700; font-size:18px; margin-bottom:14px; }
+
+  /* ---------- Toast ---------- */
+  .toast{
+    position:fixed; left:50%; bottom:calc(28px + env(safe-area-inset-bottom)); transform:translateX(-50%) translateY(18px);
+    z-index:120; background:var(--ink); color:var(--bg); padding:12px 20px; border-radius:999px;
+    font-size:15px; font-weight:600; box-shadow:0 12px 32px rgba(0,0,0,.28);
+    opacity:0; visibility:hidden; transition:opacity .25s, transform .25s, visibility .25s; max-width:90vw; text-align:center;
+  }
+  .toast.show{ opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
+
+  /* ---------- Reveal ---------- */
+  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in{ opacity:1; transform:none; }
+
+  @media (prefers-reduced-motion:reduce){
+    html{ scroll-behavior:auto; }
+    .disc__spin{ animation:none !important; }
+    .reveal{ opacity:1; transform:none; transition:none; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ===== Language picker (shown first) ===== -->
+  <div class="lang-overlay" id="langOverlay">
+    <div class="lang-card">
+      <div class="disc disc--ambient lang-card__disc" style="--art:conic-gradient(from 210deg,#ff77d4,#ff9f6b,#ffe16b,#74f7c8,#6ad0ff,#b39bff,#ff77d4)">
+        <div class="disc__spin"><div class="disc__art"></div><div class="disc__sheen"></div><div class="disc__rings"></div></div>
+        <div class="disc__hub"></div><div class="disc__hole"></div>
+      </div>
+      <div class="brand js-brand"></div>
+      <h2 data-i18n="chooseLanguage">Choose your language</h2>
+      <p data-i18n="chooseLanguageSub">You can change it anytime.</p>
+      <div class="lang-list">
+        <button class="lang-opt" onclick="setLang('en')"><span class="flag-emoji">🇬🇧</span>English<span class="chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></button>
+        <button class="lang-opt" onclick="setLang('pl')"><span class="flag-emoji">🇵🇱</span>Polski<span class="chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></button>
+        <button class="lang-opt" onclick="setLang('cs')"><span class="flag-emoji">🇨🇿</span>Čeština<span class="chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></button>
+        <button class="lang-opt" onclick="setLang('sk')"><span class="flag-emoji">🇸🇰</span>Slovenčina<span class="chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></button>
+        <button class="lang-opt" onclick="setLang('fr')"><span class="flag-emoji">🇫🇷</span>Français<span class="chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></button>
+        <button class="lang-opt" onclick="setLang('it')"><span class="flag-emoji">🇮🇹</span>Italiano<span class="chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></button>
+        <button class="lang-opt" onclick="setLang('nl')"><span class="flag-emoji">🇳🇱</span>Nederlands<span class="chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Nav ===== -->
+  <header class="nav">
+    <div class="nav__inner">
+      <a href="#top" class="brand js-brand" id="brandTop"></a>
+      <nav class="nav__links">
+        <a class="nav__link" href="#custom" data-i18n="navCustom"></a>
+        <a class="nav__link" href="#editions" data-i18n="navEditions"></a>
+        <a class="nav__link" href="#about" data-i18n="navAbout"></a>
+      </nav>
+      <div class="nav__actions">
+        <button class="icon-btn" id="langBtn" onclick="openLang()" aria-label="Language"><span id="langFlag" class="flag-emoji">🇬🇧</span></button>
+        <button class="icon-btn" id="themeBtn" onclick="toggleTheme()" aria-label="Theme"></button>
+        <button class="icon-btn cart-btn" onclick="openCart()" aria-label="Cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1.1 11.2A2 2 0 0 1 14.9 21H9.1a2 2 0 0 1-2-1.8L6 8z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>
+          <span class="cart-badge" id="cartCount" style="display:none">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero reveal">
+      <div class="hero__glow"></div>
+      <div class="disc disc--ambient hero__disc" style="--art:conic-gradient(from 210deg,#ff77d4,#ff9f6b,#ffe16b,#74f7c8,#6ad0ff,#b39bff,#ff77d4)">
+        <div class="disc__spin"><div class="disc__art"></div><div class="disc__sheen"></div><div class="disc__rings"></div></div>
+        <div class="disc__hub"></div><div class="disc__hole"></div>
+      </div>
+      <h1 data-i18n="heroTitle"></h1>
+      <p data-i18n="heroSubtitle"></p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="#custom" data-i18n="heroCta"></a>
+        <a class="btn btn--ghost" href="#editions" data-i18n="heroSecondary"></a>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features reveal">
+      <div class="features__row">
+        <div class="feature">
+          <span class="feature__ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8V4h10v4"/><path d="M6 18H5a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1"/><rect x="7" y="15" width="10" height="6" rx="1"/></svg></span>
+          <span class="feature__tx" data-i18n="feat1"></span>
+        </div>
+        <div class="feature">
+          <span class="feature__ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.2 4.6 5 .7-3.6 3.5.9 5L12 14.9 7.5 16.8l.9-5L4.8 8.3l5-.7L12 3z"/></svg></span>
+          <span class="feature__tx" data-i18n="feat2"></span>
+        </div>
+        <div class="feature">
+          <span class="feature__ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v8H3zM14 10h4l3 3v2h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg></span>
+          <span class="feature__tx" data-i18n="feat3"></span>
+        </div>
+        <div class="feature">
+          <span class="feature__ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span>
+          <span class="feature__tx" data-i18n="feat4"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Custom print -->
+    <section class="section" id="custom">
+      <div class="reveal">
+        <div class="eyebrow" data-i18n="customBadge"></div>
+        <h2 class="title" data-i18n="customTitle"></h2>
+      </div>
+      <div class="custom__card reveal">
+        <div>
+          <p class="sub" data-i18n="customDesc"></p>
+          <div class="custom__buy">
+            <span class="price-tag" id="customPrice"></span>
+            <button class="btn btn--primary" onclick="addToCart('custom')" data-i18n="customCta"></button>
+          </div>
+          <p class="note" style="margin-top:14px" data-i18n="customNote"></p>
+        </div>
+        <div class="disc custom__disc" style="--art:radial-gradient(circle at 35% 28%, #ffffff 0%, #ececf1 60%, #d8d8df 100%)">
+          <div class="disc__spin"><div class="disc__art"></div><div class="disc__sheen"></div><div class="disc__rings"></div></div>
+          <div class="disc__hub"></div><div class="disc__hole"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Editions -->
+    <section class="section" id="editions">
+      <div class="reveal">
+        <div class="eyebrow" data-i18n="navEditions"></div>
+        <h2 class="title" data-i18n="editionsTitle"></h2>
+        <p class="sub" data-i18n="editionsSubtitle"></p>
+      </div>
+      <div class="editions-grid">
+        <div class="product reveal">
+          <div class="disc" style="--art:linear-gradient(155deg, #2a1b4d 0%, #6f63e8 36%, #ff9d6b 72%, #ff5f8d 100%)">
+            <div class="disc__spin"><div class="disc__art"></div><div class="disc__sheen"></div><div class="disc__rings"></div></div>
+            <div class="disc__hub"></div><div class="disc__hole"></div>
+          </div>
+          <div class="product__name" data-i18n="edition1Name"></div>
+          <div class="product__by" data-i18n="editionsBy"></div>
+          <div class="product__desc" data-i18n="edition1Desc"></div>
+          <div class="product__foot">
+            <span class="price-tag" id="price-edition1"></span>
+            <button class="btn btn--primary" onclick="addToCart('edition1')" data-i18n="addToCart"></button>
+          </div>
+        </div>
+        <div class="product reveal">
+          <div class="disc" style="--art:linear-gradient(155deg, #07232b 0%, #134e5e 40%, #2c7a6f 72%, #28e0c8 100%)">
+            <div class="disc__spin"><div class="disc__art"></div><div class="disc__sheen"></div><div class="disc__rings"></div></div>
+            <div class="disc__hub"></div><div class="disc__hole"></div>
+          </div>
+          <div class="product__name" data-i18n="edition2Name"></div>
+          <div class="product__by" data-i18n="editionsBy"></div>
+          <div class="product__desc" data-i18n="edition2Desc"></div>
+          <div class="product__foot">
+            <span class="price-tag" id="price-edition2"></span>
+            <button class="btn btn--primary" onclick="addToCart('edition2')" data-i18n="addToCart"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Photographer -->
+    <section class="section" id="photographer">
+      <div class="photo-card reveal">
+        <div class="flag-pair" aria-hidden="true">
+          <span class="mini-flag mini-flag--pl"><span class="mf-w"></span><span class="mf-r"></span></span>
+          <span class="flag-x">×</span>
+          <span class="mini-flag mini-flag--cz"><span class="mf-w"></span><span class="mf-r"></span><span class="mf-b"></span></span>
+        </div>
+        <div class="eyebrow" data-i18n="photoEyebrow"></div>
+        <h2 class="title" style="margin-top:6px">Sam Muras</h2>
+        <div class="photo-role" data-i18n="photoRole"></div>
+        <p class="sub photo-text" data-i18n="photoBio"></p>
+        <p class="sub photo-text" data-i18n="photoCollab"></p>
+        <div class="collab-tag" data-i18n="collabTag"></div>
+      </div>
+    </section>
+
+    <!-- Made in Poland -->
+    <section class="section" id="about">
+      <div class="poland__card reveal">
+        <div class="flag"><div class="flag__w"></div><div class="flag__r"></div></div>
+        <div class="poland__big" data-i18n-html="polandTitle"></div>
+        <p class="poland__desc" data-i18n="polandDesc"></p>
+      </div>
+    </section>
+
+    <!-- Independent -->
+    <section class="indie">
+      <div class="reveal">
+        <h2 class="indie__title" data-i18n="independentTitle"></h2>
+        <p class="indie__text" data-i18n="independentDesc"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="brand js-brand" style="font-size:16px"></div>
+      <div data-i18n="footerNote"></div>
+      <a href="mailto:hello@krazek.eu">hello@krazek.eu</a>
+    </div>
+  </footer>
+
+  <!-- ===== Cart ===== -->
+  <div class="cart-backdrop" id="cartBackdrop" onclick="closeCart()"></div>
+  <aside class="cart" id="cartDrawer" role="dialog" aria-modal="true" aria-label="Cart">
+    <div class="cart__head">
+      <span class="cart__title" data-i18n="cartTitle"></span>
+      <button class="icon-btn" onclick="closeCart()" aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="cart__body" id="cartBody"></div>
+    <div class="cart__foot" id="cartFoot" style="display:none">
+      <div class="cart__total"><span data-i18n="cartTotal"></span><span id="cartTotalVal"></span></div>
+      <button class="btn btn--primary" id="checkoutBtn" style="width:100%" onclick="checkout()" data-i18n="cartCheckout"></button>
+    </div>
+  </aside>
+
+  <div class="toast" id="toast"></div>
+
+<script>
+  /* ===== Brand (change this one word) ===== */
+  const BRAND = "KRĄŻEK";
+
+  /* ===== Checkout endpoint =====
+     Leave empty for demo mode. After deploying the serverless function (see checkout.js),
+     set this to its URL, e.g. "/.netlify/functions/checkout" */
+  const CHECKOUT_URL = "";
+
+  /* ===== Disc artwork (used in cart thumbnails; keep in sync with the markup) ===== */
+  const ART = {
+    custom:   'radial-gradient(circle at 35% 28%, #ffffff 0%, #ececf1 60%, #d8d8df 100%)',
+    edition1: 'linear-gradient(155deg, #2a1b4d 0%, #6f63e8 36%, #ff9d6b 72%, #ff5f8d 100%)',
+    edition2: 'linear-gradient(155deg, #07232b 0%, #134e5e 40%, #2c7a6f 72%, #28e0c8 100%)'
+  };
+  const PRODUCTS = {
+    custom:   { nameKey:'customCartName', art:ART.custom },
+    edition1: { nameKey:'edition1Name',   art:ART.edition1 },
+    edition2: { nameKey:'edition2Name',   art:ART.edition2 }
+  };
+
+  /* ===== Prices per language / currency (change freely) ===== */
+  const PRICES = {
+    custom:   { pl:31.90, en:7.49, cs:189, sk:7.49, fr:7.49, it:7.49, nl:7.49 },
+    edition1: { pl:29.90, en:6.99, cs:179, sk:6.99, fr:6.99, it:6.99, nl:6.99 },
+    edition2: { pl:29.90, en:6.99, cs:179, sk:6.99, fr:6.99, it:6.99, nl:6.99 }
+  };
+  /* Locale + currency used for formatting (Intl handles symbol, decimals, separators) */
+  const LOCALE = {
+    pl:{ loc:'pl-PL', cur:'PLN' },
+    en:{ loc:'en-IE', cur:'EUR' },
+    cs:{ loc:'cs-CZ', cur:'CZK' },
+    sk:{ loc:'sk-SK', cur:'EUR' },
+    fr:{ loc:'fr-FR', cur:'EUR' },
+    it:{ loc:'it-IT', cur:'EUR' },
+    nl:{ loc:'nl-NL', cur:'EUR' }
+  };
+  const FLAG = { en:'🇬🇧', pl:'🇵🇱', cs:'🇨🇿', sk:'🇸🇰', fr:'🇫🇷', it:'🇮🇹', nl:'🇳🇱' };
+
+  /* ===== Translations ===== */
+  const T = {
+    en:{
+      chooseLanguage:"Choose your language", chooseLanguageSub:"You can change it anytime.",
+      navCustom:"Custom", navEditions:"Editions", navAbout:"About",
+      heroTitle:"CDs, beautifully printed.",
+      heroSubtitle:"Your artwork pressed onto real discs. Independently made and 100% printed in Poland.",
+      heroCta:"Order a custom CD", heroSecondary:"See the editions",
+      customBadge:"Custom print", customTitle:"Your design, on a disc.",
+      customDesc:"Send us your artwork and we print it straight onto the surface of the CD. Albums, mixtapes, gifts, demos - whatever you make, we turn it into something you can hold.",
+      customCta:"Add a custom CD", customNote:"Full-surface print. You send the artwork after ordering.",
+      from:"from", customCartName:"Custom CD",
+      editionsTitle:"Signature editions", editionsSubtitle:"Two ready-made prints, photographed by Sam Muras.",
+      editionsBy:"Photo: Sam Muras",
+      edition1Name:"Edition 01", edition1Desc:"A printed disc with an original photograph by Sam Muras.",
+      edition2Name:"Edition 02", edition2Desc:"A printed disc with an original photograph by Sam Muras.",
+      addToCart:"Add to cart", added:"Added to cart",
+      polandTitle:"Printed in Poland. <em>100%</em>",
+      polandDesc:"Every single disc is printed right here in Poland. No outsourcing, no middlemen, no shortcuts. Real ink, real discs, made by real people who care how it turns out.",
+      independentTitle:"Independent by choice.",
+      independentDesc:"We're not a label and we're not a corporation. We're a small independent project that still believes physical music matters. In a world of endless streaming, we make things you can hold, keep, and pass on.",
+      footerNote:"Printed in Poland, with care.",
+      cartTitle:"Your cart", cartEmpty:"Your cart is empty.", cartTotal:"Total", cartCheckout:"Checkout",
+      checkoutMsg:"Checkout isn't connected yet - this is a demo store.",
+      photoEyebrow:"The photographer", photoRole:"Photographer · Czech Republic",
+      photoBio:"Sam Muras is a photographer from the Czech Republic whose work moves between quiet landscapes and the textures of everyday life. Each edition pairs one of his images with a disc printed in Poland.",
+      photoCollab:"Our editions are a cross-border collaboration. Sam shoots in Czechia, we print in Poland - two independent scenes, two neighbouring countries, one object you can hold. Each photograph is released in a small, numbered run.",
+      collabTag:"Made in Poland × shot in Czechia",
+      feat1:"Printed in Poland", feat2:"Independent", feat3:"Ships across the EU", feat4:"Secure checkout",
+      paymentProcessing:"Opening secure checkout...", paymentError:"Couldn't open checkout. Please try again.",
+      metaTitle:"Custom printed CDs"
+    },
+    pl:{
+      chooseLanguage:"Wybierz język", chooseLanguageSub:"Możesz to zmienić w każdej chwili.",
+      navCustom:"Własny nadruk", navEditions:"Edycje", navAbout:"O nas",
+      heroTitle:"Płyty CD z pięknym nadrukiem.",
+      heroSubtitle:"Twoja grafika nadrukowana na prawdziwych płytach. Tworzone niezależnie i w 100% drukowane w Polsce.",
+      heroCta:"Zamów własny nadruk", heroSecondary:"Zobacz edycje",
+      customBadge:"Własny nadruk", customTitle:"Twój projekt na płycie.",
+      customDesc:"Wyślij nam swoją grafikę, a my nadrukujemy ją bezpośrednio na powierzchni płyty CD. Albumy, składanki, prezenty, dema - cokolwiek tworzysz, zamienimy to w coś, co weźmiesz do ręki.",
+      customCta:"Dodaj własną płytę", customNote:"Nadruk na całej powierzchni. Grafikę wysyłasz po złożeniu zamówienia.",
+      from:"od", customCartName:"Płyta z własnym nadrukiem",
+      editionsTitle:"Edycje sygnowane", editionsSubtitle:"Dwa gotowe nadruki, zdjęcia: Sam Muras.",
+      editionsBy:"Foto: Sam Muras",
+      edition1Name:"Edycja 01", edition1Desc:"Płyta z nadrukiem oryginalnej fotografii Sama Murasa.",
+      edition2Name:"Edycja 02", edition2Desc:"Płyta z nadrukiem oryginalnej fotografii Sama Murasa.",
+      addToCart:"Dodaj do koszyka", added:"Dodano do koszyka",
+      polandTitle:"Drukowane w Polsce. W <em>100%</em>",
+      polandDesc:"Każda pojedyncza płyta jest drukowana tutaj, w Polsce. Bez outsourcingu, bez pośredników, bez pójścia na skróty. Prawdziwy tusz, prawdziwe płyty, robione przez prawdziwych ludzi, którym zależy na efekcie.",
+      independentTitle:"Niezależni z wyboru.",
+      independentDesc:"Nie jesteśmy wytwórnią ani korporacją. Jesteśmy małym, niezależnym projektem, który wciąż wierzy, że fizyczna muzyka ma znaczenie. W świecie nieskończonego streamingu tworzymy rzeczy, które można wziąć do ręki, zatrzymać i przekazać dalej.",
+      footerNote:"Drukowane w Polsce, z dbałością o detale.",
+      cartTitle:"Twój koszyk", cartEmpty:"Twój koszyk jest pusty.", cartTotal:"Razem", cartCheckout:"Do kasy",
+      checkoutMsg:"Płatność nie jest jeszcze podłączona - to wersja demonstracyjna sklepu.",
+      photoEyebrow:"Fotograf", photoRole:"Fotograf · Czechy",
+      photoBio:"Sam Muras to fotograf z Czech, którego prace balansują między spokojnym pejzażem a fakturą codzienności. Każda edycja łączy jedno z jego zdjęć z płytą drukowaną w Polsce.",
+      photoCollab:"Nasze edycje to współpraca ponad granicą. Sam fotografuje w Czechach, my drukujemy w Polsce - dwie niezależne sceny, dwa sąsiednie kraje, jeden przedmiot, który weźmiesz do ręki. Każda odbitka powstaje w małym, numerowanym nakładzie.",
+      collabTag:"Tworzone w Polsce × fotografowane w Czechach",
+      feat1:"Drukowane w Polsce", feat2:"Niezależni", feat3:"Wysyłka po całej UE", feat4:"Bezpieczna płatność",
+      paymentProcessing:"Otwieram bezpieczną płatność...", paymentError:"Nie udało się otworzyć płatności. Spróbuj ponownie.",
+      metaTitle:"Płyty CD z własnym nadrukiem"
+    },
+    cs:{
+      chooseLanguage:"Vyberte si jazyk", chooseLanguageSub:"Můžete to kdykoliv změnit.",
+      navCustom:"Vlastní potisk", navEditions:"Edice", navAbout:"O nás",
+      heroTitle:"CD s krásným potiskem.",
+      heroSubtitle:"Vaše grafika natištěná na opravdové disky. Tvořeno nezávisle a ze 100 % tištěno v Polsku.",
+      heroCta:"Objednat vlastní potisk", heroSecondary:"Prohlédnout edice",
+      customBadge:"Vlastní potisk", customTitle:"Váš návrh na disku.",
+      customDesc:"Pošlete nám svou grafiku a my ji vytiskneme přímo na povrch CD. Alba, mixy, dárky, dema - cokoliv vytvoříte, proměníme v něco, co můžete držet v ruce.",
+      customCta:"Přidat vlastní CD", customNote:"Potisk celé plochy. Grafiku zašlete po objednání.",
+      from:"od", customCartName:"CD s vlastním potiskem",
+      editionsTitle:"Signované edice", editionsSubtitle:"Dva hotové potisky, fotografie: Sam Muras.",
+      editionsBy:"Foto: Sam Muras",
+      edition1Name:"Edice 01", edition1Desc:"Disk s potiskem originální fotografie od Sama Murase.",
+      edition2Name:"Edice 02", edition2Desc:"Disk s potiskem originální fotografie od Sama Murase.",
+      addToCart:"Přidat do košíku", added:"Přidáno do košíku",
+      polandTitle:"Tištěno v Polsku. Ze <em>100 %</em>",
+      polandDesc:"Každý jednotlivý disk je tištěn přímo zde v Polsku. Žádný outsourcing, žádní prostředníci, žádné zkratky. Opravdový inkoust, opravdové disky, vyrobené opravdovými lidmi, kterým záleží na výsledku.",
+      independentTitle:"Nezávislí z přesvědčení.",
+      independentDesc:"Nejsme vydavatelství ani korporace. Jsme malý nezávislý projekt, který stále věří, že fyzická hudba má smysl. Ve světě nekonečného streamingu tvoříme věci, které můžete držet, uchovat a předat dál.",
+      footerNote:"Tištěno v Polsku, s péčí.",
+      cartTitle:"Váš košík", cartEmpty:"Váš košík je prázdný.", cartTotal:"Celkem", cartCheckout:"K pokladně",
+      checkoutMsg:"Platba zatím není propojena - toto je ukázkový obchod.",
+      photoEyebrow:"Fotograf", photoRole:"Fotograf · Česko",
+      photoBio:"Sam Muras je fotograf z Česka, jehož tvorba se pohybuje mezi tichou krajinou a texturou všedního dne. Každá edice spojuje jeden z jeho snímků s diskem vytištěným v Polsku.",
+      photoCollab:"Naše edice jsou spolupráce přes hranice. Sam fotí v Česku, my tiskneme v Polsku - dvě nezávislé scény, dvě sousední země, jeden předmět, který udržíte v ruce. Každý snímek vychází v malém, číslovaném nákladu.",
+      collabTag:"Vyrobeno v Polsku × foceno v Česku",
+      feat1:"Tištěno v Polsku", feat2:"Nezávislí", feat3:"Doručení po celé EU", feat4:"Bezpečná platba",
+      paymentProcessing:"Otevírám zabezpečenou platbu...", paymentError:"Platbu se nepodařilo otevřít. Zkuste to znovu.",
+      metaTitle:"CD s vlastním potiskem"
+    },
+    sk:{
+      chooseLanguage:"Vyberte si jazyk", chooseLanguageSub:"Môžete to kedykoľvek zmeniť.",
+      navCustom:"Vlastná potlač", navEditions:"Edície", navAbout:"O nás",
+      heroTitle:"CD s krásnou potlačou.",
+      heroSubtitle:"Vaša grafika vytlačená na skutočné disky. Tvorené nezávisle a na 100 % tlačené v Poľsku.",
+      heroCta:"Objednať vlastnú potlač", heroSecondary:"Pozrieť edície",
+      customBadge:"Vlastná potlač", customTitle:"Váš návrh na disku.",
+      customDesc:"Pošlite nám svoju grafiku a my ju vytlačíme priamo na povrch CD. Albumy, mixy, darčeky, demá - čokoľvek vytvoríte, premeníme na niečo, čo môžete držať v ruke.",
+      customCta:"Pridať vlastné CD", customNote:"Potlač celej plochy. Grafiku pošlete po objednaní.",
+      from:"od", customCartName:"CD s vlastnou potlačou",
+      editionsTitle:"Signované edície", editionsSubtitle:"Dve hotové potlače, fotografie: Sam Muras.",
+      editionsBy:"Foto: Sam Muras",
+      edition1Name:"Edícia 01", edition1Desc:"Disk s potlačou pôvodnej fotografie od Sama Murasa.",
+      edition2Name:"Edícia 02", edition2Desc:"Disk s potlačou pôvodnej fotografie od Sama Murasa.",
+      addToCart:"Pridať do košíka", added:"Pridané do košíka",
+      polandTitle:"Tlačené v Poľsku. Na <em>100 %</em>",
+      polandDesc:"Každý jednotlivý disk je tlačený priamo tu v Poľsku. Žiadny outsourcing, žiadni sprostredkovatelia, žiadne skratky. Skutočný atrament, skutočné disky, vyrobené skutočnými ľuďmi, ktorým záleží na výsledku.",
+      independentTitle:"Nezávislí z presvedčenia.",
+      independentDesc:"Nie sme vydavateľstvo ani korporácia. Sme malý nezávislý projekt, ktorý stále verí, že fyzická hudba má zmysel. Vo svete nekonečného streamovania tvoríme veci, ktoré môžete držať, uchovať a posunúť ďalej.",
+      footerNote:"Tlačené v Poľsku, s láskou.",
+      cartTitle:"Váš košík", cartEmpty:"Váš košík je prázdny.", cartTotal:"Spolu", cartCheckout:"K pokladni",
+      checkoutMsg:"Platba zatiaľ nie je prepojená - toto je ukážkový obchod.",
+      photoEyebrow:"Fotograf", photoRole:"Fotograf · Česko",
+      photoBio:"Sam Muras je fotograf z Česka, ktorého tvorba sa pohybuje medzi tichou krajinou a textúrou všedného dňa. Každá edícia spája jednu z jeho fotografií s diskom vytlačeným v Poľsku.",
+      photoCollab:"Naše edície sú spolupráca cez hranice. Sam fotí v Česku, my tlačíme v Poľsku - dve nezávislé scény, dve susedné krajiny, jeden predmet, ktorý udržíte v ruke. Každá fotografia vychádza v malom, číslovanom náklade.",
+      collabTag:"Vyrobené v Poľsku × fotené v Česku",
+      feat1:"Tlačené v Poľsku", feat2:"Nezávislí", feat3:"Doručenie po celej EÚ", feat4:"Bezpečná platba",
+      paymentProcessing:"Otváram zabezpečenú platbu...", paymentError:"Platbu sa nepodarilo otvoriť. Skúste to znova.",
+      metaTitle:"CD s vlastnou potlačou"
+    },
+    fr:{
+      chooseLanguage:"Choisissez votre langue", chooseLanguageSub:"Vous pouvez le changer à tout moment.",
+      navCustom:"Personnalisé", navEditions:"Éditions", navAbout:"À propos",
+      heroTitle:"Des CD à l'impression soignée.",
+      heroSubtitle:"Votre visuel imprimé sur de vrais disques. Fait de façon indépendante et imprimé à 100% en Pologne.",
+      heroCta:"Commander un CD personnalisé", heroSecondary:"Voir les éditions",
+      customBadge:"Impression personnalisée", customTitle:"Votre design, sur un disque.",
+      customDesc:"Envoyez-nous votre visuel et nous l'imprimons directement sur la surface du CD. Albums, mixtapes, cadeaux, démos - quoi que vous créiez, nous en faisons un objet que vous pouvez tenir.",
+      customCta:"Ajouter un CD personnalisé", customNote:"Impression pleine surface. Vous envoyez le visuel après la commande.",
+      from:"à partir de", customCartName:"CD personnalisé",
+      editionsTitle:"Éditions signées", editionsSubtitle:"Deux impressions prêtes, photographiées par Sam Muras.",
+      editionsBy:"Photo : Sam Muras",
+      edition1Name:"Édition 01", edition1Desc:"Un disque imprimé avec une photographie originale de Sam Muras.",
+      edition2Name:"Édition 02", edition2Desc:"Un disque imprimé avec une photographie originale de Sam Muras.",
+      addToCart:"Ajouter au panier", added:"Ajouté au panier",
+      polandTitle:"Imprimé en Pologne. <em>100%</em>",
+      polandDesc:"Chaque disque est imprimé ici même, en Pologne. Pas de sous-traitance, pas d'intermédiaires, pas de raccourcis. De vraies encres, de vrais disques, faits par de vraies personnes qui tiennent au résultat.",
+      independentTitle:"Indépendants par choix.",
+      independentDesc:"Nous ne sommes ni un label ni une grande entreprise. Nous sommes un petit projet indépendant qui croit encore que la musique physique compte. Dans un monde de streaming sans fin, nous fabriquons des objets que l'on peut tenir, garder et transmettre.",
+      footerNote:"Imprimé en Pologne, avec soin.",
+      cartTitle:"Votre panier", cartEmpty:"Votre panier est vide.", cartTotal:"Total", cartCheckout:"Paiement",
+      checkoutMsg:"Le paiement n'est pas encore connecté - ceci est une boutique de démonstration.",
+      photoEyebrow:"Le photographe", photoRole:"Photographe · Tchéquie",
+      photoBio:"Sam Muras est un photographe tchèque dont le travail oscille entre paysages silencieux et textures du quotidien. Chaque édition associe l'une de ses images à un disque imprimé en Pologne.",
+      photoCollab:"Nos éditions naissent d'une collaboration transfrontalière. Sam photographie en Tchéquie, nous imprimons en Pologne - deux scènes indépendantes, deux pays voisins, un seul objet à tenir en main. Chaque tirage paraît en petite série numérotée.",
+      collabTag:"Fabriqué en Pologne × photographié en Tchéquie",
+      feat1:"Imprimé en Pologne", feat2:"Indépendant", feat3:"Livraison dans toute l'UE", feat4:"Paiement sécurisé",
+      paymentProcessing:"Ouverture du paiement sécurisé...", paymentError:"Impossible d'ouvrir le paiement. Réessayez.",
+      metaTitle:"CD à impression personnalisée"
+    },
+    it:{
+      chooseLanguage:"Scegli la lingua", chooseLanguageSub:"Puoi cambiarla in qualsiasi momento.",
+      navCustom:"Personalizzato", navEditions:"Edizioni", navAbout:"Chi siamo",
+      heroTitle:"CD stampati alla perfezione.",
+      heroSubtitle:"La tua grafica stampata su dischi veri. Realizzati in modo indipendente e stampati al 100% in Polonia.",
+      heroCta:"Ordina un CD personalizzato", heroSecondary:"Vedi le edizioni",
+      customBadge:"Stampa personalizzata", customTitle:"Il tuo design, su un disco.",
+      customDesc:"Inviaci la tua grafica e la stampiamo direttamente sulla superficie del CD. Album, mixtape, regali, demo - qualunque cosa crei, la trasformiamo in un oggetto che puoi tenere in mano.",
+      customCta:"Aggiungi un CD personalizzato", customNote:"Stampa su tutta la superficie. Invii la grafica dopo l'ordine.",
+      from:"da", customCartName:"CD personalizzato",
+      editionsTitle:"Edizioni d'autore", editionsSubtitle:"Due stampe pronte, fotografate da Sam Muras.",
+      editionsBy:"Foto: Sam Muras",
+      edition1Name:"Edizione 01", edition1Desc:"Un disco stampato con una fotografia originale di Sam Muras.",
+      edition2Name:"Edizione 02", edition2Desc:"Un disco stampato con una fotografia originale di Sam Muras.",
+      addToCart:"Aggiungi al carrello", added:"Aggiunto al carrello",
+      polandTitle:"Stampato in Polonia. <em>100%</em>",
+      polandDesc:"Ogni singolo disco è stampato proprio qui, in Polonia. Niente outsourcing, niente intermediari, niente scorciatoie. Inchiostri veri, dischi veri, fatti da persone vere a cui importa del risultato.",
+      independentTitle:"Indipendenti per scelta.",
+      independentDesc:"Non siamo un'etichetta né una grande azienda. Siamo un piccolo progetto indipendente che crede ancora che la musica fisica conti. In un mondo di streaming infinito, creiamo oggetti che puoi tenere, conservare e tramandare.",
+      footerNote:"Stampato in Polonia, con cura.",
+      cartTitle:"Il tuo carrello", cartEmpty:"Il tuo carrello è vuoto.", cartTotal:"Totale", cartCheckout:"Paga",
+      checkoutMsg:"Il pagamento non è ancora collegato - questo è un negozio dimostrativo.",
+      photoEyebrow:"Il fotografo", photoRole:"Fotografo · Cechia",
+      photoBio:"Sam Muras è un fotografo ceco il cui lavoro si muove tra paesaggi silenziosi e le texture del quotidiano. Ogni edizione abbina una delle sue immagini a un disco stampato in Polonia.",
+      photoCollab:"Le nostre edizioni nascono da una collaborazione oltre confine. Sam fotografa in Cechia, noi stampiamo in Polonia - due scene indipendenti, due paesi vicini, un solo oggetto da tenere in mano. Ogni stampa esce in una piccola tiratura numerata.",
+      collabTag:"Prodotto in Polonia × fotografato in Cechia",
+      feat1:"Stampato in Polonia", feat2:"Indipendente", feat3:"Spedizione in tutta l'UE", feat4:"Pagamento sicuro",
+      paymentProcessing:"Apertura del pagamento sicuro...", paymentError:"Impossibile aprire il pagamento. Riprova.",
+      metaTitle:"CD con stampa personalizzata"
+    },
+    nl:{
+      chooseLanguage:"Kies je taal", chooseLanguageSub:"Je kunt dit altijd wijzigen.",
+      navCustom:"Eigen ontwerp", navEditions:"Edities", navAbout:"Over ons",
+      heroTitle:"Cd's, prachtig bedrukt.",
+      heroSubtitle:"Jouw ontwerp gedrukt op echte schijven. Onafhankelijk gemaakt en 100% gedrukt in Polen.",
+      heroCta:"Bestel een eigen cd", heroSecondary:"Bekijk de edities",
+      customBadge:"Eigen bedrukking", customTitle:"Jouw ontwerp, op een schijf.",
+      customDesc:"Stuur ons je ontwerp en wij drukken het rechtstreeks op het oppervlak van de cd. Albums, mixtapes, cadeaus, demo's - wat je ook maakt, wij maken er iets van dat je kunt vasthouden.",
+      customCta:"Eigen cd toevoegen", customNote:"Bedrukking over het hele oppervlak. Je stuurt het ontwerp na de bestelling.",
+      from:"vanaf", customCartName:"Eigen cd",
+      editionsTitle:"Gesigneerde edities", editionsSubtitle:"Twee kant-en-klare prints, gefotografeerd door Sam Muras.",
+      editionsBy:"Foto: Sam Muras",
+      edition1Name:"Editie 01", edition1Desc:"Een bedrukte schijf met een originele foto van Sam Muras.",
+      edition2Name:"Editie 02", edition2Desc:"Een bedrukte schijf met een originele foto van Sam Muras.",
+      addToCart:"In winkelwagen", added:"Toegevoegd aan winkelwagen",
+      polandTitle:"Gedrukt in Polen. <em>100%</em>",
+      polandDesc:"Elke schijf wordt hier in Polen gedrukt. Geen uitbesteding, geen tussenpersonen, geen shortcuts. Echte inkt, echte schijven, gemaakt door echte mensen die om het resultaat geven.",
+      independentTitle:"Onafhankelijk uit overtuiging.",
+      independentDesc:"We zijn geen label en geen groot bedrijf. We zijn een klein onafhankelijk project dat nog steeds gelooft dat fysieke muziek ertoe doet. In een wereld van eindeloze streaming maken we dingen die je kunt vasthouden, bewaren en doorgeven.",
+      footerNote:"Met zorg gedrukt in Polen.",
+      cartTitle:"Je winkelwagen", cartEmpty:"Je winkelwagen is leeg.", cartTotal:"Totaal", cartCheckout:"Afrekenen",
+      checkoutMsg:"Betalen is nog niet gekoppeld - dit is een demowinkel.",
+      photoEyebrow:"De fotograaf", photoRole:"Fotograaf · Tsjechië",
+      photoBio:"Sam Muras is een Tsjechische fotograaf wiens werk beweegt tussen stille landschappen en de texturen van het dagelijks leven. Elke editie combineert een van zijn beelden met een in Polen gedrukte schijf.",
+      photoCollab:"Onze edities komen voort uit een samenwerking over de grens. Sam fotografeert in Tsjechië, wij drukken in Polen - twee onafhankelijke scenes, twee buurlanden, één object om vast te houden. Elke print verschijnt in een kleine, genummerde oplage.",
+      collabTag:"Gemaakt in Polen × gefotografeerd in Tsjechië",
+      feat1:"Gedrukt in Polen", feat2:"Onafhankelijk", feat3:"Verzending door heel de EU", feat4:"Veilig betalen",
+      paymentProcessing:"Veilig afrekenen openen...", paymentError:"Kan afrekenen niet openen. Probeer opnieuw.",
+      metaTitle:"Cd's met eigen bedrukking"
+    }
+  };
+
+  /* ===== State ===== */
+  let lang = 'en';
+  let cart = [];
+  let toastTimer = null;
+
+  const SUN  = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2.5 12h2M19.5 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>';
+  const MOON = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.5A8.5 8.5 0 1 1 11.5 3 6.6 6.6 0 0 0 21 12.5z"/></svg>';
+
+  /* ===== Helpers ===== */
+  function fmt(amount){
+    const m = LOCALE[lang];
+    const noDecimals = (m.cur === 'CZK'); // Czech crown shown without grosze
+    return new Intl.NumberFormat(m.loc, {
+      style: 'currency',
+      currency: m.cur,
+      minimumFractionDigits: noDecimals ? 0 : 2,
+      maximumFractionDigits: noDecimals ? 0 : 2
+    }).format(amount);
+  }
+
+  function discHTML(art, size){
+    return '<div class="disc" style="--disc:' + size + ';--art:' + art + '">'
+      + '<div class="disc__spin"><div class="disc__art"></div><div class="disc__sheen"></div><div class="disc__rings"></div></div>'
+      + '<div class="disc__hub"></div><div class="disc__hole"></div></div>';
+  }
+
+  /* ===== Translations / render ===== */
+  function applyI18n(){
+    const t = T[lang];
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      const k = el.getAttribute('data-i18n');
+      if (t[k] != null) el.textContent = t[k];
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(function(el){
+      const k = el.getAttribute('data-i18n-html');
+      if (t[k] != null) el.innerHTML = t[k];
+    });
+    document.getElementById('customPrice').textContent = t.from + ' ' + fmt(PRICES.custom[lang]);
+    document.getElementById('price-edition1').textContent = fmt(PRICES.edition1[lang]);
+    document.getElementById('price-edition2').textContent = fmt(PRICES.edition2[lang]);
+    document.getElementById('langFlag').textContent = FLAG[lang];
+    document.title = BRAND + ' - ' + t.metaTitle;
+    renderCart();
+  }
+
+  function renderCart(){
+    const t = T[lang];
+    const body = document.getElementById('cartBody');
+    const count = cart.reduce(function(s,i){ return s + i.qty; }, 0);
+    const badge = document.getElementById('cartCount');
+    badge.textContent = count;
+    badge.style.display = count ? 'grid' : 'none';
+
+    if (cart.length === 0){
+      body.innerHTML = '<div class="cart__empty">' + t.cartEmpty + '</div>';
+      document.getElementById('cartFoot').style.display = 'none';
+      return;
+    }
+    document.getElementById('cartFoot').style.display = 'block';
+
+    let total = 0;
+    body.innerHTML = cart.map(function(item){
+      const p = PRODUCTS[item.id];
+      const price = PRICES[item.id][lang];
+      total += price * item.qty;
+      const name = t[p.nameKey];
+      return '<div class="cart-item">'
+        + discHTML(p.art, '54px')
+        + '<div class="cart-item__info"><div class="cart-item__name">' + name + '</div>'
+        + '<div class="cart-item__price">' + fmt(price) + '</div></div>'
+        + '<div class="stepper">'
+        + '<button onclick="changeQty(\'' + item.id + '\',-1)" aria-label="-">\u2212</button>'
+        + '<span>' + item.qty + '</span>'
+        + '<button onclick="changeQty(\'' + item.id + '\',1)" aria-label="+">+</button>'
+        + '</div></div>';
+    }).join('');
+    document.getElementById('cartTotalVal').textContent = fmt(total);
+  }
+
+  /* ===== Cart actions ===== */
+  function addToCart(id){
+    const found = cart.find(function(i){ return i.id === id; });
+    if (found) found.qty++; else cart.push({ id:id, qty:1 });
+    renderCart();
+    showToast(T[lang].added);
+  }
+  function changeQty(id, d){
+    const found = cart.find(function(i){ return i.id === id; });
+    if (!found) return;
+    found.qty += d;
+    if (found.qty <= 0) cart = cart.filter(function(i){ return i.id !== id; });
+    renderCart();
+  }
+  function openCart(){
+    document.getElementById('cartBackdrop').classList.add('open');
+    document.getElementById('cartDrawer').classList.add('open');
+  }
+  function closeCart(){
+    document.getElementById('cartBackdrop').classList.remove('open');
+    document.getElementById('cartDrawer').classList.remove('open');
+  }
+  async function checkout(){
+    if (!CHECKOUT_URL){ showToast(T[lang].checkoutMsg); return; }
+    if (cart.length === 0) return;
+    const btn = document.getElementById('checkoutBtn');
+    try{
+      if (btn) btn.disabled = true;
+      showToast(T[lang].paymentProcessing);
+      const res = await fetch(CHECKOUT_URL, {
+        method:'POST',
+        headers:{ 'Content-Type':'application/json' },
+        body: JSON.stringify({ cart: cart.map(function(i){ return { id:i.id, qty:i.qty }; }) })
+      });
+      if (!res.ok) throw new Error('bad response');
+      const data = await res.json();
+      if (data && data.url){ window.location.href = data.url; return; }
+      throw new Error('no url');
+    }catch(e){
+      showToast(T[lang].paymentError);
+      if (btn) btn.disabled = false;
+    }
+  }
+
+  /* ===== Language ===== */
+  function setLang(l){ lang = l; applyI18n(); closeLang(); }
+  function openLang(){ document.getElementById('langOverlay').classList.remove('hide'); }
+  function closeLang(){ document.getElementById('langOverlay').classList.add('hide'); }
+
+  /* ===== Theme ===== */
+  function currentTheme(){
+    const attr = document.documentElement.getAttribute('data-theme');
+    if (attr) return attr;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  function toggleTheme(){
+    const next = currentTheme() === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    updateThemeIcon();
+    updateMetaTheme();
+  }
+  function updateThemeIcon(){
+    document.getElementById('themeBtn').innerHTML = currentTheme() === 'dark' ? SUN : MOON;
+  }
+  function updateMetaTheme(){
+    document.getElementById('metaTheme').setAttribute('content', currentTheme() === 'dark' ? '#000000' : '#F2F2F7');
+  }
+
+  /* ===== Toast ===== */
+  function showToast(msg){
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ el.classList.remove('show'); }, 1900);
+  }
+
+  /* ===== Scroll reveal ===== */
+  function initReveal(){
+    const els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)){
+      els.forEach(function(e){ e.classList.add('in'); });
+      return;
+    }
+    const io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { threshold:0.12 });
+    els.forEach(function(e){ io.observe(e); });
+  }
+
+  /* ===== Init ===== */
+  document.querySelectorAll('.js-brand').forEach(function(e){ e.textContent = BRAND; });
+  updateThemeIcon();
+  updateMetaTheme();
+  applyI18n();
+  initReveal();
+
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(){
+    if (!document.documentElement.getAttribute('data-theme')){ updateThemeIcon(); updateMetaTheme(); }
+  });
+</script>
+</body>
+</html>
