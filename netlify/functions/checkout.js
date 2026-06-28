@@ -22,9 +22,11 @@ const Stripe = require('stripe');
 
 // Prices in grosze (1 zł = 100). Keep in sync with PRICES (pl) on the page.
 const CATALOG = {
-  custom:   { name: 'CD - custom print',      amount: 3190 }, // 31,90 zł
-  edition1: { name: 'Edition 01 - Sam Muras', amount: 2990 }, // 29,90 zł
-  edition2: { name: 'Edition 02 - Sam Muras', amount: 2990 }  // 29,90 zł
+  custom:    { name: 'CD - custom print',      amount: 3190 }, // 31,90 zł
+  edition1:  { name: 'Edition 01 - Sam Muras', amount: 2990 }, // 29,90 zł
+  edition2:  { name: 'Edition 02 - Sam Muras', amount: 2990 }, // 29,90 zł
+  digipack:  { name: 'Digipack ECO',           amount:  500 }, //  5,00 zł
+  digipackP: { name: 'Digipack ECO + nadruk',  amount: 1000 }  // 10,00 zł
 };
 
 // Flat shipping rates in grosze. Change these two numbers whenever real
