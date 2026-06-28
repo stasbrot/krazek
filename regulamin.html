@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" id="metaTheme" content="#F2F2F7">
+<title>Regulamin · KRĄŻEK</title>
+<style>
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  :root{
+    --bg:#F2F2F7; --surface:#ffffff;
+    --ink:#1C1C1E; --ink-2:#86868B; --ink-3:#AEAEB2;
+    --sep:rgba(60,60,67,0.12);
+    --fill:rgba(120,120,128,0.12);
+    --accent:#0A84FF;
+    --nav-bg:rgba(242,242,247,0.72);
+    --shadow:0 14px 44px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+    --radius:22px; --radius-lg:30px;
+    --maxw:760px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#000000; --surface:#1C1C1E;
+      --ink:#FFFFFF; --ink-2:#98989F; --ink-3:#636366;
+      --sep:rgba(255,255,255,0.10);
+      --fill:rgba(120,120,128,0.24);
+      --nav-bg:rgba(0,0,0,0.62);
+      --shadow:0 14px 44px rgba(0,0,0,0.55);
+    }
+  }
+  html{ scroll-behavior:smooth; }
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  .nav{
+    position:sticky; top:0; z-index:50;
+    backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px);
+    background:var(--nav-bg); border-bottom:1px solid var(--sep);
+  }
+  .nav__inner{ max-width:var(--maxw); margin:0 auto; padding:11px 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+  .brand{ font-weight:700; font-size:20px; letter-spacing:-0.02em; text-decoration:none; color:var(--ink); }
+  .back{ color:var(--accent); text-decoration:none; font-size:15px; font-weight:500; display:inline-flex; align-items:center; gap:6px; }
+  .back:hover{ opacity:.8; }
+
+  main{ max-width:var(--maxw); margin:0 auto; padding:36px 20px 72px; }
+  .doc{
+    background:var(--surface); border:1px solid var(--sep); border-radius:var(--radius-lg);
+    box-shadow:var(--shadow); padding:40px 36px;
+  }
+  .doc h1{ font-size:clamp(28px,5vw,38px); font-weight:700; letter-spacing:-0.02em; line-height:1.1; }
+  .doc .lead{ color:var(--ink-2); margin-top:12px; font-size:16px; line-height:1.5; }
+  .doc h2{ font-size:20px; font-weight:700; margin-top:32px; letter-spacing:-0.01em; }
+  .doc h3{ font-size:17px; font-weight:600; margin-top:22px; }
+  .doc p{ margin-top:12px; line-height:1.6; color:var(--ink); font-size:15.5px; }
+  .doc ul, .doc ol{ margin-top:10px; padding-left:22px; }
+  .doc li{ margin-top:6px; line-height:1.55; font-size:15.5px; }
+  .doc .muted{ color:var(--ink-2); font-size:14px; }
+  .doc .box{
+    margin-top:16px; padding:16px 20px; border-radius:14px; background:var(--fill); border:1px solid var(--sep);
+    font-size:15px; line-height:1.55;
+  }
+  .lang-toggle{ display:inline-flex; gap:4px; background:var(--fill); border-radius:999px; padding:4px; margin-top:18px; }
+  .lang-toggle button{ border:0; padding:7px 14px; border-radius:999px; background:transparent; color:var(--ink-2); font-size:13px; font-weight:600; cursor:pointer; }
+  .lang-toggle button.active{ background:var(--surface); color:var(--ink); box-shadow:0 1px 3px rgba(0,0,0,.1); }
+
+  .footer{ border-top:1px solid var(--sep); margin-top:48px; }
+  .footer__inner{ max-width:var(--maxw); margin:0 auto; padding:24px 20px; text-align:center; color:var(--ink-2); font-size:14px; }
+  .footer a{ color:var(--ink-2); text-decoration:none; margin:0 8px; }
+  .footer a:hover{ color:var(--ink); }
+
+  .hidden{ display:none; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav__inner">
+    <a href="index.html" class="brand">KRĄŻEK</a>
+    <a href="index.html" class="back">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+      <span id="backLabel">Wróć</span>
+    </a>
+  </div>
+</header>
+
+<main>
+  <div class="doc">
+    <div class="lang-toggle" role="tablist">
+      <button class="active" onclick="setLang('pl')" id="tabPl">Polski</button>
+      <button onclick="setLang('en')" id="tabEn">English</button>
+    </div>
+
+    <!-- ============== POLSKI ============== -->
+    <div id="docPl">
+      <h1 style="margin-top:18px">Regulamin sklepu KRĄŻEK</h1>
+      <p class="lead">Obowiązuje od dnia publikacji. Sklep KRĄŻEK prowadzony jest pod adresem krazek.eu.</p>
+
+      <div class="box">
+        <strong>Sprzedawca:</strong><br>
+        Stanisław Grabowski<br>
+        ul. Orłowska 37, 81-522 Gdynia<br>
+        e-mail: shopkrazek.eu@gmail.com<br>
+        <span class="muted">Działalność nierejestrowana w rozumieniu art. 5 ust. 1 ustawy z dnia 6 marca 2018 r. Prawo przedsiębiorców.</span>
+      </div>
+
+      <h2>§1. Postanowienia ogólne</h2>
+      <ol>
+        <li>Niniejszy Regulamin określa zasady sprzedaży towarów przez Sprzedawcę za pośrednictwem sklepu internetowego dostępnego pod adresem krazek.eu (dalej: „Sklep").</li>
+        <li>Sprzedawca prowadzi sprzedaż w ramach działalności nierejestrowanej i nie jest przedsiębiorcą w rozumieniu Kodeksu cywilnego.</li>
+        <li>Złożenie zamówienia w Sklepie oznacza akceptację niniejszego Regulaminu.</li>
+        <li>Kontakt ze Sprzedawcą: e-mail shopkrazek.eu@gmail.com.</li>
+      </ol>
+
+      <h2>§2. Produkty</h2>
+      <ol>
+        <li>Sklep oferuje płyty CD z indywidualnym nadrukiem (custom) oraz płyty CD z gotowymi nadrukami (edycje sygnowane).</li>
+        <li>Wszystkie nadruki wykonywane są w Polsce.</li>
+        <li>W przypadku płyty z indywidualnym nadrukiem Kupujący zobowiązany jest do przesłania własnej grafiki na e-mail Sprzedawcy w ciągu 7 dni od dokonania zakupu. Sprzedawca zastrzega sobie prawo odmowy realizacji nadruku grafiki naruszającej prawa osób trzecich, przepisy prawa lub dobre obyczaje.</li>
+        <li>Edycje sygnowane zawierają oryginalne fotografie autorstwa Sama Murasa wykorzystywane na podstawie udzielonej Sprzedawcy zgody.</li>
+      </ol>
+
+      <h2>§3. Składanie zamówień i ceny</h2>
+      <ol>
+        <li>Zamówienia można składać 24 godziny na dobę, 7 dni w tygodniu.</li>
+        <li>Ceny produktów podane są w złotych polskich (PLN) i są cenami brutto.</li>
+        <li>Cena nie obejmuje kosztów dostawy, które doliczane są na etapie płatności.</li>
+        <li>Umowa sprzedaży zawierana jest w momencie dokonania płatności.</li>
+        <li>Sprzedawca potwierdza zawarcie umowy wiadomością e-mail.</li>
+      </ol>
+
+      <h2>§4. Płatności</h2>
+      <ol>
+        <li>Płatności obsługuje operator Stripe Payments Europe Ltd.</li>
+        <li>Dostępne metody płatności: BLIK, karta płatnicza, Apple Pay, Google Pay oraz inne metody udostępniane przez Stripe.</li>
+        <li>Brak otrzymania płatności w ciągu 24 godzin od złożenia zamówienia skutkuje jego anulowaniem.</li>
+      </ol>
+
+      <h2>§5. Dostawa</h2>
+      <ol>
+        <li>Sprzedawca realizuje dostawy na terenie Polski oraz innych krajów Unii Europejskiej i Wielkiej Brytanii.</li>
+        <li>Koszt wysyłki: Polska 9,99 zł, pozostałe kraje Unii Europejskiej 24,99 zł.</li>
+        <li>Czas realizacji zamówienia wynosi do 14 dni roboczych od dnia zaksięgowania płatności (w przypadku płyt z indywidualnym nadrukiem - od dnia otrzymania grafiki od Kupującego).</li>
+        <li>Czas dostawy nie wlicza się do czasu realizacji zamówienia i zależy od wybranego przewoźnika.</li>
+      </ol>
+
+      <h2>§6. Prawo odstąpienia od umowy</h2>
+      <ol>
+        <li>Konsument ma prawo odstąpić od umowy w terminie 14 dni od otrzymania towaru, bez podawania przyczyny i bez ponoszenia kosztów innych niż koszty zwrotu.</li>
+        <li>Oświadczenie o odstąpieniu należy wysłać na adres e-mail Sprzedawcy. Wzór formularza dostępny jest na stronie <a href="odstapienie.html" style="color:var(--accent)">odstąpienia od umowy</a>.</li>
+        <li>Zwrot środków nastąpi w ciągu 14 dni od dnia otrzymania oświadczenia.</li>
+        <li><strong>Prawo odstąpienia NIE PRZYSŁUGUJE</strong> w przypadku płyt CD z indywidualnym nadrukiem (custom), ponieważ są one wykonywane według specyfikacji Kupującego i służą zaspokojeniu jego zindywidualizowanych potrzeb (art. 38 pkt 3 ustawy o prawach konsumenta).</li>
+        <li>W przypadku edycji sygnowanych prawo odstąpienia przysługuje na zasadach ogólnych.</li>
+      </ol>
+
+      <h2>§7. Reklamacje</h2>
+      <ol>
+        <li>Sprzedawca odpowiada za zgodność towaru z umową na podstawie ustawy o prawach konsumenta.</li>
+        <li>Reklamacje należy zgłaszać na adres e-mail Sprzedawcy, opisując wadę i okoliczności jej powstania.</li>
+        <li>Sprzedawca rozpatruje reklamację w terminie 14 dni od jej otrzymania.</li>
+        <li>W przypadku uznania reklamacji Sprzedawca naprawi lub wymieni towar na wolny od wad, a jeśli to niemożliwe - obniży cenę lub zwróci środki.</li>
+      </ol>
+
+      <h2>§8. Dane osobowe</h2>
+      <p>Zasady przetwarzania danych osobowych Kupujących opisane zostały w <a href="prywatnosc.html" style="color:var(--accent)">Polityce prywatności</a>.</p>
+
+      <h2>§9. Rozstrzyganie sporów</h2>
+      <ol>
+        <li>Sądem właściwym do rozstrzygania sporów jest sąd właściwy dla miejsca zamieszkania Konsumenta.</li>
+        <li>Konsument ma prawo skorzystać z pozasądowych sposobów rozstrzygania sporów, w tym z platformy ODR Komisji Europejskiej dostępnej pod adresem <a href="https://ec.europa.eu/consumers/odr" style="color:var(--accent)">ec.europa.eu/consumers/odr</a>.</li>
+      </ol>
+
+      <h2>§10. Postanowienia końcowe</h2>
+      <ol>
+        <li>W sprawach nieuregulowanych zastosowanie mają przepisy prawa polskiego, w szczególności Kodeksu cywilnego oraz ustawy o prawach konsumenta z dnia 30 maja 2014 r.</li>
+        <li>Sprzedawca zastrzega sobie prawo do zmiany Regulaminu. Do umów zawartych przed zmianą Regulaminu stosuje się Regulamin w brzmieniu obowiązującym w chwili zawarcia umowy.</li>
+        <li>Wersja polska Regulaminu jest wersją wiążącą.</li>
+      </ol>
+    </div>
+
+    <!-- ============== ENGLISH ============== -->
+    <div id="docEn" class="hidden">
+      <h1 style="margin-top:18px">KRĄŻEK Store Terms and Conditions</h1>
+      <p class="lead">Effective from the date of publication. The KRĄŻEK store operates at krazek.eu.</p>
+
+      <div class="box">
+        <strong>Seller:</strong><br>
+        Stanisław Grabowski<br>
+        ul. Orłowska 37, 81-522 Gdynia, Poland<br>
+        e-mail: shopkrazek.eu@gmail.com<br>
+        <span class="muted">Operating as unregistered economic activity under Polish law (Article 5 of the Entrepreneurs' Law of 6 March 2018).</span>
+      </div>
+
+      <h2>§1. General provisions</h2>
+      <ol>
+        <li>These Terms govern sales of goods via the online store at krazek.eu (the "Store").</li>
+        <li>The Seller operates under unregistered economic activity and is not a business within the meaning of the Polish Civil Code.</li>
+        <li>Placing an order means acceptance of these Terms.</li>
+        <li>Contact: shopkrazek.eu@gmail.com.</li>
+      </ol>
+
+      <h2>§2. Products</h2>
+      <ol>
+        <li>The Store sells CDs with custom printing and CDs with ready-made signature editions.</li>
+        <li>All printing is done in Poland.</li>
+        <li>For custom-printed CDs the Buyer must send their artwork to the Seller's e-mail within 7 days of purchase. The Seller may refuse artwork that infringes third-party rights or violates the law or public decency.</li>
+        <li>Signature editions feature original photographs by Sam Muras used with his permission.</li>
+      </ol>
+
+      <h2>§3. Orders and prices</h2>
+      <ol>
+        <li>Orders may be placed 24/7.</li>
+        <li>Prices are shown in Polish złoty (PLN) and include applicable taxes.</li>
+        <li>Prices do not include shipping costs, which are shown at checkout.</li>
+        <li>The sales contract is concluded upon payment.</li>
+        <li>The Seller confirms the contract by e-mail.</li>
+      </ol>
+
+      <h2>§4. Payments</h2>
+      <ol>
+        <li>Payments are processed by Stripe Payments Europe Ltd.</li>
+        <li>Available methods: BLIK, payment card, Apple Pay, Google Pay and other methods provided by Stripe.</li>
+        <li>If payment is not received within 24 hours, the order is cancelled.</li>
+      </ol>
+
+      <h2>§5. Shipping</h2>
+      <ol>
+        <li>The Seller ships within Poland, the European Union and the United Kingdom.</li>
+        <li>Shipping cost: Poland 9.99 PLN, rest of EU 24.99 PLN.</li>
+        <li>Orders are dispatched within up to 14 business days from receipt of payment (for custom CDs - from receipt of the Buyer's artwork).</li>
+        <li>Delivery time depends on the chosen carrier and is separate from order processing time.</li>
+      </ol>
+
+      <h2>§6. Right of withdrawal</h2>
+      <ol>
+        <li>Consumers have the right to withdraw from the contract within 14 days of receiving the goods, without giving any reason.</li>
+        <li>A withdrawal statement should be sent to the Seller's e-mail. A template is available on the <a href="odstapienie.html" style="color:var(--accent)">withdrawal page</a>.</li>
+        <li>Refunds are issued within 14 days of receiving the statement.</li>
+        <li><strong>The right of withdrawal does NOT apply</strong> to custom-printed CDs, as they are made to the Buyer's specifications (Article 38(3) of the Polish Consumer Rights Act, implementing Directive 2011/83/EU).</li>
+        <li>For signature editions, the right of withdrawal applies under standard rules.</li>
+      </ol>
+
+      <h2>§7. Complaints</h2>
+      <ol>
+        <li>The Seller is liable for goods conformity under the Polish Consumer Rights Act.</li>
+        <li>Complaints should be sent to the Seller's e-mail with a description of the issue.</li>
+        <li>Complaints are processed within 14 days.</li>
+        <li>If accepted, the Seller will repair or replace the item, or - if impossible - reduce the price or refund the payment.</li>
+      </ol>
+
+      <h2>§8. Personal data</h2>
+      <p>Personal data processing is described in the <a href="prywatnosc.html" style="color:var(--accent)">Privacy Policy</a>.</p>
+
+      <h2>§9. Disputes</h2>
+      <ol>
+        <li>The court competent for the Consumer's place of residence has jurisdiction.</li>
+        <li>Consumers may use the European Commission's ODR platform at <a href="https://ec.europa.eu/consumers/odr" style="color:var(--accent)">ec.europa.eu/consumers/odr</a>.</li>
+      </ol>
+
+      <h2>§10. Final provisions</h2>
+      <ol>
+        <li>Matters not covered are governed by Polish law, in particular the Civil Code and the Consumer Rights Act of 30 May 2014.</li>
+        <li>The Seller reserves the right to amend these Terms. Contracts concluded before amendments are governed by the Terms in force at the time of conclusion.</li>
+        <li>The Polish version of these Terms is binding.</li>
+      </ol>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <a href="index.html">KRĄŻEK</a> ·
+    <a href="regulamin.html">Regulamin</a> ·
+    <a href="prywatnosc.html">Prywatność</a> ·
+    <a href="odstapienie.html">Odstąpienie</a>
+  </div>
+</footer>
+
+<script>
+  function setLang(l){
+    document.getElementById('docPl').classList.toggle('hidden', l !== 'pl');
+    document.getElementById('docEn').classList.toggle('hidden', l !== 'en');
+    document.getElementById('tabPl').classList.toggle('active', l === 'pl');
+    document.getElementById('tabEn').classList.toggle('active', l === 'en');
+    document.getElementById('backLabel').textContent = l === 'pl' ? 'Wróć' : 'Back';
+    document.documentElement.lang = l;
+    document.title = (l === 'pl' ? 'Regulamin' : 'Terms') + ' · KRĄŻEK';
+  }
+</script>
+</body>
+</html>

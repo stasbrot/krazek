@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F2F2F7">
+<title>Odstąpienie od umowy · KRĄŻEK</title>
+<style>
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  :root{
+    --bg:#F2F2F7; --surface:#ffffff;
+    --ink:#1C1C1E; --ink-2:#86868B; --ink-3:#AEAEB2;
+    --sep:rgba(60,60,67,0.12);
+    --fill:rgba(120,120,128,0.12);
+    --accent:#0A84FF;
+    --warn:#FF9F0A;
+    --nav-bg:rgba(242,242,247,0.72);
+    --shadow:0 14px 44px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+    --radius-lg:30px; --maxw:760px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#000000; --surface:#1C1C1E;
+      --ink:#FFFFFF; --ink-2:#98989F; --ink-3:#636366;
+      --sep:rgba(255,255,255,0.10);
+      --fill:rgba(120,120,128,0.24);
+      --nav-bg:rgba(0,0,0,0.62);
+      --shadow:0 14px 44px rgba(0,0,0,0.55);
+    }
+  }
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+  .nav{
+    position:sticky; top:0; z-index:50;
+    backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px);
+    background:var(--nav-bg); border-bottom:1px solid var(--sep);
+  }
+  .nav__inner{ max-width:var(--maxw); margin:0 auto; padding:11px 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+  .brand{ font-weight:700; font-size:20px; letter-spacing:-0.02em; text-decoration:none; color:var(--ink); }
+  .back{ color:var(--accent); text-decoration:none; font-size:15px; font-weight:500; display:inline-flex; align-items:center; gap:6px; }
+  main{ max-width:var(--maxw); margin:0 auto; padding:36px 20px 72px; }
+  .doc{
+    background:var(--surface); border:1px solid var(--sep); border-radius:var(--radius-lg);
+    box-shadow:var(--shadow); padding:40px 36px;
+  }
+  .doc h1{ font-size:clamp(28px,5vw,38px); font-weight:700; letter-spacing:-0.02em; line-height:1.1; }
+  .doc .lead{ color:var(--ink-2); margin-top:12px; font-size:16px; line-height:1.5; }
+  .doc h2{ font-size:20px; font-weight:700; margin-top:32px; letter-spacing:-0.01em; }
+  .doc p{ margin-top:12px; line-height:1.6; font-size:15.5px; }
+  .doc ul, .doc ol{ margin-top:10px; padding-left:22px; }
+  .doc li{ margin-top:6px; line-height:1.55; font-size:15.5px; }
+  .box{
+    margin-top:16px; padding:18px 22px; border-radius:16px; background:var(--fill); border:1px solid var(--sep);
+    font-size:15px; line-height:1.55;
+  }
+  .box--warn{
+    background:rgba(255,159,10,.12); border-color:rgba(255,159,10,.35);
+  }
+  .formbox{
+    margin-top:20px; padding:24px; border-radius:18px; background:var(--fill); border:1px dashed var(--ink-3);
+    font-family:-apple-system,"SF Mono",ui-monospace,Menlo,monospace; font-size:14px; line-height:1.7;
+    white-space:pre-wrap;
+  }
+  .lang-toggle{ display:inline-flex; gap:4px; background:var(--fill); border-radius:999px; padding:4px; margin-top:18px; }
+  .lang-toggle button{ border:0; padding:7px 14px; border-radius:999px; background:transparent; color:var(--ink-2); font-size:13px; font-weight:600; cursor:pointer; }
+  .lang-toggle button.active{ background:var(--surface); color:var(--ink); box-shadow:0 1px 3px rgba(0,0,0,.1); }
+  .footer{ border-top:1px solid var(--sep); margin-top:48px; }
+  .footer__inner{ max-width:var(--maxw); margin:0 auto; padding:24px 20px; text-align:center; color:var(--ink-2); font-size:14px; }
+  .footer a{ color:var(--ink-2); text-decoration:none; margin:0 8px; }
+  .hidden{ display:none; }
+  .copy-btn{
+    margin-top:12px; padding:10px 18px; border-radius:999px; border:0;
+    background:var(--accent); color:#fff; font-weight:600; font-size:14px; cursor:pointer;
+  }
+  .copy-btn:hover{ opacity:.9; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav__inner">
+    <a href="index.html" class="brand">KRĄŻEK</a>
+    <a href="index.html" class="back">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+      <span id="backLabel">Wróć</span>
+    </a>
+  </div>
+</header>
+
+<main>
+  <div class="doc">
+    <div class="lang-toggle">
+      <button class="active" onclick="setLang('pl')" id="tabPl">Polski</button>
+      <button onclick="setLang('en')" id="tabEn">English</button>
+    </div>
+
+    <div id="docPl">
+      <h1 style="margin-top:18px">Odstąpienie od umowy</h1>
+      <p class="lead">Masz 14 dni od otrzymania towaru, żeby odstąpić od umowy bez podania przyczyny.</p>
+
+      <div class="box box--warn">
+        <strong>Uwaga:</strong> prawo odstąpienia <strong>nie przysługuje</strong> w przypadku płyt CD z indywidualnym nadrukiem (custom), ponieważ są wykonywane na Twoje zamówienie według Twojej specyfikacji. Dotyczy to wyłącznie edycji sygnowanych z gotowymi nadrukami.
+      </div>
+
+      <h2>Jak odstąpić</h2>
+      <ol>
+        <li>Wypełnij formularz poniżej (możesz go skopiować) lub napisz własne oświadczenie zawierające te same informacje.</li>
+        <li>Wyślij e-mail na adres <strong>shopkrazek.eu@gmail.com</strong>.</li>
+        <li>Odeślij towar na adres Sprzedawcy w ciągu 14 dni od wysłania oświadczenia. Koszt zwrotu ponosi Kupujący.</li>
+        <li>Zwrot pieniędzy nastąpi w ciągu 14 dni od otrzymania oświadczenia tą samą metodą, jakiej użyłeś do płatności.</li>
+      </ol>
+
+      <h2>Wzór formularza odstąpienia</h2>
+      <div class="formbox" id="formPl">Do: Stanisław Grabowski
+ul. Orłowska 37, 81-522 Gdynia
+e-mail: shopkrazek.eu@gmail.com
+
+Ja, niżej podpisany/a, niniejszym informuję o moim odstąpieniu od umowy sprzedaży następujących rzeczy:
+
+Numer zamówienia: ........................
+Produkt(y): ..............................
+Data zamówienia: .........................
+Data otrzymania: .........................
+
+Imię i nazwisko: .........................
+Adres: ...................................
+E-mail: ..................................
+
+Data: ....................................
+Podpis (tylko jeśli wysyłane w formie papierowej): ........................
+</div>
+      <button class="copy-btn" onclick="copyForm('pl')">Skopiuj wzór</button>
+
+      <h2>Adres do zwrotu towaru</h2>
+      <div class="box">
+        Stanisław Grabowski<br>
+        ul. Orłowska 37<br>
+        81-522 Gdynia<br>
+        Polska
+      </div>
+      <p class="lead">Pamiętaj o starannym zapakowaniu płyty - uszkodzenia mechaniczne mogą wpłynąć na rozliczenie zwrotu.</p>
+    </div>
+
+    <div id="docEn" class="hidden">
+      <h1 style="margin-top:18px">Right of withdrawal</h1>
+      <p class="lead">You have 14 days from receiving the goods to withdraw from the contract without giving any reason.</p>
+
+      <div class="box box--warn">
+        <strong>Please note:</strong> the right of withdrawal <strong>does not apply</strong> to custom-printed CDs, as they are made to your individual specifications. It applies only to the signature editions with ready-made prints.
+      </div>
+
+      <h2>How to withdraw</h2>
+      <ol>
+        <li>Fill in the form below (you can copy it) or write your own statement containing the same information.</li>
+        <li>Send an e-mail to <strong>shopkrazek.eu@gmail.com</strong>.</li>
+        <li>Return the goods to the Seller's address within 14 days of sending the statement. Return shipping is at the Buyer's expense.</li>
+        <li>Refund will be issued within 14 days of receiving the statement, using the same payment method.</li>
+      </ol>
+
+      <h2>Withdrawal form template</h2>
+      <div class="formbox" id="formEn">To: Stanisław Grabowski
+ul. Orłowska 37, 81-522 Gdynia, Poland
+e-mail: shopkrazek.eu@gmail.com
+
+I hereby give notice that I withdraw from my contract of sale of the following goods:
+
+Order number: ............................
+Product(s): ..............................
+Date of order: ...........................
+Date of receipt: .........................
+
+Name: ....................................
+Address: .................................
+E-mail: ..................................
+
+Date: ....................................
+Signature (only if sent on paper): ........................
+</div>
+      <button class="copy-btn" onclick="copyForm('en')">Copy template</button>
+
+      <h2>Return address</h2>
+      <div class="box">
+        Stanisław Grabowski<br>
+        ul. Orłowska 37<br>
+        81-522 Gdynia<br>
+        Poland
+      </div>
+      <p class="lead">Please pack the disc carefully - mechanical damage may affect the return settlement.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <a href="index.html">KRĄŻEK</a> ·
+    <a href="regulamin.html">Regulamin</a> ·
+    <a href="prywatnosc.html">Prywatność</a> ·
+    <a href="odstapienie.html">Odstąpienie</a>
+  </div>
+</footer>
+
+<script>
+  function setLang(l){
+    document.getElementById('docPl').classList.toggle('hidden', l !== 'pl');
+    document.getElementById('docEn').classList.toggle('hidden', l !== 'en');
+    document.getElementById('tabPl').classList.toggle('active', l === 'pl');
+    document.getElementById('tabEn').classList.toggle('active', l === 'en');
+    document.getElementById('backLabel').textContent = l === 'pl' ? 'Wróć' : 'Back';
+    document.documentElement.lang = l;
+    document.title = (l === 'pl' ? 'Odstąpienie od umowy' : 'Right of withdrawal') + ' · KRĄŻEK';
+  }
+  function copyForm(l){
+    const text = document.getElementById('form' + (l === 'pl' ? 'Pl' : 'En')).textContent;
+    navigator.clipboard.writeText(text).then(function(){
+      alert(l === 'pl' ? 'Skopiowano!' : 'Copied!');
+    });
+  }
+</script>
+</body>
+</html>

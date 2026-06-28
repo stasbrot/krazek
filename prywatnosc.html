@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F2F2F7">
+<title>Polityka prywatności · KRĄŻEK</title>
+<style>
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  :root{
+    --bg:#F2F2F7; --surface:#ffffff;
+    --ink:#1C1C1E; --ink-2:#86868B; --ink-3:#AEAEB2;
+    --sep:rgba(60,60,67,0.12);
+    --fill:rgba(120,120,128,0.12);
+    --accent:#0A84FF;
+    --nav-bg:rgba(242,242,247,0.72);
+    --shadow:0 14px 44px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+    --radius-lg:30px; --maxw:760px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#000000; --surface:#1C1C1E;
+      --ink:#FFFFFF; --ink-2:#98989F; --ink-3:#636366;
+      --sep:rgba(255,255,255,0.10);
+      --fill:rgba(120,120,128,0.24);
+      --nav-bg:rgba(0,0,0,0.62);
+      --shadow:0 14px 44px rgba(0,0,0,0.55);
+    }
+  }
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+  .nav{
+    position:sticky; top:0; z-index:50;
+    backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px);
+    background:var(--nav-bg); border-bottom:1px solid var(--sep);
+  }
+  .nav__inner{ max-width:var(--maxw); margin:0 auto; padding:11px 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+  .brand{ font-weight:700; font-size:20px; letter-spacing:-0.02em; text-decoration:none; color:var(--ink); }
+  .back{ color:var(--accent); text-decoration:none; font-size:15px; font-weight:500; display:inline-flex; align-items:center; gap:6px; }
+  main{ max-width:var(--maxw); margin:0 auto; padding:36px 20px 72px; }
+  .doc{
+    background:var(--surface); border:1px solid var(--sep); border-radius:var(--radius-lg);
+    box-shadow:var(--shadow); padding:40px 36px;
+  }
+  .doc h1{ font-size:clamp(28px,5vw,38px); font-weight:700; letter-spacing:-0.02em; line-height:1.1; }
+  .doc .lead{ color:var(--ink-2); margin-top:12px; font-size:16px; line-height:1.5; }
+  .doc h2{ font-size:20px; font-weight:700; margin-top:32px; letter-spacing:-0.01em; }
+  .doc p{ margin-top:12px; line-height:1.6; font-size:15.5px; }
+  .doc ul, .doc ol{ margin-top:10px; padding-left:22px; }
+  .doc li{ margin-top:6px; line-height:1.55; font-size:15.5px; }
+  .doc .box{
+    margin-top:16px; padding:16px 20px; border-radius:14px; background:var(--fill); border:1px solid var(--sep);
+    font-size:15px; line-height:1.55;
+  }
+  .lang-toggle{ display:inline-flex; gap:4px; background:var(--fill); border-radius:999px; padding:4px; margin-top:18px; }
+  .lang-toggle button{ border:0; padding:7px 14px; border-radius:999px; background:transparent; color:var(--ink-2); font-size:13px; font-weight:600; cursor:pointer; }
+  .lang-toggle button.active{ background:var(--surface); color:var(--ink); box-shadow:0 1px 3px rgba(0,0,0,.1); }
+  .footer{ border-top:1px solid var(--sep); margin-top:48px; }
+  .footer__inner{ max-width:var(--maxw); margin:0 auto; padding:24px 20px; text-align:center; color:var(--ink-2); font-size:14px; }
+  .footer a{ color:var(--ink-2); text-decoration:none; margin:0 8px; }
+  .hidden{ display:none; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav__inner">
+    <a href="index.html" class="brand">KRĄŻEK</a>
+    <a href="index.html" class="back">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+      <span id="backLabel">Wróć</span>
+    </a>
+  </div>
+</header>
+
+<main>
+  <div class="doc">
+    <div class="lang-toggle">
+      <button class="active" onclick="setLang('pl')" id="tabPl">Polski</button>
+      <button onclick="setLang('en')" id="tabEn">English</button>
+    </div>
+
+    <div id="docPl">
+      <h1 style="margin-top:18px">Polityka prywatności</h1>
+      <p class="lead">Informacje o przetwarzaniu danych osobowych zgodnie z RODO.</p>
+
+      <div class="box">
+        <strong>Administrator danych:</strong><br>
+        Stanisław Grabowski<br>
+        ul. Orłowska 37, 81-522 Gdynia<br>
+        e-mail: shopkrazek.eu@gmail.com
+      </div>
+
+      <h2>§1. Zakres danych</h2>
+      <p>Sklep KRĄŻEK przetwarza następujące dane osobowe Kupujących:</p>
+      <ul>
+        <li>imię i nazwisko,</li>
+        <li>adres dostawy (ulica, kod pocztowy, miasto, kraj),</li>
+        <li>adres e-mail,</li>
+        <li>informacje o złożonych zamówieniach.</li>
+      </ul>
+      <p>Sklep nie przetwarza ani nie przechowuje danych płatniczych - są one obsługiwane wyłącznie przez operatora Stripe.</p>
+
+      <h2>§2. Cele i podstawy prawne</h2>
+      <ul>
+        <li><strong>Realizacja zamówienia</strong> (art. 6 ust. 1 lit. b RODO - wykonanie umowy).</li>
+        <li><strong>Komunikacja z Kupującym</strong> w sprawach zamówienia (art. 6 ust. 1 lit. b RODO).</li>
+        <li><strong>Obsługa reklamacji i odstąpień</strong> (art. 6 ust. 1 lit. c RODO - obowiązek prawny).</li>
+        <li><strong>Obrona przed roszczeniami</strong> (art. 6 ust. 1 lit. f RODO - prawnie uzasadniony interes).</li>
+      </ul>
+
+      <h2>§3. Okres przechowywania</h2>
+      <p>Dane osobowe przechowywane są przez okres niezbędny do realizacji zamówienia oraz dochodzenia ewentualnych roszczeń, nie dłużej niż 6 lat od daty zamówienia.</p>
+
+      <h2>§4. Odbiorcy danych</h2>
+      <p>Dane mogą być przekazywane następującym podmiotom:</p>
+      <ul>
+        <li><strong>Stripe Payments Europe Ltd.</strong> - operator płatności (Irlandia),</li>
+        <li><strong>Netlify Inc.</strong> - hosting sklepu (USA, na podstawie standardowych klauzul umownych UE),</li>
+        <li><strong>Operatorzy pocztowi i kurierscy</strong> - w celu dostarczenia zamówienia,</li>
+        <li><strong>Cyber_Folks S.A.</strong> - rejestrator domeny.</li>
+      </ul>
+
+      <h2>§5. Twoje prawa</h2>
+      <p>Zgodnie z RODO przysługują Ci następujące prawa:</p>
+      <ul>
+        <li>prawo dostępu do swoich danych,</li>
+        <li>prawo do sprostowania danych,</li>
+        <li>prawo do usunięcia danych („prawo do bycia zapomnianym"),</li>
+        <li>prawo do ograniczenia przetwarzania,</li>
+        <li>prawo do przenoszenia danych,</li>
+        <li>prawo do wniesienia sprzeciwu,</li>
+        <li>prawo do wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych (uodo.gov.pl).</li>
+      </ul>
+      <p>W celu realizacji swoich praw skontaktuj się ze Sprzedawcą pod adresem shopkrazek.eu@gmail.com.</p>
+
+      <h2>§6. Pliki cookies</h2>
+      <p>Sklep nie używa plików cookies do śledzenia ani profilowania użytkowników. Stosowane są wyłącznie pliki techniczne niezbędne do prawidłowego działania strony (np. zapamiętanie wybranego języka i koszyka). Strona płatności Stripe może używać własnych plików cookies - regulują to zasady Stripe dostępne pod adresem stripe.com/privacy.</p>
+
+      <h2>§7. Bezpieczeństwo</h2>
+      <p>Strona korzysta z szyfrowania SSL/TLS. Dane płatnicze obsługiwane są wyłącznie przez Stripe i nie są przekazywane Sprzedawcy.</p>
+
+      <h2>§8. Zmiany polityki</h2>
+      <p>Polityka prywatności może być aktualizowana. Aktualna wersja zawsze dostępna jest pod tym adresem.</p>
+    </div>
+
+    <div id="docEn" class="hidden">
+      <h1 style="margin-top:18px">Privacy Policy</h1>
+      <p class="lead">How we process personal data under the GDPR.</p>
+
+      <div class="box">
+        <strong>Data controller:</strong><br>
+        Stanisław Grabowski<br>
+        ul. Orłowska 37, 81-522 Gdynia, Poland<br>
+        e-mail: shopkrazek.eu@gmail.com
+      </div>
+
+      <h2>§1. Scope of data</h2>
+      <p>The KRĄŻEK store processes the following personal data of Buyers:</p>
+      <ul>
+        <li>first and last name,</li>
+        <li>shipping address (street, postal code, city, country),</li>
+        <li>e-mail address,</li>
+        <li>order information.</li>
+      </ul>
+      <p>The store does not process or store payment data - this is handled exclusively by Stripe.</p>
+
+      <h2>§2. Purposes and legal basis</h2>
+      <ul>
+        <li><strong>Order fulfilment</strong> (Article 6(1)(b) GDPR - performance of a contract).</li>
+        <li><strong>Communication with the Buyer</strong> regarding the order (Article 6(1)(b) GDPR).</li>
+        <li><strong>Complaints and withdrawals</strong> (Article 6(1)(c) GDPR - legal obligation).</li>
+        <li><strong>Defence against claims</strong> (Article 6(1)(f) GDPR - legitimate interest).</li>
+      </ul>
+
+      <h2>§3. Retention period</h2>
+      <p>Personal data is retained as long as necessary to fulfil the order and pursue any claims, no longer than 6 years from the order date.</p>
+
+      <h2>§4. Data recipients</h2>
+      <p>Data may be shared with the following parties:</p>
+      <ul>
+        <li><strong>Stripe Payments Europe Ltd.</strong> - payment processor (Ireland),</li>
+        <li><strong>Netlify Inc.</strong> - hosting provider (USA, under EU Standard Contractual Clauses),</li>
+        <li><strong>Postal and courier operators</strong> - for delivery,</li>
+        <li><strong>Cyber_Folks S.A.</strong> - domain registrar.</li>
+      </ul>
+
+      <h2>§5. Your rights</h2>
+      <p>Under the GDPR, you have the following rights:</p>
+      <ul>
+        <li>right of access to your data,</li>
+        <li>right to rectification,</li>
+        <li>right to erasure ("right to be forgotten"),</li>
+        <li>right to restriction of processing,</li>
+        <li>right to data portability,</li>
+        <li>right to object,</li>
+        <li>right to lodge a complaint with the Polish Data Protection Authority (uodo.gov.pl).</li>
+      </ul>
+      <p>To exercise your rights, contact the Seller at shopkrazek.eu@gmail.com.</p>
+
+      <h2>§6. Cookies</h2>
+      <p>The store does not use cookies for tracking or profiling. Only technical cookies necessary for proper operation are used (e.g. remembering language and cart). The Stripe payment page may use its own cookies - see stripe.com/privacy.</p>
+
+      <h2>§7. Security</h2>
+      <p>The site uses SSL/TLS encryption. Payment data is handled exclusively by Stripe and is not transmitted to the Seller.</p>
+
+      <h2>§8. Changes</h2>
+      <p>This Privacy Policy may be updated. The current version is always available at this address.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <a href="index.html">KRĄŻEK</a> ·
+    <a href="regulamin.html">Regulamin</a> ·
+    <a href="prywatnosc.html">Prywatność</a> ·
+    <a href="odstapienie.html">Odstąpienie</a>
+  </div>
+</footer>
+
+<script>
+  function setLang(l){
+    document.getElementById('docPl').classList.toggle('hidden', l !== 'pl');
+    document.getElementById('docEn').classList.toggle('hidden', l !== 'en');
+    document.getElementById('tabPl').classList.toggle('active', l === 'pl');
+    document.getElementById('tabEn').classList.toggle('active', l === 'en');
+    document.getElementById('backLabel').textContent = l === 'pl' ? 'Wróć' : 'Back';
+    document.documentElement.lang = l;
+    document.title = (l === 'pl' ? 'Polityka prywatności' : 'Privacy Policy') + ' · KRĄŻEK';
+  }
+</script>
+</body>
+</html>
