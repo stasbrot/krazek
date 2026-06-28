@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -232,6 +231,7 @@
   /* Footer */
   .footer{ border-top:1px solid var(--sep); }
   .footer__inner{ max-width:var(--maxw); margin:0 auto; padding:28px 20px; display:flex; flex-wrap:wrap; gap:14px; justify-content:space-between; align-items:center; color:var(--ink-2); font-size:14px; }
+  .footer__links{ display:flex; flex-wrap:wrap; gap:14px; }
   .footer a{ text-decoration:none; color:var(--ink-2); transition:color .2s; }
   .footer a:hover{ color:var(--ink); }
 
@@ -492,7 +492,12 @@
     <div class="footer__inner">
       <div class="brand js-brand" style="font-size:16px"></div>
       <div data-i18n="footerNote"></div>
-      <a href="mailto:hello@krazek.eu">hello@krazek.eu</a>
+      <div class="footer__links">
+        <a href="regulamin.html" data-i18n="footerTerms"></a>
+        <a href="prywatnosc.html" data-i18n="footerPrivacy"></a>
+        <a href="odstapienie.html" data-i18n="footerWithdrawal"></a>
+        <a href="mailto:shopkrazek.eu@gmail.com">shopkrazek.eu@gmail.com</a>
+      </div>
     </div>
   </footer>
 
@@ -574,7 +579,7 @@
       polandDesc:"Every single disc is printed right here in Poland. No outsourcing, no middlemen, no shortcuts. Real ink, real discs, made by real people who care how it turns out.",
       independentTitle:"Independent by choice.",
       independentDesc:"We're not a label and we're not a corporation. We're a small independent project that still believes physical music matters. In a world of endless streaming, we make things you can hold, keep, and pass on.",
-      footerNote:"Printed in Poland, with care.",
+      footerNote:"Printed in Poland, with care.", footerTerms:"Terms", footerPrivacy:"Privacy", footerWithdrawal:"Withdrawal",
       cartTitle:"Your cart", cartEmpty:"Your cart is empty.", cartTotal:"Total", cartCheckout:"Checkout",
       checkoutMsg:"Checkout isn't connected yet - this is a demo store.",
       photoEyebrow:"The photographer", photoRole:"Photographer · Czech Republic",
@@ -604,7 +609,7 @@
       polandDesc:"Każda pojedyncza płyta jest drukowana tutaj, w Polsce. Bez outsourcingu, bez pośredników, bez pójścia na skróty. Prawdziwy tusz, prawdziwe płyty, robione przez prawdziwych ludzi, którym zależy na efekcie.",
       independentTitle:"Niezależni z wyboru.",
       independentDesc:"Nie jesteśmy wytwórnią ani korporacją. Jesteśmy małym, niezależnym projektem, który wciąż wierzy, że fizyczna muzyka ma znaczenie. W świecie nieskończonego streamingu tworzymy rzeczy, które można wziąć do ręki, zatrzymać i przekazać dalej.",
-      footerNote:"Drukowane w Polsce, z dbałością o detale.",
+      footerNote:"Drukowane w Polsce, z dbałością o detale.", footerTerms:"Regulamin", footerPrivacy:"Prywatność", footerWithdrawal:"Odstąpienie",
       cartTitle:"Twój koszyk", cartEmpty:"Twój koszyk jest pusty.", cartTotal:"Razem", cartCheckout:"Do kasy",
       checkoutMsg:"Płatność nie jest jeszcze podłączona - to wersja demonstracyjna sklepu.",
       photoEyebrow:"Fotograf", photoRole:"Fotograf · Czechy",
@@ -634,7 +639,7 @@
       polandDesc:"Každý jednotlivý disk je tištěn přímo zde v Polsku. Žádný outsourcing, žádní prostředníci, žádné zkratky. Opravdový inkoust, opravdové disky, vyrobené opravdovými lidmi, kterým záleží na výsledku.",
       independentTitle:"Nezávislí z přesvědčení.",
       independentDesc:"Nejsme vydavatelství ani korporace. Jsme malý nezávislý projekt, který stále věří, že fyzická hudba má smysl. Ve světě nekonečného streamingu tvoříme věci, které můžete držet, uchovat a předat dál.",
-      footerNote:"Tištěno v Polsku, s péčí.",
+      footerNote:"Tištěno v Polsku, s péčí.", footerTerms:"Podmínky", footerPrivacy:"Soukromí", footerWithdrawal:"Odstoupení",
       cartTitle:"Váš košík", cartEmpty:"Váš košík je prázdný.", cartTotal:"Celkem", cartCheckout:"K pokladně",
       checkoutMsg:"Platba zatím není propojena - toto je ukázkový obchod.",
       photoEyebrow:"Fotograf", photoRole:"Fotograf · Česko",
@@ -664,7 +669,7 @@
       polandDesc:"Každý jednotlivý disk je tlačený priamo tu v Poľsku. Žiadny outsourcing, žiadni sprostredkovatelia, žiadne skratky. Skutočný atrament, skutočné disky, vyrobené skutočnými ľuďmi, ktorým záleží na výsledku.",
       independentTitle:"Nezávislí z presvedčenia.",
       independentDesc:"Nie sme vydavateľstvo ani korporácia. Sme malý nezávislý projekt, ktorý stále verí, že fyzická hudba má zmysel. Vo svete nekonečného streamovania tvoríme veci, ktoré môžete držať, uchovať a posunúť ďalej.",
-      footerNote:"Tlačené v Poľsku, s láskou.",
+      footerNote:"Tlačené v Poľsku, s láskou.", footerTerms:"Podmienky", footerPrivacy:"Súkromie", footerWithdrawal:"Odstúpenie",
       cartTitle:"Váš košík", cartEmpty:"Váš košík je prázdny.", cartTotal:"Spolu", cartCheckout:"K pokladni",
       checkoutMsg:"Platba zatiaľ nie je prepojená - toto je ukážkový obchod.",
       photoEyebrow:"Fotograf", photoRole:"Fotograf · Česko",
@@ -694,7 +699,7 @@
       polandDesc:"Chaque disque est imprimé ici même, en Pologne. Pas de sous-traitance, pas d'intermédiaires, pas de raccourcis. De vraies encres, de vrais disques, faits par de vraies personnes qui tiennent au résultat.",
       independentTitle:"Indépendants par choix.",
       independentDesc:"Nous ne sommes ni un label ni une grande entreprise. Nous sommes un petit projet indépendant qui croit encore que la musique physique compte. Dans un monde de streaming sans fin, nous fabriquons des objets que l'on peut tenir, garder et transmettre.",
-      footerNote:"Imprimé en Pologne, avec soin.",
+      footerNote:"Imprimé en Pologne, avec soin.", footerTerms:"Conditions", footerPrivacy:"Confidentialité", footerWithdrawal:"Rétractation",
       cartTitle:"Votre panier", cartEmpty:"Votre panier est vide.", cartTotal:"Total", cartCheckout:"Paiement",
       checkoutMsg:"Le paiement n'est pas encore connecté - ceci est une boutique de démonstration.",
       photoEyebrow:"Le photographe", photoRole:"Photographe · Tchéquie",
@@ -724,7 +729,7 @@
       polandDesc:"Ogni singolo disco è stampato proprio qui, in Polonia. Niente outsourcing, niente intermediari, niente scorciatoie. Inchiostri veri, dischi veri, fatti da persone vere a cui importa del risultato.",
       independentTitle:"Indipendenti per scelta.",
       independentDesc:"Non siamo un'etichetta né una grande azienda. Siamo un piccolo progetto indipendente che crede ancora che la musica fisica conti. In un mondo di streaming infinito, creiamo oggetti che puoi tenere, conservare e tramandare.",
-      footerNote:"Stampato in Polonia, con cura.",
+      footerNote:"Stampato in Polonia, con cura.", footerTerms:"Termini", footerPrivacy:"Privacy", footerWithdrawal:"Recesso",
       cartTitle:"Il tuo carrello", cartEmpty:"Il tuo carrello è vuoto.", cartTotal:"Totale", cartCheckout:"Paga",
       checkoutMsg:"Il pagamento non è ancora collegato - questo è un negozio dimostrativo.",
       photoEyebrow:"Il fotografo", photoRole:"Fotografo · Cechia",
@@ -754,7 +759,7 @@
       polandDesc:"Elke schijf wordt hier in Polen gedrukt. Geen uitbesteding, geen tussenpersonen, geen shortcuts. Echte inkt, echte schijven, gemaakt door echte mensen die om het resultaat geven.",
       independentTitle:"Onafhankelijk uit overtuiging.",
       independentDesc:"We zijn geen label en geen groot bedrijf. We zijn een klein onafhankelijk project dat nog steeds gelooft dat fysieke muziek ertoe doet. In een wereld van eindeloze streaming maken we dingen die je kunt vasthouden, bewaren en doorgeven.",
-      footerNote:"Met zorg gedrukt in Polen.",
+      footerNote:"Met zorg gedrukt in Polen.", footerTerms:"Voorwaarden", footerPrivacy:"Privacy", footerWithdrawal:"Herroeping",
       cartTitle:"Je winkelwagen", cartEmpty:"Je winkelwagen is leeg.", cartTotal:"Totaal", cartCheckout:"Afrekenen",
       checkoutMsg:"Betalen is nog niet gekoppeld - dit is een demowinkel.",
       photoEyebrow:"De fotograaf", photoRole:"Fotograaf · Tsjechië",
@@ -892,7 +897,12 @@
   }
 
   /* ===== Language ===== */
-  function setLang(l){ lang = l; applyI18n(); closeLang(); }
+  function setLang(l){
+    lang = l;
+    try{ localStorage.setItem('krazek_lang', l); }catch(e){}
+    applyI18n();
+    closeLang();
+  }
   function openLang(){ document.getElementById('langOverlay').classList.remove('hide'); }
   function closeLang(){ document.getElementById('langOverlay').classList.add('hide'); }
 
@@ -943,6 +953,15 @@
   document.querySelectorAll('.js-brand').forEach(function(e){ e.textContent = BRAND; });
   updateThemeIcon();
   updateMetaTheme();
+  /* Restore saved language and skip the picker if we already know it */
+  try{
+    const saved = localStorage.getItem('krazek_lang');
+    if (saved && T[saved]){
+      lang = saved;
+      document.getElementById('langOverlay').classList.add('hide');
+    }
+  }catch(e){}
+
   applyI18n();
   initReveal();
 
