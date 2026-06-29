@@ -117,6 +117,7 @@
   .brand{ font-weight:700; font-size:20px; letter-spacing:-0.02em; text-decoration:none; color:var(--ink); }
   .nav__links{ display:flex; gap:26px; }
   .nav__link{ color:var(--ink-2); font-size:15px; font-weight:500; text-decoration:none; transition:color .2s; }
+  .nav__link--accent{ color:#ff7a5c; font-weight:600; }
   .nav__link:hover{ color:var(--ink); }
   .nav__actions{ display:flex; align-items:center; gap:8px; }
   .cart-btn{ position:relative; }
@@ -173,6 +174,78 @@
   .product__foot{ margin-top:20px; width:100%; display:flex; align-items:center; justify-content:space-between; gap:12px; }
   .product:hover .disc__spin, .custom__card:hover .disc__spin{ animation-play-state:running; }
   @media (max-width:680px){ .editions-grid{ grid-template-columns:1fr; } }
+
+  /* Summer bundle */
+  .bundle-card{
+    position:relative; overflow:hidden;
+    background:linear-gradient(135deg, #ff7a5c, #ff9e35 55%, #ffd166);
+    color:#fff; border-radius:var(--radius-lg); padding:40px 36px; text-align:center;
+    box-shadow:0 24px 60px rgba(255,122,92,.32);
+  }
+  .bundle-card::before{
+    content:""; position:absolute; inset:-40%;
+    background:radial-gradient(circle at 80% 20%, rgba(255,255,255,.25), transparent 50%),
+               radial-gradient(circle at 10% 90%, rgba(255,255,255,.15), transparent 45%);
+    pointer-events:none;
+  }
+  .bundle-card > *{ position:relative; }
+  .bundle-badge{
+    display:inline-block; background:rgba(255,255,255,.24); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+    color:#fff; padding:6px 14px; border-radius:999px; font-size:12px; font-weight:700; letter-spacing:.13em; text-transform:uppercase;
+  }
+  .bundle-title{
+    font-size:clamp(28px,5vw,42px); font-weight:800; letter-spacing:-0.02em; line-height:1.1; margin-top:14px;
+  }
+  .bundle-sub{ color:rgba(255,255,255,.92); max-width:480px; margin:12px auto 0; font-size:16.5px; line-height:1.5; }
+  .bundle-grid{
+    display:flex; justify-content:center; flex-wrap:wrap; gap:14px; margin-top:28px;
+  }
+  .bundle-item{
+    display:flex; align-items:center; gap:10px; padding:10px 18px; border-radius:999px;
+    background:rgba(255,255,255,.18); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+    font-size:15px; font-weight:600;
+  }
+  .bundle-item--free{ background:rgba(255,255,255,.32); font-weight:700; }
+  .bundle-num{ font-size:18px; font-weight:800; opacity:.95; }
+  .bundle-price-row{
+    margin-top:28px; display:flex; justify-content:center; align-items:center; gap:24px; flex-wrap:wrap;
+  }
+  .bundle-price{ font-size:38px; font-weight:800; letter-spacing:-0.02em; }
+  .bundle-old{ font-size:16px; opacity:.7; text-decoration:line-through; margin-top:2px; }
+  .bundle-card .btn--primary{
+    background:#fff; color:#cc4520;
+  }
+  .bundle-card .btn--primary:hover{ background:#fff; filter:brightness(.95); }
+
+  /* Design service */
+  .design-card{
+    background:var(--surface); border:1px solid var(--sep); border-radius:var(--radius-lg);
+    box-shadow:var(--shadow); padding:40px 36px; text-align:center;
+  }
+  .design-ic{
+    width:60px; height:60px; border-radius:18px; margin:0 auto 14px;
+    background:linear-gradient(160deg,#6f9eff,#2c5cd9); color:#fff;
+    display:grid; place-items:center; box-shadow:0 10px 28px rgba(44,92,217,.32);
+  }
+  .design-card .title{ margin-top:8px; }
+  .design-desc{ max-width:540px; margin:14px auto 0; }
+  .design-list{
+    list-style:none; padding:0; margin:22px auto 0; max-width:480px; text-align:left;
+    display:grid; gap:10px;
+  }
+  .design-list li{
+    padding:12px 18px; border-radius:14px; background:var(--fill); color:var(--ink);
+    font-size:15px; line-height:1.5; position:relative; padding-left:42px;
+  }
+  .design-list li::before{
+    content:""; position:absolute; left:16px; top:50%; transform:translateY(-50%);
+    width:16px; height:16px; border-radius:50%;
+    background:var(--accent) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>") center/10px no-repeat;
+  }
+  .design-buy{
+    margin-top:24px; display:flex; align-items:center; justify-content:center; gap:18px; flex-wrap:wrap;
+  }
+  .design-card .note{ margin-top:14px; }
 
   /* Photographer */
   .photo-card{
@@ -391,6 +464,7 @@
       <a href="#top" class="brand js-brand" id="brandTop"></a>
       <nav class="nav__links">
         <a class="nav__link" href="#custom" data-i18n="navCustom"></a>
+        <a class="nav__link nav__link--accent" href="#bundle" data-i18n="navBundle"></a>
         <a class="nav__link" href="#editions" data-i18n="navEditions"></a>
         <a class="nav__link" href="#about" data-i18n="navAbout"></a>
       </nav>
@@ -465,6 +539,36 @@
       </div>
     </section>
 
+    <!-- Summer bundle -->
+    <section class="section" id="bundle">
+      <div class="bundle-card reveal">
+        <div class="bundle-badge" data-i18n="bundleBadge"></div>
+        <h2 class="bundle-title" data-i18n="bundleTitle"></h2>
+        <p class="bundle-sub" data-i18n="bundleSub"></p>
+        <div class="bundle-grid">
+          <div class="bundle-item">
+            <span class="bundle-num">3×</span>
+            <span class="bundle-name" data-i18n="bundleItem1"></span>
+          </div>
+          <div class="bundle-item">
+            <span class="bundle-num">2×</span>
+            <span class="bundle-name" data-i18n="bundleItem2"></span>
+          </div>
+          <div class="bundle-item bundle-item--free">
+            <span class="bundle-num">★</span>
+            <span class="bundle-name" data-i18n="bundleFree"></span>
+          </div>
+        </div>
+        <div class="bundle-price-row">
+          <div>
+            <div class="bundle-price" id="bundlePrice"></div>
+            <div class="bundle-old" id="bundleOld"></div>
+          </div>
+          <button class="btn btn--primary" onclick="addToCart('bundle3')" data-i18n="bundleCta"></button>
+        </div>
+      </div>
+    </section>
+
     <!-- Editions -->
     <section class="section" id="editions">
       <div class="reveal">
@@ -499,6 +603,28 @@
             <button class="btn btn--primary" onclick="addToCart('edition2')" data-i18n="addToCart"></button>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Design service -->
+    <section class="section" id="design">
+      <div class="design-card reveal">
+        <div class="design-ic" aria-hidden="true">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+        </div>
+        <div class="eyebrow" data-i18n="designEyebrow"></div>
+        <h2 class="title" style="margin-top:6px" data-i18n="designTitle"></h2>
+        <p class="sub design-desc" data-i18n="designDesc"></p>
+        <ul class="design-list">
+          <li data-i18n="designStep1"></li>
+          <li data-i18n="designStep2"></li>
+          <li data-i18n="designStep3"></li>
+        </ul>
+        <div class="design-buy">
+          <span class="price-tag" id="designPrice"></span>
+          <button class="btn btn--primary" onclick="addToCart('design')" data-i18n="designCta"></button>
+        </div>
+        <p class="note" data-i18n="designNote"></p>
       </div>
     </section>
 
@@ -547,13 +673,8 @@
       <h3 class="up-title" data-i18n="upTitle"></h3>
       <p class="up-sub" data-i18n="upSub"></p>
       <div class="up-options">
-        <button class="up-opt" onclick="addDigipack('digipack')">
-          <span class="up-opt__name" data-i18n="upPlain"></span>
-          <span class="up-opt__price" id="upPricePlain"></span>
-        </button>
-        <button class="up-opt up-opt--featured" onclick="addDigipack('digipackP')">
-          <span class="up-opt__name" data-i18n="upPrinted"></span>
-          <span class="up-opt__price" id="upPricePrinted"></span>
+        <button class="up-opt up-opt--featured" onclick="addDigipack('digipack')">
+          <span class="up-opt__name"><span data-i18n="upPlain"></span> <span id="upPricePlain"></span></span>
         </button>
       </div>
       <button class="up-skip" onclick="closeUpsell()" data-i18n="upSkip"></button>
@@ -608,14 +729,16 @@
     edition1:  'url("img/edycja-01.jpg")',
     edition2:  'url("img/edycja-02.jpg")',
     digipack:  'url("img/digipack.jpg")',
-    digipackP: 'url("img/digipack.jpg")'
+    bundle3:   'radial-gradient(circle at 35% 28%, #ffd770 0%, #ff9d6b 55%, #ff5f8d 100%)',
+    design:    'radial-gradient(circle at 35% 28%, #d4e3ff 0%, #6f9eff 55%, #2c5cd9 100%)'
   };
   const PRODUCTS = {
-    custom:    { nameKey:'customCartName', art:ART.custom },
-    edition1:  { nameKey:'edition1Name',   art:ART.edition1 },
-    edition2:  { nameKey:'edition2Name',   art:ART.edition2 },
-    digipack:  { nameKey:'digipackCartName',  art:ART.digipack },
-    digipackP: { nameKey:'digipackPCartName', art:ART.digipackP }
+    custom:    { nameKey:'customCartName',   art:ART.custom },
+    edition1:  { nameKey:'edition1Name',     art:ART.edition1 },
+    edition2:  { nameKey:'edition2Name',     art:ART.edition2 },
+    digipack:  { nameKey:'digipackCartName', art:ART.digipack },
+    bundle3:   { nameKey:'bundle3CartName',  art:ART.bundle3 },
+    design:    { nameKey:'designCartName',   art:ART.design }
   };
 
   /* ===== Prices per language / currency (change freely) ===== */
@@ -624,7 +747,8 @@
     edition1:  { pl:29.90, en:6.99, cs:179, sk:6.99, fr:6.99, it:6.99, nl:6.99 },
     edition2:  { pl:29.90, en:6.99, cs:179, sk:6.99, fr:6.99, it:6.99, nl:6.99 },
     digipack:  { pl:5.00,  en:1.19, cs:29,  sk:1.19, fr:1.19, it:1.19, nl:1.19 },
-    digipackP: { pl:10.00, en:2.39, cs:59,  sk:2.39, fr:2.39, it:2.39, nl:2.39 }
+    bundle3:   { pl:80.00, en:18.90, cs:479, sk:18.90, fr:18.90, it:18.90, nl:18.90 },
+    design:    { pl:50.00, en:11.90, cs:299, sk:11.90, fr:11.90, it:11.90, nl:11.90 }
   };
   /* Locale + currency used for formatting (Intl handles symbol, decimals, separators) */
   const LOCALE = {
@@ -642,7 +766,7 @@
   const T = {
     en:{
       chooseLanguage:"Choose your language", chooseLanguageSub:"You can change it anytime.",
-      navCustom:"Custom", navEditions:"Editions", navAbout:"About",
+      navCustom:"Custom", navBundle:"Summer offer", navEditions:"Editions", navAbout:"About",
       heroTitle:"CDs, beautifully printed.",
       heroSubtitle:"Your artwork pressed onto real discs. Independently made and 100% printed in Poland.",
       heroCta:"Order a custom CD", heroSecondary:"See the editions",
@@ -671,16 +795,31 @@
       upTitle:"Add an eco digipack?",
       upSub:"Kraft cardboard sleeve, no plastic. A nicer way to keep your disc.",
       upPlain:"Without print",
-      upPrinted:"With print",
       upSkip:"No thanks",
       upLearn:"Learn more about the digipack",
       digipackCartName:"Digipack ECO",
-      digipackPCartName:"Digipack ECO + print",
+      bundleBadge:"Summer offer",
+      bundleTitle:"Summer bundle.",
+      bundleSub:"Three custom CDs and two eco digipacks at a lower price. Perfect for a small release or gifts.",
+      bundleItem1:"Custom CD",
+      bundleItem2:"Eco digipack",
+      bundleFree:"Save 25.70 PLN",
+      bundleCta:"Add bundle to cart",
+      bundle3CartName:"Summer bundle (3 CDs + 2 digipacks)",
+      designEyebrow:"New",
+      designTitle:"Print design service.",
+      designDesc:"No artwork? Tell us what you have in mind and we will design the print for you. Simple, fair, in your style.",
+      designStep1:"Buy the design service and place a custom CD order.",
+      designStep2:"After payment we send you a short email asking about the vibe, colours and text you want.",
+      designStep3:"Within a few days you receive a preview to approve, then we print and ship.",
+      designCta:"Add design service",
+      designNote:"The 50 PLN fee is for the design only. You still need to order a CD or bundle separately.",
+      designCartName:"Print design service",
       metaTitle:"Custom printed CDs"
     },
     pl:{
       chooseLanguage:"Wybierz język", chooseLanguageSub:"Możesz to zmienić w każdej chwili.",
-      navCustom:"Własny nadruk", navEditions:"Edycje", navAbout:"O nas",
+      navCustom:"Własny nadruk", navBundle:"Oferta letnia", navEditions:"Edycje", navAbout:"O nas",
       heroTitle:"Płyty CD z pięknym nadrukiem.",
       heroSubtitle:"Twoja grafika nadrukowana na prawdziwych płytach. Tworzone niezależnie i w 100% drukowane w Polsce.",
       heroCta:"Zamów własny nadruk", heroSecondary:"Zobacz edycje",
@@ -709,16 +848,31 @@
       upTitle:"Dodać ekologiczne opakowanie?",
       upSub:"Kartonowy digipack z kraftu, bez plastiku. Twoja płyta będzie się czuła jak w domu.",
       upPlain:"Bez nadruku",
-      upPrinted:"Z nadrukiem",
       upSkip:"Nie, dziękuję",
       upLearn:"Dowiedz się więcej o digipacku",
       digipackCartName:"Digipack ECO",
-      digipackPCartName:"Digipack ECO + nadruk",
+      bundleBadge:"Oferta letnia",
+      bundleTitle:"Pakiet wakacyjny.",
+      bundleSub:"Trzy płyty custom i dwa ekologiczne digipacki w niższej cenie. Idealnie na małe wydanie albo prezenty.",
+      bundleItem1:"Płyta custom",
+      bundleItem2:"Digipack ECO",
+      bundleFree:"Oszczędzasz 25,70 zł",
+      bundleCta:"Dodaj pakiet do koszyka",
+      bundle3CartName:"Pakiet wakacyjny (3 CD + 2 digipacki)",
+      designEyebrow:"Nowość",
+      designTitle:"Projektowanie nadruku.",
+      designDesc:"Nie masz grafiki? Powiedz, co chcesz mieć na płycie, a my zaprojektujemy nadruk za Ciebie. Prosto, uczciwie, w Twoim stylu.",
+      designStep1:"Kupujesz usługę projektowania i zamawiasz płytę custom.",
+      designStep2:"Po płatności wysyłamy Ci krótkiego maila z pytaniami o klimat, kolory i napisy.",
+      designStep3:"W kilka dni dostajesz podgląd do akceptacji, potem drukujemy i wysyłamy.",
+      designCta:"Dodaj usługę projektowania",
+      designNote:"Opłata 50 zł jest tylko za projekt. Płytę albo pakiet musisz zamówić oddzielnie.",
+      designCartName:"Projektowanie nadruku",
       metaTitle:"Płyty CD z własnym nadrukiem"
     },
     cs:{
       chooseLanguage:"Vyberte si jazyk", chooseLanguageSub:"Můžete to kdykoliv změnit.",
-      navCustom:"Vlastní potisk", navEditions:"Edice", navAbout:"O nás",
+      navCustom:"Vlastní potisk", navBundle:"Letní nabídka", navEditions:"Edice", navAbout:"O nás",
       heroTitle:"CD s krásným potiskem.",
       heroSubtitle:"Vaše grafika natištěná na opravdové disky. Tvořeno nezávisle a ze 100 % tištěno v Polsku.",
       heroCta:"Objednat vlastní potisk", heroSecondary:"Prohlédnout edice",
@@ -747,16 +901,31 @@
       upTitle:"Přidat ekologický digipack?",
       upSub:"Kartonový obal z kraftu, bez plastu. Hezčí způsob jak schovat disk.",
       upPlain:"Bez potisku",
-      upPrinted:"S potiskem",
       upSkip:"Ne, děkuji",
       upLearn:"Více o digipacku",
       digipackCartName:"Digipack ECO",
-      digipackPCartName:"Digipack ECO + potisk",
+      bundleBadge:"Letní nabídka",
+      bundleTitle:"Letní balíček.",
+      bundleSub:"Tři CD na míru a dva ekologické digipacky za nižší cenu. Ideální na malé vydání nebo dárky.",
+      bundleItem1:"CD na míru",
+      bundleItem2:"Digipack ECO",
+      bundleFree:"Ušetříte 25,70 zł",
+      bundleCta:"Přidat balíček do košíku",
+      bundle3CartName:"Letní balíček (3 CD + 2 digipacky)",
+      designEyebrow:"Novinka",
+      designTitle:"Návrh potisku.",
+      designDesc:"Nemáte grafiku? Řekněte nám, co chcete mít na disku, a my navrhneme potisk za vás. Jednoduše, férově, ve vašem stylu.",
+      designStep1:"Koupíte si službu návrhu a objednáte CD na míru.",
+      designStep2:"Po platbě vám pošleme krátký e-mail s otázkami na atmosféru, barvy a texty.",
+      designStep3:"Za pár dní dostanete náhled ke schválení, pak tiskneme a posíláme.",
+      designCta:"Přidat službu návrhu",
+      designNote:"Poplatek 50 zł je pouze za návrh. CD nebo balíček musíte objednat zvlášť.",
+      designCartName:"Návrh potisku",
       metaTitle:"CD s vlastním potiskem"
     },
     sk:{
       chooseLanguage:"Vyberte si jazyk", chooseLanguageSub:"Môžete to kedykoľvek zmeniť.",
-      navCustom:"Vlastná potlač", navEditions:"Edície", navAbout:"O nás",
+      navCustom:"Vlastná potlač", navBundle:"Letná ponuka", navEditions:"Edície", navAbout:"O nás",
       heroTitle:"CD s krásnou potlačou.",
       heroSubtitle:"Vaša grafika vytlačená na skutočné disky. Tvorené nezávisle a na 100 % tlačené v Poľsku.",
       heroCta:"Objednať vlastnú potlač", heroSecondary:"Pozrieť edície",
@@ -785,16 +954,31 @@
       upTitle:"Pridať ekologický digipack?",
       upSub:"Kartónový obal z kraftu, bez plastu. Krajší spôsob ako uchovať disk.",
       upPlain:"Bez potlače",
-      upPrinted:"S potlačou",
       upSkip:"Nie, ďakujem",
       upLearn:"Viac o digipacku",
       digipackCartName:"Digipack ECO",
-      digipackPCartName:"Digipack ECO + potlač",
+      bundleBadge:"Letná ponuka",
+      bundleTitle:"Letný balíček.",
+      bundleSub:"Tri CD na mieru a dva ekologické digipacky za nižšiu cenu. Ideálne na malé vydanie alebo darčeky.",
+      bundleItem1:"CD na mieru",
+      bundleItem2:"Digipack ECO",
+      bundleFree:"Ušetríte 25,70 zł",
+      bundleCta:"Pridať balíček do košíka",
+      bundle3CartName:"Letný balíček (3 CD + 2 digipacky)",
+      designEyebrow:"Novinka",
+      designTitle:"Návrh potlače.",
+      designDesc:"Nemáte grafiku? Povedzte nám, čo chcete mať na disku, a my navrhneme potlač za vás. Jednoducho, férovo, vo vašom štýle.",
+      designStep1:"Kúpite si službu návrhu a objednáte CD na mieru.",
+      designStep2:"Po platbe vám pošleme krátky e-mail s otázkami o atmosfére, farbách a textoch.",
+      designStep3:"O pár dní dostanete náhľad na schválenie, potom tlačíme a posielame.",
+      designCta:"Pridať službu návrhu",
+      designNote:"Poplatok 50 zł je iba za návrh. CD alebo balíček musíte objednať zvlášť.",
+      designCartName:"Návrh potlače",
       metaTitle:"CD s vlastnou potlačou"
     },
     fr:{
       chooseLanguage:"Choisissez votre langue", chooseLanguageSub:"Vous pouvez le changer à tout moment.",
-      navCustom:"Personnalisé", navEditions:"Éditions", navAbout:"À propos",
+      navCustom:"Personnalisé", navBundle:"Offre d\u2019été", navEditions:"Éditions", navAbout:"À propos",
       heroTitle:"Des CD à l'impression soignée.",
       heroSubtitle:"Votre visuel imprimé sur de vrais disques. Fait de façon indépendante et imprimé à 100% en Pologne.",
       heroCta:"Commander un CD personnalisé", heroSecondary:"Voir les éditions",
@@ -823,16 +1007,31 @@
       upTitle:"Ajouter un digipack écologique ?",
       upSub:"Pochette en carton kraft, sans plastique. Une plus belle façon de protéger votre disque.",
       upPlain:"Sans impression",
-      upPrinted:"Avec impression",
       upSkip:"Non merci",
       upLearn:"En savoir plus sur le digipack",
       digipackCartName:"Digipack ECO",
-      digipackPCartName:"Digipack ECO + impression",
+      bundleBadge:"Offre d\u2019été",
+      bundleTitle:"Pack estival.",
+      bundleSub:"Trois CD personnalisés et deux digipacks écologiques à prix réduit. Idéal pour une petite sortie ou des cadeaux.",
+      bundleItem1:"CD personnalisé",
+      bundleItem2:"Digipack ECO",
+      bundleFree:"Économisez 25,70 zł",
+      bundleCta:"Ajouter le pack",
+      bundle3CartName:"Pack estival (3 CD + 2 digipacks)",
+      designEyebrow:"Nouveau",
+      designTitle:"Design d\u2019impression.",
+      designDesc:"Pas de visuel ? Dites-nous ce que vous avez en tête et nous concevons l\u2019impression pour vous. Simple, juste, dans votre style.",
+      designStep1:"Achetez le service de design et commandez un CD personnalisé.",
+      designStep2:"Après paiement, nous vous envoyons un e-mail pour discuter de l\u2019ambiance, des couleurs et du texte.",
+      designStep3:"En quelques jours, vous recevez un aperçu à valider, puis nous imprimons et expédions.",
+      designCta:"Ajouter le service de design",
+      designNote:"Les 50 zł couvrent uniquement le design. Le CD ou le pack doit être commandé séparément.",
+      designCartName:"Service de design",
       metaTitle:"CD à impression personnalisée"
     },
     it:{
       chooseLanguage:"Scegli la lingua", chooseLanguageSub:"Puoi cambiarla in qualsiasi momento.",
-      navCustom:"Personalizzato", navEditions:"Edizioni", navAbout:"Chi siamo",
+      navCustom:"Personalizzato", navBundle:"Offerta estiva", navEditions:"Edizioni", navAbout:"Chi siamo",
       heroTitle:"CD stampati alla perfezione.",
       heroSubtitle:"La tua grafica stampata su dischi veri. Realizzati in modo indipendente e stampati al 100% in Polonia.",
       heroCta:"Ordina un CD personalizzato", heroSecondary:"Vedi le edizioni",
@@ -861,16 +1060,31 @@
       upTitle:"Aggiungere un digipack ecologico?",
       upSub:"Custodia in cartone kraft, senza plastica. Un modo più bello di custodire il tuo disco.",
       upPlain:"Senza stampa",
-      upPrinted:"Con stampa",
       upSkip:"No, grazie",
       upLearn:"Scopri di più sul digipack",
       digipackCartName:"Digipack ECO",
-      digipackPCartName:"Digipack ECO + stampa",
+      bundleBadge:"Offerta estiva",
+      bundleTitle:"Pacchetto estivo.",
+      bundleSub:"Tre CD personalizzati e due digipack ecologici a prezzo ridotto. Perfetto per una piccola uscita o regali.",
+      bundleItem1:"CD personalizzato",
+      bundleItem2:"Digipack ECO",
+      bundleFree:"Risparmi 25,70 zł",
+      bundleCta:"Aggiungi il pacchetto",
+      bundle3CartName:"Pacchetto estivo (3 CD + 2 digipack)",
+      designEyebrow:"Novità",
+      designTitle:"Design della stampa.",
+      designDesc:"Senza grafica? Dicci cosa hai in mente e disegniamo la stampa per te. Semplice, giusto, nel tuo stile.",
+      designStep1:"Acquista il servizio di design e ordina un CD personalizzato.",
+      designStep2:"Dopo il pagamento ti scriviamo per chiederti atmosfera, colori e testi.",
+      designStep3:"In pochi giorni ricevi un\u2019anteprima da approvare, poi stampiamo e spediamo.",
+      designCta:"Aggiungi servizio design",
+      designNote:"I 50 zł coprono solo il design. Il CD o il pacchetto va ordinato a parte.",
+      designCartName:"Servizio di design",
       metaTitle:"CD con stampa personalizzata"
     },
     nl:{
       chooseLanguage:"Kies je taal", chooseLanguageSub:"Je kunt dit altijd wijzigen.",
-      navCustom:"Eigen ontwerp", navEditions:"Edities", navAbout:"Over ons",
+      navCustom:"Eigen ontwerp", navBundle:"Zomerdeal", navEditions:"Edities", navAbout:"Over ons",
       heroTitle:"Cd's, prachtig bedrukt.",
       heroSubtitle:"Jouw ontwerp gedrukt op echte schijven. Onafhankelijk gemaakt en 100% gedrukt in Polen.",
       heroCta:"Bestel een eigen cd", heroSecondary:"Bekijk de edities",
@@ -899,11 +1113,26 @@
       upTitle:"Een eco digipack toevoegen?",
       upSub:"Kraftkartonnen hoes, zonder plastic. Een mooiere manier om je schijf te bewaren.",
       upPlain:"Zonder bedrukking",
-      upPrinted:"Met bedrukking",
       upSkip:"Nee, dank je",
       upLearn:"Meer over de digipack",
       digipackCartName:"Digipack ECO",
-      digipackPCartName:"Digipack ECO + bedrukking",
+      bundleBadge:"Zomeractie",
+      bundleTitle:"Zomerpakket.",
+      bundleSub:"Drie custom cd\u2019s en twee eco digipacks tegen een lagere prijs. Perfect voor een kleine release of cadeaus.",
+      bundleItem1:"Custom cd",
+      bundleItem2:"Eco digipack",
+      bundleFree:"Bespaar 25,70 zł",
+      bundleCta:"Voeg pakket toe",
+      bundle3CartName:"Zomerpakket (3 cd\u2019s + 2 digipacks)",
+      designEyebrow:"Nieuw",
+      designTitle:"Ontwerpservice.",
+      designDesc:"Geen artwork? Vertel ons wat je in gedachten hebt en wij ontwerpen de print voor jou. Eenvoudig, eerlijk, in jouw stijl.",
+      designStep1:"Koop de ontwerpservice en bestel een custom cd.",
+      designStep2:"Na betaling sturen we je een korte e-mail met vragen over sfeer, kleuren en tekst.",
+      designStep3:"Binnen enkele dagen krijg je een preview ter goedkeuring, daarna drukken en versturen we.",
+      designCta:"Voeg ontwerpservice toe",
+      designNote:"Het bedrag van 50 zł is alleen voor het ontwerp. De cd of het pakket bestel je apart.",
+      designCartName:"Ontwerpservice",
       metaTitle:"Cd's met eigen bedrukking"
     }
   };
@@ -951,6 +1180,11 @@
     document.getElementById('customPrice').textContent = t.from + ' ' + fmt(PRICES.custom[lang]);
     document.getElementById('price-edition1').textContent = fmt(PRICES.edition1[lang]);
     document.getElementById('price-edition2').textContent = fmt(PRICES.edition2[lang]);
+    /* Bundle: show offer price and crossed-out "real" value (3×custom + 2×digipack) */
+    const realBundle = PRICES.custom[lang] * 3 + PRICES.digipack[lang] * 2;
+    document.getElementById('bundlePrice').textContent = fmt(PRICES.bundle3[lang]);
+    document.getElementById('bundleOld').textContent = fmt(realBundle);
+    document.getElementById('designPrice').textContent = fmt(PRICES.design[lang]);
     document.getElementById('langFlag').textContent = FLAG[lang];
     document.title = BRAND + ' - ' + t.metaTitle;
     renderCart();
@@ -999,7 +1233,7 @@
     showToast(T[lang].added);
     /* Show digipack upsell only for CDs, and only if no digipack is already in the cart */
     const isCD = (id === 'custom' || id === 'edition1' || id === 'edition2');
-    const hasDigipack = cart.some(function(i){ return i.id === 'digipack' || i.id === 'digipackP'; });
+    const hasDigipack = cart.some(function(i){ return i.id === 'digipack'; });
     if (isCD && !hasDigipack){
       setTimeout(openUpsell, 350);
     }
@@ -1012,9 +1246,8 @@
     closeUpsell();
   }
   function openUpsell(){
-    /* Refresh prices in the upsell, then show */
-    document.getElementById('upPricePlain').textContent   = fmt(PRICES.digipack[lang]);
-    document.getElementById('upPricePrinted').textContent = fmt(PRICES.digipackP[lang]);
+    /* Refresh price in the upsell, then show */
+    document.getElementById('upPricePlain').textContent = fmt(PRICES.digipack[lang]);
     document.getElementById('upBackdrop').classList.add('open');
     document.getElementById('upsell').classList.add('open');
   }
