@@ -156,26 +156,19 @@
     </div>
     <div class="feat">
       <div class="feat__ic">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 1 1 18 0z"/></svg>
       </div>
-      <div class="feat__h">Z nadrukiem lub bez</div>
-      <p class="feat__p">Wersja bez nadruku zachowuje surowy charakter kraftu. Z nadrukiem - ten sam motyw co na płycie, dla pełnego efektu.</p>
+      <div class="feat__h">W pełni do recyklingu</div>
+      <p class="feat__p">Wrzucasz do papieru i koniec - bez plastikowych okienek, bez foliowych wykończeń. Naturalny obieg.</p>
     </div>
   </section>
 
-  <section class="options">
-    <div class="opt">
-      <div class="opt__name">Bez nadruku</div>
-      <p class="opt__desc">Czysty kraftowy karton. Naturalny, minimalistyczny, ekologiczny. Idealny, jeśli grafika ma żyć tylko na płycie.</p>
+  <section class="options" style="grid-template-columns:1fr;max-width:480px;margin-left:auto;margin-right:auto">
+    <div class="opt opt--featured">
+      <div class="opt__name">Digipack ECO</div>
+      <p class="opt__desc">Czysty kraftowy karton w naturalnym kolorze. Bez plastiku, bez folii - minimalistyczna oprawa, która świetnie podkreśla samą płytę.</p>
       <div class="opt__price">5,00 zł</div>
       <button class="opt__btn" onclick="addToCart('digipack')">Dodaj do koszyka</button>
-    </div>
-    <div class="opt opt--featured">
-      <span class="opt__tag">Polecane</span>
-      <div class="opt__name">Z nadrukiem</div>
-      <p class="opt__desc">Twoja grafika lub fotografia Sama Murasa nadrukowana również na kartonie. Pełna spójność z płytą w środku.</p>
-      <div class="opt__price">10,00 zł</div>
-      <button class="opt__btn" onclick="addToCart('digipackP')">Dodaj do koszyka</button>
     </div>
   </section>
 
@@ -209,7 +202,7 @@
     const found = cart.find(function(i){ return i.id === id; });
     if (found) found.qty++; else cart.push({ id:id, qty:1 });
     saveCart(cart);
-    showToast(id === 'digipackP' ? 'Dodano digipack z nadrukiem' : 'Dodano digipack');
+    showToast('Dodano digipack');
   }
   function showToast(msg){
     const el = document.getElementById('toast');
