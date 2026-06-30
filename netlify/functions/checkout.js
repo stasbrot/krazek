@@ -22,11 +22,13 @@ const Stripe = require('stripe');
 
 // Prices in grosze (1 zł = 100). Keep in sync with PRICES (pl) on the page.
 const CATALOG = {
-  custom:    { name: 'CD - custom print',                            amount: 3190 }, // 31,90 zł
-  edition1:  { name: 'Edition 01 - Sam Muras',                       amount: 2990 }, // 29,90 zł
-  edition2:  { name: 'Edition 02 - Sam Muras',                       amount: 2990 }, // 29,90 zł
-  digipack:  { name: 'Digipack ECO',                                 amount:  500 }, //  5,00 zł
-  bundle3:   { name: 'Pakiet wakacyjny (3x CD custom + 2x digipack)', amount: 8000 }, // 80,00 zł
+  custom:    { name: 'CD - custom print',                            amount: 2890 }, // 28,90 zł
+  edition1:  { name: 'Edition 01 - Sam Muras',                       amount: 2490 }, // 24,90 zł
+  edition2:  { name: 'Edition 02 - Sam Muras',                       amount: 2490 }, // 24,90 zł
+  edition3:  { name: 'Edition 03 - Stanisław Grabowski',             amount: 2390 }, // 23,90 zł
+  edition4:  { name: 'Edition 04 - Stanisław Grabowski',             amount: 2390 }, // 23,90 zł
+  digipack:  { name: 'Digipack ECO',                                 amount:  490 }, //  4,90 zł
+  bundle3:   { name: 'Pakiet wakacyjny (3x CD custom + 2x digipack)', amount: 6990 }, // 69,90 zł
   design:    { name: 'Projektowanie nadruku',                        amount: 5000 }  // 50,00 zł
 };
 
