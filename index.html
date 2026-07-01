@@ -173,6 +173,15 @@
   .product__name{ font-weight:700; font-size:20px; }
   .product__by{ color:var(--ink-2); font-size:14px; margin-top:3px; }
   .product__desc{ color:var(--ink-2); font-size:15px; margin-top:11px; line-height:1.45; }
+  .fmt-selector{ display:flex; flex-wrap:wrap; gap:6px; margin-top:14px; }
+  .fmt-pill{
+    padding:6px 12px; border-radius:999px; border:1.5px solid var(--sep); background:var(--fill);
+    color:var(--ink-2); font-size:12.5px; font-weight:700; letter-spacing:.02em; cursor:pointer;
+    transition:background .15s, border-color .15s, color .15s;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .fmt-pill:hover{ border-color:var(--ink-3); }
+  .fmt-pill.active{ background:var(--ink); color:var(--bg); border-color:var(--ink); }
   .product__foot{ margin-top:20px; width:100%; display:flex; align-items:center; justify-content:space-between; gap:12px; }
   .product:hover .disc__spin, .custom__card:hover .disc__spin{ animation-play-state:running; }
   @media (max-width:680px){ .editions-grid{ grid-template-columns:1fr; } }
@@ -214,6 +223,10 @@
   }
   .bundle-price{ font-size:38px; font-weight:800; letter-spacing:-0.02em; }
   .bundle-old{ font-size:16px; opacity:.7; text-decoration:line-through; margin-top:2px; }
+  .bundle-save{
+    display:inline-block; margin-top:8px; padding:4px 12px; border-radius:999px;
+    background:rgba(255,255,255,.24); font-size:13px; font-weight:700; letter-spacing:.02em;
+  }
   .bundle-card .btn--primary{
     background:#fff; color:#cc4520;
   }
@@ -248,6 +261,25 @@
     margin-top:24px; display:flex; align-items:center; justify-content:center; gap:18px; flex-wrap:wrap;
   }
   .design-card .note{ margin-top:14px; }
+
+  /* Recording service */
+  .rec-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:18px; margin:26px auto 0; max-width:600px; text-align:left;
+  }
+  .rec-item{
+    background:var(--fill); border-radius:16px; padding:20px;
+  }
+  .rec-item__h{ font-weight:700; font-size:15.5px; }
+  .rec-item__p{ color:var(--ink-2); font-size:13.5px; line-height:1.5; margin-top:6px; }
+  .rec-item__buy{
+    margin-top:14px; display:flex; align-items:center; justify-content:space-between; gap:10px;
+    padding-top:12px; border-top:1px solid var(--sep);
+  }
+  .rec-item__buy:first-of-type{ border-top:0; padding-top:0; margin-top:14px; }
+  .rec-item__label{ font-size:12px; font-weight:700; color:var(--ink-3); letter-spacing:.04em; }
+  .rec-item .price-tag{ font-size:17px; }
+  .rec-item .btn{ padding:8px 16px; font-size:13.5px; }
+  @media (max-width:600px){ .rec-grid{ grid-template-columns:1fr; } }
 
   /* Photographer */
   .photo-card{
@@ -544,9 +576,56 @@
       </div>
     </section>
 
+    <!-- Custom print on other media -->
+    <section class="section" id="otherMedia">
+      <div class="reveal">
+        <div class="eyebrow" data-i18n="mediaBadge"></div>
+        <h2 class="title" data-i18n="mediaTitle"></h2>
+        <p class="sub" data-i18n="mediaSubtitle"></p>
+      </div>
+      <div class="editions-grid">
+        <div class="product reveal">
+          <div class="disc" style="--art:radial-gradient(circle at 35% 28%, #f4f4f7 0%, #c7c9d4 55%, #9195a6 100%)">
+            <div class="disc__spin"><div class="disc__art"></div><div class="disc__sheen"></div><div class="disc__rings"></div></div>
+            <div class="disc__hub"></div><div class="disc__hole"></div>
+          </div>
+          <div class="product__name" data-i18n="mediaDvdRName"></div>
+          <div class="product__desc" data-i18n="mediaDvdRDesc"></div>
+          <div class="product__foot">
+            <span class="price-tag" id="price-customDvdR"></span>
+            <button class="btn btn--primary" onclick="addToCart('customDvdR')" data-i18n="addToCart"></button>
+          </div>
+        </div>
+        <div class="product reveal">
+          <div class="disc" style="--art:radial-gradient(circle at 35% 28%, #ece3f8 0%, #b9a3dd 55%, #7c5fb0 100%)">
+            <div class="disc__spin"><div class="disc__art"></div><div class="disc__sheen"></div><div class="disc__rings"></div></div>
+            <div class="disc__hub"></div><div class="disc__hole"></div>
+          </div>
+          <div class="product__name" data-i18n="mediaDvdRwName"></div>
+          <div class="product__desc" data-i18n="mediaDvdRwDesc"></div>
+          <div class="product__foot">
+            <span class="price-tag" id="price-customDvdRw"></span>
+            <button class="btn btn--primary" onclick="addToCart('customDvdRw')" data-i18n="addToCart"></button>
+          </div>
+        </div>
+        <div class="product reveal">
+          <div class="disc" style="--art:radial-gradient(circle at 35% 28%, #cfe8ff 0%, #4f8fd9 55%, #12336b 100%)">
+            <div class="disc__spin"><div class="disc__art"></div><div class="disc__sheen"></div><div class="disc__rings"></div></div>
+            <div class="disc__hub"></div><div class="disc__hole"></div>
+          </div>
+          <div class="product__name" data-i18n="mediaBlurayName"></div>
+          <div class="product__desc" data-i18n="mediaBlurayDesc"></div>
+          <div class="product__foot">
+            <span class="price-tag" id="price-customBluray"></span>
+            <button class="btn btn--primary" onclick="addToCart('customBluray')" data-i18n="addToCart"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Summer bundle -->
     <section class="section" id="bundle">
-      <div class="bundle-card reveal">
+      <div class="bundle-card reveal" onclick="location.href='pakiet-wakacyjny.html'" role="link" tabindex="0" style="cursor:pointer">
         <div class="bundle-badge" data-i18n="bundleBadge"></div>
         <h2 class="bundle-title" data-i18n="bundleTitle"></h2>
         <p class="bundle-sub" data-i18n="bundleSub"></p>
@@ -568,8 +647,9 @@
           <div>
             <div class="bundle-price" id="bundlePrice"></div>
             <div class="bundle-old" id="bundleOld"></div>
+            <div class="bundle-save" id="bundleSave"></div>
           </div>
-          <button class="btn btn--primary" onclick="addToCart('bundle3')" data-i18n="bundleCta"></button>
+          <a class="btn btn--primary" href="pakiet-wakacyjny.html" data-i18n="bundleCta"></a>
         </div>
       </div>
     </section>
@@ -590,12 +670,18 @@
           <div class="product__name" data-i18n="edition1Name"></div>
           <div class="product__by"><span data-i18n="editionsBy"></span> <span data-i18n="authorSam"></span></div>
           <div class="product__desc" data-i18n="edition1Desc"></div>
+          <div class="fmt-selector">
+            <button class="fmt-pill active" data-edition="edition1" data-format="cd" onclick="selectFormat('edition1','cd',event)">CD</button>
+            <button class="fmt-pill" data-edition="edition1" data-format="dvdr" onclick="selectFormat('edition1','dvdr',event)">DVD-R</button>
+            <button class="fmt-pill" data-edition="edition1" data-format="dvdrw" onclick="selectFormat('edition1','dvdrw',event)">DVD-RW</button>
+            <button class="fmt-pill" data-edition="edition1" data-format="bdr" onclick="selectFormat('edition1','bdr',event)">BD-R</button>
+          </div>
           <div class="product__foot">
             <span class="price-stack">
               <span class="price-old" id="price-edition1-old"></span>
               <span class="price-tag" id="price-edition1"></span>
             </span>
-            <button class="btn btn--primary" onclick="addToCart('edition1')" data-i18n="addToCart"></button>
+            <button class="btn btn--primary" onclick="addEditionToCart('edition1')" data-i18n="addToCart"></button>
           </div>
         </div>
         <div class="product reveal">
@@ -606,12 +692,18 @@
           <div class="product__name" data-i18n="edition2Name"></div>
           <div class="product__by"><span data-i18n="editionsBy"></span> <span data-i18n="authorSam"></span></div>
           <div class="product__desc" data-i18n="edition2Desc"></div>
+          <div class="fmt-selector">
+            <button class="fmt-pill active" data-edition="edition2" data-format="cd" onclick="selectFormat('edition2','cd',event)">CD</button>
+            <button class="fmt-pill" data-edition="edition2" data-format="dvdr" onclick="selectFormat('edition2','dvdr',event)">DVD-R</button>
+            <button class="fmt-pill" data-edition="edition2" data-format="dvdrw" onclick="selectFormat('edition2','dvdrw',event)">DVD-RW</button>
+            <button class="fmt-pill" data-edition="edition2" data-format="bdr" onclick="selectFormat('edition2','bdr',event)">BD-R</button>
+          </div>
           <div class="product__foot">
             <span class="price-stack">
               <span class="price-old" id="price-edition2-old"></span>
               <span class="price-tag" id="price-edition2"></span>
             </span>
-            <button class="btn btn--primary" onclick="addToCart('edition2')" data-i18n="addToCart"></button>
+            <button class="btn btn--primary" onclick="addEditionToCart('edition2')" data-i18n="addToCart"></button>
           </div>
         </div>
         <div class="product reveal">
@@ -622,9 +714,15 @@
           <div class="product__name" data-i18n="edition3Name"></div>
           <div class="product__by"><span data-i18n="editionsBy"></span> <span data-i18n="authorStas"></span></div>
           <div class="product__desc" data-i18n="edition3Desc"></div>
+          <div class="fmt-selector">
+            <button class="fmt-pill active" data-edition="edition3" data-format="cd" onclick="selectFormat('edition3','cd',event)">CD</button>
+            <button class="fmt-pill" data-edition="edition3" data-format="dvdr" onclick="selectFormat('edition3','dvdr',event)">DVD-R</button>
+            <button class="fmt-pill" data-edition="edition3" data-format="dvdrw" onclick="selectFormat('edition3','dvdrw',event)">DVD-RW</button>
+            <button class="fmt-pill" data-edition="edition3" data-format="bdr" onclick="selectFormat('edition3','bdr',event)">BD-R</button>
+          </div>
           <div class="product__foot">
             <span class="price-tag" id="price-edition3"></span>
-            <button class="btn btn--primary" onclick="addToCart('edition3')" data-i18n="addToCart"></button>
+            <button class="btn btn--primary" onclick="addEditionToCart('edition3')" data-i18n="addToCart"></button>
           </div>
         </div>
         <div class="product reveal">
@@ -635,9 +733,15 @@
           <div class="product__name" data-i18n="edition4Name"></div>
           <div class="product__by"><span data-i18n="editionsBy"></span> <span data-i18n="authorStas"></span></div>
           <div class="product__desc" data-i18n="edition4Desc"></div>
+          <div class="fmt-selector">
+            <button class="fmt-pill active" data-edition="edition4" data-format="cd" onclick="selectFormat('edition4','cd',event)">CD</button>
+            <button class="fmt-pill" data-edition="edition4" data-format="dvdr" onclick="selectFormat('edition4','dvdr',event)">DVD-R</button>
+            <button class="fmt-pill" data-edition="edition4" data-format="dvdrw" onclick="selectFormat('edition4','dvdrw',event)">DVD-RW</button>
+            <button class="fmt-pill" data-edition="edition4" data-format="bdr" onclick="selectFormat('edition4','bdr',event)">BD-R</button>
+          </div>
           <div class="product__foot">
             <span class="price-tag" id="price-edition4"></span>
-            <button class="btn btn--primary" onclick="addToCart('edition4')" data-i18n="addToCart"></button>
+            <button class="btn btn--primary" onclick="addEditionToCart('edition4')" data-i18n="addToCart"></button>
           </div>
         </div>
         <div class="product reveal">
@@ -648,9 +752,15 @@
           <div class="product__name" data-i18n="edition5Name"></div>
           <div class="product__by"><span data-i18n="editionsBy"></span> <span data-i18n="authorSam"></span></div>
           <div class="product__desc" data-i18n="edition5Desc"></div>
+          <div class="fmt-selector">
+            <button class="fmt-pill active" data-edition="edition5" data-format="cd" onclick="selectFormat('edition5','cd',event)">CD</button>
+            <button class="fmt-pill" data-edition="edition5" data-format="dvdr" onclick="selectFormat('edition5','dvdr',event)">DVD-R</button>
+            <button class="fmt-pill" data-edition="edition5" data-format="dvdrw" onclick="selectFormat('edition5','dvdrw',event)">DVD-RW</button>
+            <button class="fmt-pill" data-edition="edition5" data-format="bdr" onclick="selectFormat('edition5','bdr',event)">BD-R</button>
+          </div>
           <div class="product__foot">
             <span class="price-tag" id="price-edition5"></span>
-            <button class="btn btn--primary" onclick="addToCart('edition5')" data-i18n="addToCart"></button>
+            <button class="btn btn--primary" onclick="addEditionToCart('edition5')" data-i18n="addToCart"></button>
           </div>
         </div>
         <div class="product reveal">
@@ -661,9 +771,15 @@
           <div class="product__name" data-i18n="edition6Name"></div>
           <div class="product__by"><span data-i18n="editionsBy"></span> <span data-i18n="authorSam"></span></div>
           <div class="product__desc" data-i18n="edition6Desc"></div>
+          <div class="fmt-selector">
+            <button class="fmt-pill active" data-edition="edition6" data-format="cd" onclick="selectFormat('edition6','cd',event)">CD</button>
+            <button class="fmt-pill" data-edition="edition6" data-format="dvdr" onclick="selectFormat('edition6','dvdr',event)">DVD-R</button>
+            <button class="fmt-pill" data-edition="edition6" data-format="dvdrw" onclick="selectFormat('edition6','dvdrw',event)">DVD-RW</button>
+            <button class="fmt-pill" data-edition="edition6" data-format="bdr" onclick="selectFormat('edition6','bdr',event)">BD-R</button>
+          </div>
           <div class="product__foot">
             <span class="price-tag" id="price-edition6"></span>
-            <button class="btn btn--primary" onclick="addToCart('edition6')" data-i18n="addToCart"></button>
+            <button class="btn btn--primary" onclick="addEditionToCart('edition6')" data-i18n="addToCart"></button>
           </div>
         </div>
       </div>
@@ -688,6 +804,45 @@
           <button class="btn btn--primary" onclick="addToCart('design')" data-i18n="designCta"></button>
         </div>
         <p class="note" data-i18n="designNote"></p>
+      </div>
+    </section>
+
+    <!-- Recording service -->
+    <section class="section" id="recording">
+      <div class="design-card reveal">
+        <div class="design-ic" aria-hidden="true">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <div class="eyebrow" data-i18n="recEyebrow"></div>
+        <h2 class="title" style="margin-top:6px" data-i18n="recTitle"></h2>
+        <p class="sub design-desc" data-i18n="recDesc"></p>
+
+        <div class="rec-grid">
+          <div class="rec-item">
+            <div class="rec-item__h" data-i18n="recAudioH"></div>
+            <p class="rec-item__p" data-i18n="recAudioP"></p>
+            <div class="rec-item__buy">
+              <span class="price-tag" id="price-recAudioCd"></span>
+              <button class="btn btn--primary" onclick="addToCart('recAudioCd')" data-i18n="addToCart"></button>
+            </div>
+          </div>
+          <div class="rec-item">
+            <div class="rec-item__h" data-i18n="recVideoH"></div>
+            <p class="rec-item__p" data-i18n="recVideoP"></p>
+            <div class="rec-item__buy">
+              <span class="price-tag" id="price-recVideoDvdR"></span>
+              <span class="rec-item__label">DVD-R</span>
+              <button class="btn btn--primary" onclick="addToCart('recVideoDvdR')" data-i18n="addToCart"></button>
+            </div>
+            <div class="rec-item__buy">
+              <span class="price-tag" id="price-recVideoDvdRw"></span>
+              <span class="rec-item__label">DVD-RW</span>
+              <button class="btn btn--primary" onclick="addToCart('recVideoDvdRw')" data-i18n="addToCart"></button>
+            </div>
+          </div>
+        </div>
+
+        <p class="note" data-i18n="recCopyrightNote"></p>
       </div>
     </section>
 
@@ -797,7 +952,13 @@
     edition6:  'url("img/edycja-06.jpg")',
     digipack:  'url("img/digipack.jpg")',
     bundle3:   'radial-gradient(circle at 35% 28%, #ffd770 0%, #ff9d6b 55%, #ff5f8d 100%)',
-    design:    'radial-gradient(circle at 35% 28%, #d4e3ff 0%, #6f9eff 55%, #2c5cd9 100%)'
+    design:    'radial-gradient(circle at 35% 28%, #d4e3ff 0%, #6f9eff 55%, #2c5cd9 100%)',
+    customDvdR:    'radial-gradient(circle at 35% 28%, #f4f4f7 0%, #c7c9d4 55%, #9195a6 100%)',
+    customDvdRw:   'radial-gradient(circle at 35% 28%, #ece3f8 0%, #b9a3dd 55%, #7c5fb0 100%)',
+    customBluray:  'radial-gradient(circle at 35% 28%, #cfe8ff 0%, #4f8fd9 55%, #12336b 100%)',
+    recAudioCd:    'radial-gradient(circle at 35% 28%, #ffe9c7 0%, #ffb75e 55%, #d97b1f 100%)',
+    recVideoDvdR:  'radial-gradient(circle at 35% 28%, #d3f5e4 0%, #6fd3a4 55%, #1e8f61 100%)',
+    recVideoDvdRw: 'radial-gradient(circle at 35% 28%, #d3f5e4 0%, #6fd3a4 55%, #1e8f61 100%)'
   };
   const PRODUCTS = {
     custom:    { nameKey:'customCartName',   art:ART.custom },
@@ -809,7 +970,13 @@
     edition6:  { nameKey:'edition6Name',     art:ART.edition6 },
     digipack:  { nameKey:'digipackCartName', art:ART.digipack },
     bundle3:   { nameKey:'bundle3CartName',  art:ART.bundle3 },
-    design:    { nameKey:'designCartName',   art:ART.design }
+    design:    { nameKey:'designCartName',   art:ART.design },
+    customDvdR:    { nameKey:'mediaDvdRName',    art:ART.customDvdR },
+    customDvdRw:   { nameKey:'mediaDvdRwName',   art:ART.customDvdRw },
+    customBluray:  { nameKey:'mediaBlurayName',  art:ART.customBluray },
+    recAudioCd:    { nameKey:'recAudioCartName',    art:ART.recAudioCd },
+    recVideoDvdR:  { nameKey:'recVideoRCartName',   art:ART.recVideoDvdR },
+    recVideoDvdRw: { nameKey:'recVideoRwCartName',  art:ART.recVideoDvdRw }
   };
 
   /* ===== Prices per language / currency (change freely) ===== */
@@ -823,7 +990,13 @@
     edition6:  { pl:24.90, en:5.89, cs:149, sk:5.89, fr:5.89, it:5.89, nl:5.89 },
     digipack:  { pl:4.90,  en:1.19, cs:29,  sk:1.19, fr:1.19, it:1.19, nl:1.19 },
     bundle3:   { pl:69.90, en:16.49, cs:419, sk:16.49, fr:16.49, it:16.49, nl:16.49 },
-    design:    { pl:50.00, en:11.90, cs:299, sk:11.90, fr:11.90, it:11.90, nl:11.90 }
+    design:    { pl:50.00, en:11.90, cs:299, sk:11.90, fr:11.90, it:11.90, nl:11.90 },
+    customDvdR:    { pl:31.90, en:7.49, cs:189, sk:7.49, fr:7.49, it:7.49, nl:7.49 },
+    customDvdRw:   { pl:33.90, en:7.99, cs:199, sk:7.99, fr:7.99, it:7.99, nl:7.99 },
+    customBluray:  { pl:39.90, en:9.39, cs:239, sk:9.39, fr:9.39, it:9.39, nl:9.39 },
+    recAudioCd:    { pl:37.90, en:8.90, cs:225, sk:8.90, fr:8.90, it:8.90, nl:8.90 },
+    recVideoDvdR:  { pl:38.90, en:9.19, cs:229, sk:9.19, fr:9.19, it:9.19, nl:9.19 },
+    recVideoDvdRw: { pl:39.90, en:9.39, cs:239, sk:9.39, fr:9.39, it:9.39, nl:9.39 }
   };
   /* Old (crossed-out) prices for sale display */
   const OLD_PRICES = {
@@ -832,6 +1005,26 @@
     edition2: { pl:29.90, en:6.99, cs:179, sk:6.99, fr:6.99, it:6.99, nl:6.99 },
     digipack: { pl:5.00,  en:1.19, cs:29,  sk:1.19, fr:1.19, it:1.19, nl:1.19 }
   };
+
+  /* Editions on other media: price per author-tier and format.
+     Sam = editions 1,2,5,6.  Stanisław = editions 3,4 (always 1 zł cheaper). */
+  const EDITION_AUTHOR = { edition1:'sam', edition2:'sam', edition3:'stas', edition4:'stas', edition5:'sam', edition6:'sam' };
+  const FORMAT_PRICE = {
+    sam: {
+      cd:    PRICES.edition1,
+      dvdr:  { pl:28.90, en:6.79, cs:169, sk:6.79, fr:6.79, it:6.79, nl:6.79 },
+      dvdrw: { pl:31.90, en:7.49, cs:189, sk:7.49, fr:7.49, it:7.49, nl:7.49 },
+      bdr:   { pl:33.90, en:7.99, cs:199, sk:7.99, fr:7.99, it:7.99, nl:7.99 }
+    },
+    stas: {
+      cd:    PRICES.edition3,
+      dvdr:  { pl:27.90, en:6.59, cs:165, sk:6.59, fr:6.59, it:6.59, nl:6.59 },
+      dvdrw: { pl:30.90, en:7.29, cs:185, sk:7.29, fr:7.29, it:7.29, nl:7.29 },
+      bdr:   { pl:32.90, en:7.79, cs:195, sk:7.79, fr:7.79, it:7.79, nl:7.79 }
+    }
+  };
+  const FORMAT_LABEL = { cd:'CD', dvdr:'DVD-R', dvdrw:'DVD-RW', bdr:'BD-R' };
+  let editionFormat = { edition1:'cd', edition2:'cd', edition3:'cd', edition4:'cd', edition5:'cd', edition6:'cd' };
   /* Locale + currency used for formatting (Intl handles symbol, decimals, separators) */
   const LOCALE = {
     pl:{ loc:'pl-PL', cur:'PLN' },
@@ -890,7 +1083,7 @@
       bundleItem1:"Custom CD",
       bundleItem2:"Eco digipack",
       bundleFree:"Save 25.70 PLN",
-      bundleCta:"Add bundle to cart",
+      bundleCta:"See the full offer",
       bundle3CartName:"Summer bundle (3 CDs + 2 digipacks)",
       designEyebrow:"New",
       designTitle:"Print design service.",
@@ -900,6 +1093,7 @@
       designStep3:"Within a few days you receive a preview to approve, then we print and ship.",
       designCta:"Add design service",
       designNote:"The 50 PLN fee is for the design only. You still need to order a CD or bundle separately.",
+      mediaBadge:"More formats", mediaTitle:"DVD and Blu-ray with your own print", mediaSubtitle:"The same idea as custom CD, just on a bigger disc. Send your artwork after ordering.", mediaDvdRName:"DVD-R with print", mediaDvdRDesc:"Single-write (DVD-R) - burn once, keeps forever. Up to 4.7 GB.", mediaDvdRwName:"DVD-RW with print", mediaDvdRwDesc:"Rewritable (DVD-RW) - you can overwrite it with new content later.", mediaBlurayName:"Blu-ray (BD-R) with print", mediaBlurayDesc:"Standard Blu-ray, single-write (BD-R). Up to 25 GB - great for high-resolution footage.", bundleSaveLabel:"You save", recEyebrow:"Service", recTitle:"We\u2019ll burn your files onto a disc", recDesc:"Send us your files and we\u2019ll record them onto a physical disc. Audio in lossless (WAV, AIFF) or compressed (MP3, AAC - lossless quality not guaranteed) on CD. Video (MP4, MOV) on DVD as DVD-Video.", recAudioH:"Audio \u2192 CD", recAudioP:"WAV, AIFF (lossless) or MP3, AAC (lossless quality not guaranteed).", recVideoH:"Video \u2192 DVD-Video", recVideoP:"MP4, MOV - burned as standard DVD-Video, playable in any DVD player.", recCopyrightNote:"We won\u2019t burn other artists\u2019 commercial music or films - that would infringe copyright. We record your own songs, films, or files you send us.", recAudioCartName:"Audio recording on CD", recVideoRCartName:"Video recording on DVD-R", recVideoRwCartName:"Video recording on DVD-RW",
       designCartName:"Print design service",
       metaTitle:"Custom printed CDs"
     },
@@ -948,7 +1142,7 @@
       bundleItem1:"Płyta custom",
       bundleItem2:"Digipack ECO",
       bundleFree:"Oszczędzasz 25,70 zł",
-      bundleCta:"Dodaj pakiet do koszyka",
+      bundleCta:"Zobacz pełną ofertę",
       bundle3CartName:"Pakiet wakacyjny (3 CD + 2 digipacki)",
       designEyebrow:"Nowość",
       designTitle:"Projektowanie nadruku.",
@@ -958,6 +1152,7 @@
       designStep3:"W kilka dni dostajesz podgląd do akceptacji, potem drukujemy i wysyłamy.",
       designCta:"Dodaj usługę projektowania",
       designNote:"Opłata 50 zł jest tylko za projekt. Płytę albo pakiet musisz zamówić oddzielnie.",
+      mediaBadge:"Więcej nośników", mediaTitle:"DVD i Blu-ray z własnym nadrukiem", mediaSubtitle:"Ta sama usługa co custom CD, tylko na większym nośniku. Nadruk wysyłasz po zamówieniu.", mediaDvdRName:"DVD-R z nadrukiem", mediaDvdRDesc:"Jednokrotny zapis (DVD-R) - nagrywasz raz, dane zostają na zawsze. Pojemność do 4,7 GB.", mediaDvdRwName:"DVD-RW z nadrukiem", mediaDvdRwDesc:"Wielokrotny zapis (DVD-RW) - możesz nadpisać płytę nową treścią później.", mediaBlurayName:"Blu-ray (BD-R) z nadrukiem", mediaBlurayDesc:"Standardowy Blu-ray, jednokrotny zapis (BD-R). Pojemność do 25 GB - idealny na materiał w wysokiej rozdzielczości.", bundleSaveLabel:"Oszczędzasz", recEyebrow:"Usługa", recTitle:"Nagramy Twoje pliki na płytę", recDesc:"Wyślij nam pliki, a my nagramy je na fizyczny nośnik. Audio w formacie bezstratnym (WAV, AIFF) lub kompresowanym (MP3, AAC - bez gwarancji bezstratnej jakości) na CD. Wideo (MP4, MOV) na DVD w formacie DVD-Video.", recAudioH:"Audio \u2192 CD", recAudioP:"WAV, AIFF (bezstratnie) lub MP3, AAC (bez gwarancji jakości bezstratnej).", recVideoH:"Wideo \u2192 DVD-Video", recVideoP:"MP4, MOV - nagrywamy jako standardowe DVD-Video, odtwarzalne w każdym odtwarzaczu DVD.", recCopyrightNote:"Nie nagrywamy płyt z muzyką czy filmami innych zespołów i twórców - to naruszałoby prawa autorskie. Nagrywamy Twoje własne utwory, filmy oraz pliki, które nam prześlesz.", recAudioCartName:"Nagranie audio na CD", recVideoRCartName:"Nagranie wideo na DVD-R", recVideoRwCartName:"Nagranie wideo na DVD-RW",
       designCartName:"Projektowanie nadruku",
       metaTitle:"Płyty CD z własnym nadrukiem"
     },
@@ -1005,7 +1200,7 @@
       bundleItem1:"CD na míru",
       bundleItem2:"Digipack ECO",
       bundleFree:"Ušetříte 25,70 zł",
-      bundleCta:"Přidat balíček do košíku",
+      bundleCta:"Zobrazit celou nabídku",
       bundle3CartName:"Letní balíček (3 CD + 2 digipacky)",
       designEyebrow:"Novinka",
       designTitle:"Návrh potisku.",
@@ -1015,6 +1210,7 @@
       designStep3:"Za pár dní dostanete náhled ke schválení, pak tiskneme a posíláme.",
       designCta:"Přidat službu návrhu",
       designNote:"Poplatek 50 zł je pouze za návrh. CD nebo balíček musíte objednat zvlášť.",
+      mediaBadge:"Další nosiče", mediaTitle:"DVD a Blu-ray s vlastním potiskem", mediaSubtitle:"Stejná služba jako custom CD, jen na větším nosiči. Motiv pošlete po objednávce.", mediaDvdRName:"DVD-R s potiskem", mediaDvdRDesc:"Jednorázový zápis (DVD-R) - nahrajete jednou, data zůstanou navždy. Kapacita do 4,7 GB.", mediaDvdRwName:"DVD-RW s potiskem", mediaDvdRwDesc:"Přepisovatelné (DVD-RW) - disk můžete později přepsat novým obsahem.", mediaBlurayName:"Blu-ray (BD-R) s potiskem", mediaBlurayDesc:"Standardní Blu-ray, jednorázový zápis (BD-R). Kapacita do 25 GB - ideální na materiál ve vysokém rozlišení.", bundleSaveLabel:"Ušetříte", recEyebrow:"Služba", recTitle:"Nahrajeme vaše soubory na disk", recDesc:"Pošlete nám soubory a my je nahrajeme na fyzický nosič. Audio bezztrátově (WAV, AIFF) nebo komprimovaně (MP3, AAC - bez záruky bezztrátové kvality) na CD. Video (MP4, MOV) na DVD ve formátu DVD-Video.", recAudioH:"Audio \u2192 CD", recAudioP:"WAV, AIFF (bezztrátově) nebo MP3, AAC (bez záruky bezztrátové kvality).", recVideoH:"Video \u2192 DVD-Video", recVideoP:"MP4, MOV - nahrajeme jako standardní DVD-Video, přehratelné v jakémkoli DVD přehrávači.", recCopyrightNote:"Nenahráváme hudbu ani filmy jiných kapel a tvůrců - porušovalo by to autorská práva. Nahrajeme vaše vlastní skladby, filmy nebo soubory, které nám pošlete.", recAudioCartName:"Nahrání audia na CD", recVideoRCartName:"Nahrání videa na DVD-R", recVideoRwCartName:"Nahrání videa na DVD-RW",
       designCartName:"Návrh potisku",
       metaTitle:"CD s vlastním potiskem"
     },
@@ -1062,7 +1258,7 @@
       bundleItem1:"CD na mieru",
       bundleItem2:"Digipack ECO",
       bundleFree:"Ušetríte 25,70 zł",
-      bundleCta:"Pridať balíček do košíka",
+      bundleCta:"Zobraziť celú ponuku",
       bundle3CartName:"Letný balíček (3 CD + 2 digipacky)",
       designEyebrow:"Novinka",
       designTitle:"Návrh potlače.",
@@ -1072,6 +1268,7 @@
       designStep3:"O pár dní dostanete náhľad na schválenie, potom tlačíme a posielame.",
       designCta:"Pridať službu návrhu",
       designNote:"Poplatok 50 zł je iba za návrh. CD alebo balíček musíte objednať zvlášť.",
+      mediaBadge:"Ďalšie nosiče", mediaTitle:"DVD a Blu-ray s vlastnou potlačou", mediaSubtitle:"Rovnaká služba ako custom CD, len na väčšom nosiči. Motív pošlete po objednávke.", mediaDvdRName:"DVD-R s potlačou", mediaDvdRDesc:"Jednorazový zápis (DVD-R) - nahráte raz, dáta zostanú navždy. Kapacita do 4,7 GB.", mediaDvdRwName:"DVD-RW s potlačou", mediaDvdRwDesc:"Prepisovateľné (DVD-RW) - disk môžete neskôr prepísať novým obsahom.", mediaBlurayName:"Blu-ray (BD-R) s potlačou", mediaBlurayDesc:"Štandardné Blu-ray, jednorazový zápis (BD-R). Kapacita do 25 GB - ideálne na materiál vo vysokom rozlíšení.", bundleSaveLabel:"Ušetríte", recEyebrow:"Služba", recTitle:"Nahráme vaše súbory na disk", recDesc:"Pošlite nám súbory a my ich nahráme na fyzický nosič. Audio bezstratovo (WAV, AIFF) alebo komprimovane (MP3, AAC - bez záruky bezstratovej kvality) na CD. Video (MP4, MOV) na DVD vo formáte DVD-Video.", recAudioH:"Audio \u2192 CD", recAudioP:"WAV, AIFF (bezstratovo) alebo MP3, AAC (bez záruky bezstratovej kvality).", recVideoH:"Video \u2192 DVD-Video", recVideoP:"MP4, MOV - nahráme ako štandardné DVD-Video, prehrateľné v akomkoľvek DVD prehrávači.", recCopyrightNote:"Nenahrávame hudbu ani filmy iných kapiel a tvorcov - porušovalo by to autorské práva. Nahráme vaše vlastné skladby, filmy alebo súbory, ktoré nám pošlete.", recAudioCartName:"Nahranie audia na CD", recVideoRCartName:"Nahranie videa na DVD-R", recVideoRwCartName:"Nahranie videa na DVD-RW",
       designCartName:"Návrh potlače",
       metaTitle:"CD s vlastnou potlačou"
     },
@@ -1119,7 +1316,7 @@
       bundleItem1:"CD personnalisé",
       bundleItem2:"Digipack ECO",
       bundleFree:"Économisez 25,70 zł",
-      bundleCta:"Ajouter le pack",
+      bundleCta:"Voir l\u2019offre complète",
       bundle3CartName:"Pack estival (3 CD + 2 digipacks)",
       designEyebrow:"Nouveau",
       designTitle:"Design d\u2019impression.",
@@ -1129,6 +1326,7 @@
       designStep3:"En quelques jours, vous recevez un aperçu à valider, puis nous imprimons et expédions.",
       designCta:"Ajouter le service de design",
       designNote:"Les 50 zł couvrent uniquement le design. Le CD ou le pack doit être commandé séparément.",
+      mediaBadge:"Autres supports", mediaTitle:"DVD et Blu-ray avec votre impression", mediaSubtitle:"Le même principe que le CD personnalisé, sur un support plus grand. Envoyez votre visuel après la commande.", mediaDvdRName:"DVD-R avec impression", mediaDvdRDesc:"Gravure unique (DVD-R) - gravé une fois, conservé pour toujours. Jusqu\u2019à 4,7 Go.", mediaDvdRwName:"DVD-RW avec impression", mediaDvdRwDesc:"Réinscriptible (DVD-RW) - vous pouvez le réécrire plus tard avec un nouveau contenu.", mediaBlurayName:"Blu-ray (BD-R) avec impression", mediaBlurayDesc:"Blu-ray standard, gravure unique (BD-R). Jusqu\u2019à 25 Go - parfait pour des contenus en haute résolution.", bundleSaveLabel:"Vous économisez", recEyebrow:"Service", recTitle:"Nous gravons vos fichiers sur disque", recDesc:"Envoyez-nous vos fichiers, nous les gravons sur un support physique. Audio sans perte (WAV, AIFF) ou compressé (MP3, AAC - qualité sans perte non garantie) sur CD. Vidéo (MP4, MOV) sur DVD au format DVD-Video.", recAudioH:"Audio \u2192 CD", recAudioP:"WAV, AIFF (sans perte) ou MP3, AAC (qualité sans perte non garantie).", recVideoH:"Vidéo \u2192 DVD-Video", recVideoP:"MP4, MOV - gravé en DVD-Video standard, lisible sur tout lecteur DVD.", recCopyrightNote:"Nous ne gravons pas la musique ou les films commerciaux d\u2019autres artistes - cela enfreindrait le droit d\u2019auteur. Nous gravons vos propres morceaux, films ou fichiers que vous nous envoyez.", recAudioCartName:"Gravure audio sur CD", recVideoRCartName:"Gravure vidéo sur DVD-R", recVideoRwCartName:"Gravure vidéo sur DVD-RW",
       designCartName:"Service de design",
       metaTitle:"CD à impression personnalisée"
     },
@@ -1176,7 +1374,7 @@
       bundleItem1:"CD personalizzato",
       bundleItem2:"Digipack ECO",
       bundleFree:"Risparmi 25,70 zł",
-      bundleCta:"Aggiungi il pacchetto",
+      bundleCta:"Vedi l\u2019offerta completa",
       bundle3CartName:"Pacchetto estivo (3 CD + 2 digipack)",
       designEyebrow:"Novità",
       designTitle:"Design della stampa.",
@@ -1186,6 +1384,7 @@
       designStep3:"In pochi giorni ricevi un\u2019anteprima da approvare, poi stampiamo e spediamo.",
       designCta:"Aggiungi servizio design",
       designNote:"I 50 zł coprono solo il design. Il CD o il pacchetto va ordinato a parte.",
+      mediaBadge:"Altri supporti", mediaTitle:"DVD e Blu-ray con stampa personalizzata", mediaSubtitle:"Stessa idea del CD personalizzato, su un supporto più grande. Invia la grafica dopo l\u2019ordine.", mediaDvdRName:"DVD-R con stampa", mediaDvdRDesc:"Scrittura singola (DVD-R) - masterizzi una volta, i dati restano per sempre. Fino a 4,7 GB.", mediaDvdRwName:"DVD-RW con stampa", mediaDvdRwDesc:"Riscrivibile (DVD-RW) - puoi sovrascriverlo in seguito con nuovi contenuti.", mediaBlurayName:"Blu-ray (BD-R) con stampa", mediaBlurayDesc:"Blu-ray standard, scrittura singola (BD-R). Fino a 25 GB - perfetto per contenuti ad alta risoluzione.", bundleSaveLabel:"Risparmi", recEyebrow:"Servizio", recTitle:"Masterizziamo i tuoi file su disco", recDesc:"Inviaci i tuoi file e li masterizzeremo su un supporto fisico. Audio senza perdita (WAV, AIFF) o compresso (MP3, AAC - qualità senza perdita non garantita) su CD. Video (MP4, MOV) su DVD in formato DVD-Video.", recAudioH:"Audio \u2192 CD", recAudioP:"WAV, AIFF (senza perdita) o MP3, AAC (qualità senza perdita non garantita).", recVideoH:"Video \u2192 DVD-Video", recVideoP:"MP4, MOV - masterizzato come DVD-Video standard, riproducibile su qualsiasi lettore DVD.", recCopyrightNote:"Non masterizziamo musica o film commerciali di altri artisti - violerebbe il diritto d\u2019autore. Masterizziamo i tuoi brani, film o file che ci invii.", recAudioCartName:"Masterizzazione audio su CD", recVideoRCartName:"Masterizzazione video su DVD-R", recVideoRwCartName:"Masterizzazione video su DVD-RW",
       designCartName:"Servizio di design",
       metaTitle:"CD con stampa personalizzata"
     },
@@ -1233,7 +1432,7 @@
       bundleItem1:"Custom cd",
       bundleItem2:"Eco digipack",
       bundleFree:"Bespaar 25,70 zł",
-      bundleCta:"Voeg pakket toe",
+      bundleCta:"Bekijk de volledige aanbieding",
       bundle3CartName:"Zomerpakket (3 cd\u2019s + 2 digipacks)",
       designEyebrow:"Nieuw",
       designTitle:"Ontwerpservice.",
@@ -1243,6 +1442,7 @@
       designStep3:"Binnen enkele dagen krijg je een preview ter goedkeuring, daarna drukken en versturen we.",
       designCta:"Voeg ontwerpservice toe",
       designNote:"Het bedrag van 50 zł is alleen voor het ontwerp. De cd of het pakket bestel je apart.",
+      mediaBadge:"Meer media", mediaTitle:"Dvd en Blu-ray met eigen bedrukking", mediaSubtitle:"Hetzelfde idee als custom cd, maar op een groter medium. Stuur je ontwerp na de bestelling.", mediaDvdRName:"Dvd-r met bedrukking", mediaDvdRDesc:"Eenmalig beschrijfbaar (dvd-r) - je brandt hem één keer, de data blijft voor altijd. Tot 4,7 GB.", mediaDvdRwName:"Dvd-rw met bedrukking", mediaDvdRwDesc:"Herschrijfbaar (dvd-rw) - je kunt hem later overschrijven met nieuwe inhoud.", mediaBlurayName:"Blu-ray (BD-R) met bedrukking", mediaBlurayDesc:"Standaard blu-ray, eenmalig beschrijfbaar (BD-R). Tot 25 GB - ideaal voor materiaal in hoge resolutie.", bundleSaveLabel:"Je bespaart", recEyebrow:"Dienst", recTitle:"Wij branden jouw bestanden op schijf", recDesc:"Stuur ons je bestanden en wij branden ze op een fysieke schijf. Audio lossless (WAV, AIFF) of gecomprimeerd (MP3, AAC - lossless kwaliteit niet gegarandeerd) op cd. Video (MP4, MOV) op dvd als DVD-Video.", recAudioH:"Audio \u2192 cd", recAudioP:"WAV, AIFF (lossless) of MP3, AAC (lossless kwaliteit niet gegarandeerd).", recVideoH:"Video \u2192 DVD-Video", recVideoP:"MP4, MOV - gebrand als standaard DVD-Video, af te spelen op elke dvd-speler.", recCopyrightNote:"We branden geen commerciële muziek of films van andere artiesten - dat zou auteursrecht schenden. We branden jouw eigen nummers, films of bestanden die je ons stuurt.", recAudioCartName:"Audio-opname op cd", recVideoRCartName:"Video-opname op dvd-r", recVideoRwCartName:"Video-opname op dvd-rw",
       designCartName:"Ontwerpservice",
       metaTitle:"Cd's met eigen bedrukking"
     }
@@ -1298,14 +1498,49 @@
     document.getElementById('price-edition4').textContent = fmt(PRICES.edition4[lang]);
     document.getElementById('price-edition5').textContent = fmt(PRICES.edition5[lang]);
     document.getElementById('price-edition6').textContent = fmt(PRICES.edition6[lang]);
+    document.getElementById('price-customDvdR').textContent = fmt(PRICES.customDvdR[lang]);
+    document.getElementById('price-customDvdRw').textContent = fmt(PRICES.customDvdRw[lang]);
+    document.getElementById('price-customBluray').textContent = fmt(PRICES.customBluray[lang]);
+    document.getElementById('price-recAudioCd').textContent = fmt(PRICES.recAudioCd[lang]);
+    document.getElementById('price-recVideoDvdR').textContent = fmt(PRICES.recVideoDvdR[lang]);
+    document.getElementById('price-recVideoDvdRw').textContent = fmt(PRICES.recVideoDvdRw[lang]);
     /* Bundle: show offer price and crossed-out "real" value (3×custom + 2×digipack) using OLD per-item prices */
     const realBundle = OLD_PRICES.custom[lang] * 3 + OLD_PRICES.digipack[lang] * 2;
+    const bundleSaved = realBundle - PRICES.bundle3[lang];
     document.getElementById('bundlePrice').textContent = fmt(PRICES.bundle3[lang]);
     document.getElementById('bundleOld').textContent = fmt(realBundle);
+    const bundleSaveEl = document.getElementById('bundleSave');
+    if (bundleSaveEl) bundleSaveEl.textContent = t.bundleSaveLabel + ' ' + fmt(bundleSaved);
     document.getElementById('designPrice').textContent = fmt(PRICES.design[lang]);
+    renderEditionPrices();
     document.getElementById('langFlag').textContent = FLAG[lang];
     document.title = BRAND + ' - ' + t.metaTitle;
     renderCart();
+  }
+
+  /* Resolve a cart line's product info even for dynamic "edition+format" SKUs
+     like "edition1_dvdr" which aren't in the static PRODUCTS table. */
+  function resolveProduct(id){
+    if (PRODUCTS[id]) return { nameKey: PRODUCTS[id].nameKey, art: PRODUCTS[id].art };
+    const m = id.match(/^(edition[1-6])_(dvdr|dvdrw|bdr)$/);
+    if (m){
+      const editionId = m[1], format = m[2];
+      return { editionId: editionId, format: format, art: ART[editionId] };
+    }
+    return null;
+  }
+  function resolveName(id){
+    const p = resolveProduct(id);
+    if (!p) return id;
+    if (p.nameKey) return T[lang][p.nameKey];
+    return T[lang][PRODUCTS[p.editionId].nameKey] + ' (' + FORMAT_LABEL[p.format] + ')';
+  }
+  function resolvePrice(id){
+    const p = resolveProduct(id);
+    if (!p) return 0;
+    if (p.nameKey) return PRICES[id][lang];
+    const tier = EDITION_AUTHOR[p.editionId];
+    return FORMAT_PRICE[tier][p.format][lang];
   }
 
   function renderCart(){
@@ -1326,12 +1561,12 @@
 
     let total = 0;
     body.innerHTML = cart.map(function(item){
-      const p = PRODUCTS[item.id];
-      const price = PRICES[item.id][lang];
+      const p = resolveProduct(item.id);
+      const price = resolvePrice(item.id);
       total += price * item.qty;
-      const name = t[p.nameKey];
+      const name = resolveName(item.id);
       return '<div class="cart-item">'
-        + discHTML(p.art, '54px')
+        + discHTML(p ? p.art : '', '54px')
         + '<div class="cart-item__info"><div class="cart-item__name">' + name + '</div>'
         + '<div class="cart-item__price">' + fmt(price) + '</div></div>'
         + '<div class="stepper">'
@@ -1349,12 +1584,37 @@
     if (found) found.qty++; else cart.push({ id:id, qty:1 });
     renderCart();
     showToast(T[lang].added);
-    /* Show digipack upsell only for CDs, and only if no digipack is already in the cart */
-    const isCD = (id === 'custom' || id === 'edition1' || id === 'edition2');
+    /* Show digipack upsell only for plain CDs, and only if no digipack is already in the cart */
+    const isCD = (id === 'custom' || /^edition[1-6]$/.test(id));
     const hasDigipack = cart.some(function(i){ return i.id === 'digipack'; });
     if (isCD && !hasDigipack){
       setTimeout(openUpsell, 350);
     }
+  }
+  /* Editions: resolve the chosen format (CD / DVD-R / DVD-RW / BD-R) into the right SKU */
+  function addEditionToCart(editionId){
+    const format = editionFormat[editionId];
+    const id = (format === 'cd') ? editionId : (editionId + '_' + format);
+    addToCart(id);
+  }
+  function selectFormat(editionId, format, evt){
+    if (evt) evt.stopPropagation();
+    editionFormat[editionId] = format;
+    document.querySelectorAll('.fmt-pill[data-edition="' + editionId + '"]').forEach(function(btn){
+      btn.classList.toggle('active', btn.getAttribute('data-format') === format);
+    });
+    renderEditionPrices();
+  }
+  function renderEditionPrices(){
+    Object.keys(editionFormat).forEach(function(editionId){
+      const format = editionFormat[editionId];
+      const tier = EDITION_AUTHOR[editionId];
+      const price = FORMAT_PRICE[tier][format][lang];
+      const el = document.getElementById('price-' + editionId);
+      if (el) el.textContent = fmt(price);
+      const oldEl = document.getElementById('price-' + editionId + '-old');
+      if (oldEl) oldEl.style.display = (format === 'cd' && OLD_PRICES[editionId]) ? '' : 'none';
+    });
   }
   function addDigipack(id){
     const found = cart.find(function(i){ return i.id === id; });
