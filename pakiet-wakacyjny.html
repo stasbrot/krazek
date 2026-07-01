@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F2F2F7">
+<title>Pakiet wakacyjny · KRĄŻEK</title>
+<style>
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  :root{
+    --bg:#F2F2F7; --surface:#ffffff;
+    --ink:#1C1C1E; --ink-2:#86868B; --ink-3:#AEAEB2;
+    --sep:rgba(60,60,67,0.12);
+    --fill:rgba(120,120,128,0.12);
+    --accent:#0A84FF; --accent-press:#0066D6;
+    --nav-bg:rgba(242,242,247,0.72);
+    --shadow:0 14px 44px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+    --radius:22px; --radius-lg:30px;
+    --maxw:900px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#000000; --surface:#1C1C1E;
+      --ink:#FFFFFF; --ink-2:#98989F; --ink-3:#636366;
+      --sep:rgba(255,255,255,0.10);
+      --fill:rgba(120,120,128,0.24);
+      --nav-bg:rgba(0,0,0,0.62);
+      --shadow:0 14px 44px rgba(0,0,0,0.55);
+    }
+  }
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    background:var(--bg); color:var(--ink); -webkit-font-smoothing:antialiased;
+  }
+  .nav{
+    position:sticky; top:0; z-index:50;
+    backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px);
+    background:var(--nav-bg); border-bottom:1px solid var(--sep);
+  }
+  .nav__inner{ max-width:var(--maxw); margin:0 auto; padding:11px 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+  .brand{ font-weight:700; font-size:20px; letter-spacing:-0.02em; text-decoration:none; color:var(--ink); }
+  .back{ color:var(--accent); text-decoration:none; font-size:15px; font-weight:500; display:inline-flex; align-items:center; gap:6px; }
+
+  main{ max-width:var(--maxw); margin:0 auto; padding:0 20px 60px; }
+
+  .hero{
+    position:relative; overflow:hidden; margin-top:20px;
+    background:linear-gradient(135deg, #ff7a5c, #ff9e35 55%, #ffd166);
+    color:#fff; border-radius:var(--radius-lg); padding:52px 40px; text-align:center;
+    box-shadow:0 24px 60px rgba(255,122,92,.32);
+  }
+  .hero::before{
+    content:""; position:absolute; inset:-40%;
+    background:radial-gradient(circle at 80% 20%, rgba(255,255,255,.25), transparent 50%),
+               radial-gradient(circle at 10% 90%, rgba(255,255,255,.15), transparent 45%);
+    pointer-events:none;
+  }
+  .hero > *{ position:relative; }
+  .badge{
+    display:inline-block; background:rgba(255,255,255,.24); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+    padding:6px 14px; border-radius:999px; font-size:12px; font-weight:700; letter-spacing:.13em; text-transform:uppercase;
+  }
+  .hero h1{ font-size:clamp(32px,6vw,52px); font-weight:800; letter-spacing:-0.02em; line-height:1.05; margin-top:16px; }
+  .hero p{ color:rgba(255,255,255,.92); max-width:520px; margin:14px auto 0; font-size:17px; line-height:1.5; }
+
+  .price-block{ margin-top:30px; }
+  .price-now{ font-size:52px; font-weight:800; letter-spacing:-0.02em; }
+  .price-old{ font-size:19px; opacity:.75; text-decoration:line-through; margin-top:2px; }
+  .save-pill{
+    display:inline-block; margin-top:12px; padding:6px 16px; border-radius:999px;
+    background:rgba(255,255,255,.28); font-size:14.5px; font-weight:700;
+  }
+
+  .grid{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; margin-top:32px;
+  }
+  .grid-item{
+    background:rgba(255,255,255,.16); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+    border-radius:16px; padding:18px 14px;
+  }
+  .grid-item__num{ font-size:26px; font-weight:800; }
+  .grid-item__name{ font-size:13.5px; font-weight:600; margin-top:4px; opacity:.95; }
+  @media (max-width:600px){ .grid{ grid-template-columns:1fr; } }
+
+  .buy-row{ margin-top:34px; }
+  .buy-btn{
+    display:inline-block; padding:16px 40px; border-radius:999px; border:0;
+    background:#fff; color:#cc4520; font-size:17px; font-weight:700; cursor:pointer;
+    box-shadow:0 12px 30px rgba(0,0,0,.18); transition:transform .12s ease, filter .2s;
+  }
+  .buy-btn:hover{ filter:brightness(.97); }
+  .buy-btn:active{ transform:scale(.98); }
+
+  /* Detail sections */
+  .section{ margin-top:44px; }
+  .section h2{ font-size:24px; font-weight:700; letter-spacing:-0.01em; }
+  .section p.lead{ color:var(--ink-2); margin-top:10px; font-size:16px; line-height:1.55; max-width:640px; }
+
+  .breakdown{
+    margin-top:22px; background:var(--surface); border:1px solid var(--sep); border-radius:var(--radius-lg);
+    box-shadow:var(--shadow); padding:8px 28px;
+  }
+  .breakdown-row{
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    padding:18px 0; border-bottom:1px solid var(--sep); font-size:15.5px;
+  }
+  .breakdown-row:last-child{ border-bottom:0; }
+  .breakdown-row__name{ font-weight:600; }
+  .breakdown-row__sub{ color:var(--ink-2); font-size:13.5px; margin-top:2px; }
+  .breakdown-row__price{ font-weight:700; white-space:nowrap; }
+  .breakdown-row--total{ font-size:17px; }
+  .breakdown-row--total .breakdown-row__price{ font-size:19px; color:var(--accent); }
+  .breakdown-row__old{ color:var(--ink-3); text-decoration:line-through; font-weight:500; font-size:14px; margin-right:8px; }
+
+  .faq{
+    margin-top:22px; display:grid; gap:12px;
+  }
+  .faq-item{
+    background:var(--surface); border:1px solid var(--sep); border-radius:16px; padding:18px 20px;
+  }
+  .faq-item h3{ font-size:15.5px; font-weight:700; }
+  .faq-item p{ color:var(--ink-2); font-size:14.5px; line-height:1.5; margin-top:6px; }
+
+  .cta-final{ text-align:center; margin-top:44px; }
+  .cta-final .buy-btn{ background:var(--accent); color:#fff; }
+  .cta-final .buy-btn:hover{ background:var(--accent-press); }
+
+  .footer{ border-top:1px solid var(--sep); margin-top:56px; }
+  .footer__inner{ max-width:var(--maxw); margin:0 auto; padding:24px 20px; text-align:center; color:var(--ink-2); font-size:14px; }
+  .footer a{ color:var(--ink-2); text-decoration:none; margin:0 8px; }
+
+  .toast{
+    position:fixed; left:50%; bottom:28px; transform:translateX(-50%) translateY(18px);
+    z-index:120; background:var(--ink); color:var(--bg); padding:12px 20px; border-radius:999px;
+    font-size:15px; font-weight:600; box-shadow:0 12px 32px rgba(0,0,0,.28);
+    opacity:0; visibility:hidden; transition:opacity .25s, transform .25s, visibility .25s;
+  }
+  .toast.show{ opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav__inner">
+    <a href="index.html" class="brand">KRĄŻEK</a>
+    <a href="index.html" class="back">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+      <span>Wróć do sklepu</span>
+    </a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <span class="badge">Oferta letnia</span>
+    <h1>Pakiet wakacyjny</h1>
+    <p>Trzy płyty CD z Twoim własnym nadrukiem i dwa ekologiczne opakowania digipack w zestawie - w niższej cenie niż przy zakupie osobno.</p>
+
+    <div class="price-block">
+      <div class="price-now">69,90 zł</div>
+      <div class="price-old">zamiast 105,70 zł</div>
+      <div class="save-pill">Oszczędzasz 35,80 zł</div>
+    </div>
+
+    <div class="grid">
+      <div class="grid-item">
+        <div class="grid-item__num">3×</div>
+        <div class="grid-item__name">CD custom print</div>
+      </div>
+      <div class="grid-item">
+        <div class="grid-item__num">2×</div>
+        <div class="grid-item__name">Digipack ECO</div>
+      </div>
+      <div class="grid-item">
+        <div class="grid-item__num">★</div>
+        <div class="grid-item__name">Jeden numer zamówienia</div>
+      </div>
+    </div>
+
+    <div class="buy-row">
+      <button class="buy-btn" onclick="addBundle()">Dodaj pakiet do koszyka</button>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Co dokładnie dostajesz</h2>
+    <p class="lead">Pakiet to jedna pozycja w koszyku, ale w środku znajdziesz pięć elementów - dokładnie tyle, ile potrzeba na małe wydanie EP-ki, demo albo prezenty dla trójki znajomych.</p>
+    <div class="breakdown">
+      <div class="breakdown-row">
+        <div>
+          <div class="breakdown-row__name">3 × CD - custom print</div>
+          <div class="breakdown-row__sub">Twój własny nadruk na każdej płycie. Grafikę wysyłasz po zamówieniu.</div>
+        </div>
+        <div class="breakdown-row__price">
+          <span class="breakdown-row__old">95,70 zł</span>
+        </div>
+      </div>
+      <div class="breakdown-row">
+        <div>
+          <div class="breakdown-row__name">2 × Digipack ECO</div>
+          <div class="breakdown-row__sub">Kartonowe opakowanie z kraftu, bez plastiku - gratis w pakiecie.</div>
+        </div>
+        <div class="breakdown-row__price">
+          <span class="breakdown-row__old">10,00 zł</span>
+        </div>
+      </div>
+      <div class="breakdown-row breakdown-row--total">
+        <div class="breakdown-row__name">Cena pakietu</div>
+        <div class="breakdown-row__price">69,90 zł</div>
+      </div>
+    </div>
+    <p class="lead" style="margin-top:14px; font-size:13.5px; color:var(--ink-3)">
+      Osobno: 3 × 31,90 zł + 2 × 5,00 zł = 105,70 zł. W pakiecie płacisz 69,90 zł - realna oszczędność to 35,80 zł.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2>Najczęstsze pytania</h2>
+    <div class="faq">
+      <div class="faq-item">
+        <h3>Czy wszystkie trzy płyty mogą mieć różny nadruk?</h3>
+        <p>Tak. Po złożeniu zamówienia wyślij nam trzy osobne grafiki (albo jedną, jeśli chcesz identyczny komplet) - napisz to od razu w mailu, żebyśmy wiedzieli, co gdzie przypisać.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Czy digipacki są z nadrukiem czy bez?</h3>
+        <p>W pakiecie digipacki są bez nadruku - to wersja ekologiczna z surowego kraftu. Aktualnie nie oferujemy digipacków z własnym nadrukiem.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Jaka jest wysyłka?</h3>
+        <p>Doliczana osobno przy płatności - 9,99 zł w Polsce, 24,99 zł do reszty UE. Cały pakiet jedzie w jednej paczce.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-final">
+    <button class="buy-btn" onclick="addBundle()">Dodaj pakiet do koszyka - 69,90 zł</button>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <a href="index.html">KRĄŻEK</a> ·
+    <a href="digipack.html">Digipack</a> ·
+    <a href="regulamin.html">Regulamin</a> ·
+    <a href="prywatnosc.html">Prywatność</a> ·
+    <a href="odstapienie.html">Odstąpienie</a>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  function loadCart(){
+    try{ return JSON.parse(localStorage.getItem('krazek_cart') || '[]'); }
+    catch(e){ return []; }
+  }
+  function saveCart(c){
+    try{ localStorage.setItem('krazek_cart', JSON.stringify(c)); }catch(e){}
+  }
+  function addBundle(){
+    const cart = loadCart();
+    const found = cart.find(function(i){ return i.id === 'bundle3'; });
+    if (found) found.qty++; else cart.push({ id:'bundle3', qty:1 });
+    saveCart(cart);
+    showToast('Dodano pakiet wakacyjny do koszyka');
+  }
+  function showToast(msg){
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.classList.add('show');
+    clearTimeout(window.__t);
+    window.__t = setTimeout(function(){ el.classList.remove('show'); }, 2200);
+  }
+</script>
+</body>
+</html>
