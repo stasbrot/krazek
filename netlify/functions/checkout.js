@@ -31,7 +31,38 @@ const CATALOG = {
   edition6:  { name: 'Edition 06 - Sam Muras',                       amount: 2490 }, // 24,90 zł
   digipack:  { name: 'Digipack ECO',                                 amount:  490 }, //  4,90 zł
   bundle3:   { name: 'Pakiet wakacyjny (3x CD custom + 2x digipack)', amount: 6990 }, // 69,90 zł
-  design:    { name: 'Projektowanie nadruku',                        amount: 5000 }  // 50,00 zł
+  design:    { name: 'Projektowanie nadruku',                        amount: 5000 }, // 50,00 zł
+
+  // Custom print on other blank media
+  customDvdR:    { name: 'DVD-R - custom print',                     amount: 3190 }, // 31,90 zł
+  customDvdRw:   { name: 'DVD-RW - custom print',                    amount: 3390 }, // 33,90 zł
+  customBluray:  { name: 'Blu-ray (BD-R) - custom print',            amount: 3990 }, // 39,90 zł
+
+  // Recording service (customer's own files burned to disc)
+  recAudioCd:    { name: 'Nagranie audio na CD',                     amount: 3790 }, // 37,90 zł
+  recVideoDvdR:  { name: 'Nagranie wideo na DVD-R (DVD-Video)',      amount: 3890 }, // 38,90 zł
+  recVideoDvdRw: { name: 'Nagranie wideo na DVD-RW (DVD-Video)',     amount: 3990 }, // 39,90 zł
+
+  // Signature editions on DVD-R / DVD-RW / BD-R
+  // "Sam" tier = editions 01, 02, 05, 06.  "Stanisław" tier = editions 03, 04 (always 1 zł cheaper).
+  edition1_dvdr:  { name: 'Edition 01 (DVD-R) - Sam Muras',           amount: 2890 },
+  edition1_dvdrw: { name: 'Edition 01 (DVD-RW) - Sam Muras',          amount: 3190 },
+  edition1_bdr:   { name: 'Edition 01 (BD-R) - Sam Muras',            amount: 3390 },
+  edition2_dvdr:  { name: 'Edition 02 (DVD-R) - Sam Muras',           amount: 2890 },
+  edition2_dvdrw: { name: 'Edition 02 (DVD-RW) - Sam Muras',          amount: 3190 },
+  edition2_bdr:   { name: 'Edition 02 (BD-R) - Sam Muras',            amount: 3390 },
+  edition5_dvdr:  { name: 'Edition 05 (DVD-R) - Sam Muras',           amount: 2890 },
+  edition5_dvdrw: { name: 'Edition 05 (DVD-RW) - Sam Muras',          amount: 3190 },
+  edition5_bdr:   { name: 'Edition 05 (BD-R) - Sam Muras',            amount: 3390 },
+  edition6_dvdr:  { name: 'Edition 06 (DVD-R) - Sam Muras',           amount: 2890 },
+  edition6_dvdrw: { name: 'Edition 06 (DVD-RW) - Sam Muras',          amount: 3190 },
+  edition6_bdr:   { name: 'Edition 06 (BD-R) - Sam Muras',            amount: 3390 },
+  edition3_dvdr:  { name: 'Edition 03 (DVD-R) - Stanisław Grabowski', amount: 2790 },
+  edition3_dvdrw: { name: 'Edition 03 (DVD-RW) - Stanisław Grabowski',amount: 3090 },
+  edition3_bdr:   { name: 'Edition 03 (BD-R) - Stanisław Grabowski',  amount: 3290 },
+  edition4_dvdr:  { name: 'Edition 04 (DVD-R) - Stanisław Grabowski', amount: 2790 },
+  edition4_dvdrw: { name: 'Edition 04 (DVD-RW) - Stanisław Grabowski',amount: 3090 },
+  edition4_bdr:   { name: 'Edition 04 (BD-R) - Stanisław Grabowski',  amount: 3290 }
 };
 
 // Flat shipping rates in grosze. Change these two numbers whenever real
