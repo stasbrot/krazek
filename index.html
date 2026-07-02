@@ -107,6 +107,23 @@
   .icon-btn:hover{ filter:brightness(.96); }
   .icon-btn:active{ transform:scale(.92); }
 
+  /* ---------- Promo bar (referral program) ---------- */
+  .promo-bar{
+    display:flex; align-items:center; justify-content:center; gap:9px;
+    background:linear-gradient(90deg, #2a1b4d, #6f63e8 55%, #4a3aa7);
+    color:#fff; text-decoration:none;
+    padding:10px 16px; font-size:13.5px; font-weight:600; letter-spacing:-0.005em;
+    text-align:center; transition:filter .15s ease;
+  }
+  .promo-bar:hover{ filter:brightness(1.08); }
+  .promo-bar__icon{ display:flex; flex-shrink:0; opacity:.95; }
+  .promo-bar__text{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .promo-bar__arrow{ font-size:16px; font-weight:700; flex-shrink:0; transform:translateY(-0.5px); }
+  @media (max-width:520px){
+    .promo-bar{ font-size:12.5px; padding:9px 12px; gap:7px; }
+    .promo-bar__text{ white-space:normal; text-align:left; }
+  }
+
   /* ---------- Nav ---------- */
   .nav{
     position:sticky; top:0; z-index:50;
@@ -493,6 +510,14 @@
   </div>
 
   <!-- ===== Nav ===== -->
+  <a href="polecaj.html" class="promo-bar">
+    <span class="promo-bar__icon" aria-hidden="true">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v9H4v-9"/><path d="M2 7h20v5H2z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+    </span>
+    <span class="promo-bar__text">Poleć znajomym - 3 zakupy z Twojego linku i dostajesz płytę gratis</span>
+    <span class="promo-bar__arrow" aria-hidden="true">›</span>
+  </a>
+
   <header class="nav">
     <div class="nav__inner">
       <a href="#top" class="brand js-brand" id="brandTop"></a>
