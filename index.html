@@ -905,6 +905,7 @@
       <div class="brand js-brand" style="font-size:16px"></div>
       <div data-i18n="footerNote"></div>
       <div class="footer__links">
+        <a href="polecaj.html">Poleć znajomym</a>
         <a href="digipack.html" data-i18n="footerDigipack"></a>
         <a href="regulamin.html" data-i18n="footerTerms"></a>
         <a href="prywatnosc.html" data-i18n="footerPrivacy"></a>
@@ -1658,7 +1659,10 @@
       const res = await fetch(CHECKOUT_URL, {
         method:'POST',
         headers:{ 'Content-Type':'application/json' },
-        body: JSON.stringify({ cart: cart.map(function(i){ return { id:i.id, qty:i.qty }; }) })
+        body: JSON.stringify({
+          cart: cart.map(function(i){ return { id:i.id, qty:i.qty }; }),
+          ref: (function(){ try{ return localStorage.getItem('krazek_ref') || ''; }catch(e){ return ''; } })()
+        })
       });
       if (!res.ok) throw new Error('bad response');
       const data = await res.json();
@@ -1733,6 +1737,15 @@
     if (saved && T[saved]){
       lang = saved;
       document.getElementById('langOverlay').classList.add('hide');
+    }
+  }catch(e){}
+
+  /* Capture a referral code from a shared link (?ref=CODE) and remember it
+     for the whole visit, so it's still attached whenever they check out. */
+  try{
+    const urlRef = new URLSearchParams(window.location.search).get('ref');
+    if (urlRef && /^[A-Za-z0-9]{4,12}$/.test(urlRef)){
+      localStorage.setItem('krazek_ref', urlRef.toUpperCase());
     }
   }catch(e){}
 

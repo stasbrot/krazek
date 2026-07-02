@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F2F2F7">
+<title>Poleć znajomym · KRĄŻEK</title>
+<style>
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  :root{
+    --bg:#F2F2F7; --surface:#ffffff;
+    --ink:#1C1C1E; --ink-2:#86868B; --ink-3:#AEAEB2;
+    --sep:rgba(60,60,67,0.12);
+    --fill:rgba(120,120,128,0.12);
+    --accent:#0A84FF; --accent-press:#0066D6;
+    --green:#3E8A5A;
+    --nav-bg:rgba(242,242,247,0.72);
+    --shadow:0 14px 44px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+    --radius:22px; --radius-lg:30px;
+    --maxw:760px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#000000; --surface:#1C1C1E;
+      --ink:#FFFFFF; --ink-2:#98989F; --ink-3:#636366;
+      --sep:rgba(255,255,255,0.10);
+      --fill:rgba(120,120,128,0.24);
+      --nav-bg:rgba(0,0,0,0.62);
+      --shadow:0 14px 44px rgba(0,0,0,0.55);
+    }
+  }
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    background:var(--bg); color:var(--ink); -webkit-font-smoothing:antialiased;
+  }
+  .nav{
+    position:sticky; top:0; z-index:50;
+    backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px);
+    background:var(--nav-bg); border-bottom:1px solid var(--sep);
+  }
+  .nav__inner{ max-width:var(--maxw); margin:0 auto; padding:11px 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+  .brand{ font-weight:700; font-size:20px; letter-spacing:-0.02em; text-decoration:none; color:var(--ink); }
+  .back{ color:var(--accent); text-decoration:none; font-size:15px; font-weight:500; display:inline-flex; align-items:center; gap:6px; }
+
+  main{ max-width:var(--maxw); margin:0 auto; padding:40px 20px 60px; }
+
+  .hero{ text-align:center; }
+  .badge{
+    display:inline-flex; align-items:center; gap:6px; padding:6px 12px; border-radius:999px;
+    background:rgba(10,132,255,.12); color:var(--accent); font-size:12px; font-weight:700; letter-spacing:.05em; text-transform:uppercase;
+  }
+  .hero h1{ font-size:clamp(32px,6vw,48px); font-weight:700; letter-spacing:-0.03em; line-height:1.08; margin-top:14px; }
+  .hero p{ color:var(--ink-2); max-width:520px; margin:14px auto 0; font-size:17px; line-height:1.5; }
+
+  .steps{ display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; margin-top:32px; }
+  .step{
+    background:var(--surface); border:1px solid var(--sep); border-radius:var(--radius);
+    padding:20px 16px; text-align:left;
+  }
+  .step__num{
+    width:26px; height:26px; border-radius:50%; background:var(--accent); color:#fff;
+    display:grid; place-items:center; font-size:13px; font-weight:700; margin-bottom:10px;
+  }
+  .step__h{ font-weight:700; font-size:14.5px; }
+  .step__p{ color:var(--ink-2); font-size:13px; line-height:1.45; margin-top:4px; }
+  @media (max-width:640px){ .steps{ grid-template-columns:1fr; } }
+
+  .card{
+    margin-top:36px; background:var(--surface); border:1px solid var(--sep); border-radius:var(--radius-lg);
+    box-shadow:var(--shadow); padding:32px 28px;
+  }
+  .card h2{ font-size:20px; font-weight:700; letter-spacing:-0.01em; }
+  .card p.sub{ color:var(--ink-2); font-size:14.5px; margin-top:6px; line-height:1.5; }
+
+  .field{ margin-top:18px; }
+  .field label{ display:block; font-size:13px; font-weight:600; color:var(--ink-2); margin-bottom:6px; }
+  .field input{
+    width:100%; padding:13px 16px; border-radius:14px; border:1.5px solid var(--sep);
+    background:var(--fill); color:var(--ink); font-size:15px; font-family:inherit;
+  }
+  .field input:focus{ outline:none; border-color:var(--accent); }
+
+  .btn{
+    margin-top:20px; width:100%; padding:14px 22px; border-radius:999px; border:0;
+    background:var(--accent); color:#fff; font-size:15.5px; font-weight:700; cursor:pointer;
+    transition:background .2s, transform .12s;
+  }
+  .btn:hover{ background:var(--accent-press); }
+  .btn:active{ transform:scale(.98); }
+  .btn:disabled{ opacity:.55; cursor:default; }
+  .btn--ghost{ background:var(--fill); color:var(--ink); }
+  .btn--ghost:hover{ filter:brightness(.96); background:var(--fill); }
+
+  .result{
+    display:none; margin-top:20px; padding:18px 20px; border-radius:16px; background:rgba(62,138,90,.1);
+    border:1px solid rgba(62,138,90,.25);
+  }
+  .result.show{ display:block; }
+  .result__label{ font-size:12.5px; font-weight:700; color:var(--green); text-transform:uppercase; letter-spacing:.04em; }
+  .result__link{
+    display:flex; align-items:center; gap:8px; margin-top:10px; background:var(--surface); border:1px solid var(--sep);
+    border-radius:12px; padding:10px 12px; font-size:13.5px; word-break:break-all;
+  }
+  .result__link button{
+    flex-shrink:0; border:0; background:var(--accent); color:#fff; font-size:12.5px; font-weight:700;
+    padding:7px 12px; border-radius:999px; cursor:pointer;
+  }
+
+  .progress-box{ display:none; margin-top:20px; }
+  .progress-box.show{ display:block; }
+  .progress-bar{ height:10px; border-radius:999px; background:var(--fill); overflow:hidden; margin-top:10px; }
+  .progress-bar__fill{ height:100%; background:var(--accent); border-radius:999px; transition:width .4s ease; }
+  .progress-text{ font-size:14px; color:var(--ink-2); margin-top:8px; }
+  .progress-text strong{ color:var(--ink); }
+
+  .error{ display:none; margin-top:14px; font-size:13.5px; color:#D33; }
+  .error.show{ display:block; }
+
+  .faq{ margin-top:36px; display:grid; gap:12px; }
+  .faq-item{ background:var(--surface); border:1px solid var(--sep); border-radius:16px; padding:16px 18px; }
+  .faq-item h3{ font-size:14.5px; font-weight:700; }
+  .faq-item p{ color:var(--ink-2); font-size:13.5px; line-height:1.5; margin-top:5px; }
+
+  .footer{ border-top:1px solid var(--sep); margin-top:52px; }
+  .footer__inner{ max-width:var(--maxw); margin:0 auto; padding:24px 20px; text-align:center; color:var(--ink-2); font-size:14px; }
+  .footer a{ color:var(--ink-2); text-decoration:none; margin:0 8px; }
+
+  .toast{
+    position:fixed; left:50%; bottom:28px; transform:translateX(-50%) translateY(18px);
+    z-index:120; background:var(--ink); color:var(--bg); padding:12px 20px; border-radius:999px;
+    font-size:15px; font-weight:600; box-shadow:0 12px 32px rgba(0,0,0,.28);
+    opacity:0; visibility:hidden; transition:opacity .25s, transform .25s, visibility .25s;
+  }
+  .toast.show{ opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav__inner">
+    <a href="index.html" class="brand">KRĄŻEK</a>
+    <a href="index.html" class="back">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+      <span>Wróć do sklepu</span>
+    </a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <span class="badge">Poleć i zyskaj</span>
+    <h1>Podziel się linkiem. Dostań płytę gratis.</h1>
+    <p>Wygeneruj swój link. Jak 3 różne osoby kupią przez niego cokolwiek w sklepie, dostajesz jedną płytę za darmo.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step__num">1</div>
+        <div class="step__h">Wygeneruj link</div>
+        <div class="step__p">Podaj e-mail poniżej, dostajesz unikalny link do KRĄŻKA.</div>
+      </div>
+      <div class="step">
+        <div class="step__num">2</div>
+        <div class="step__h">Podziel się nim</div>
+        <div class="step__p">Wyślij znajomym, wrzuć na stories, gdziekolwiek chcesz.</div>
+      </div>
+      <div class="step">
+        <div class="step__num">3</div>
+        <div class="step__h">Odbierz płytę</div>
+        <div class="step__p">Gdy 3 różne osoby coś kupią, odezwiemy się w sprawie wysyłki.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="card">
+    <h2>Wygeneruj swój link</h2>
+    <p class="sub">Podaj imię i e-mail - na ten adres napiszemy, gdy zbierzesz 3 zakupy.</p>
+
+    <div class="field">
+      <label for="refName">Imię (opcjonalnie)</label>
+      <input type="text" id="refName" placeholder="np. Kasia" maxlength="60">
+    </div>
+    <div class="field">
+      <label for="refEmail">E-mail</label>
+      <input type="email" id="refEmail" placeholder="ty@example.com" maxlength="200">
+    </div>
+    <button class="btn" id="createBtn" onclick="createLink()">Wygeneruj mój link</button>
+    <p class="error" id="createError"></p>
+
+    <div class="result" id="result">
+      <div class="result__label">Twój link</div>
+      <div class="result__link">
+        <span id="linkText" style="flex:1"></span>
+        <button onclick="copyLink()">Kopiuj</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Sprawdź swój postęp</h2>
+    <p class="sub">Wpisz e-mail, którego użyłeś przy generowaniu linku.</p>
+    <div class="field">
+      <label for="statusEmail">E-mail</label>
+      <input type="email" id="statusEmail" placeholder="ty@example.com" maxlength="200">
+    </div>
+    <button class="btn btn--ghost" id="statusBtn" onclick="checkStatus()">Sprawdź postęp</button>
+    <p class="error" id="statusError"></p>
+
+    <div class="progress-box" id="progressBox">
+      <div class="progress-bar"><div class="progress-bar__fill" id="progressFill" style="width:0%"></div></div>
+      <p class="progress-text" id="progressText"></p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <div class="faq-item">
+      <h3>Co się liczy jako zakup?</h3>
+      <p>Prawie wszystko - płyta custom, edycja sygnowana, pakiet wakacyjny, DVD, Blu-ray, nagranie plików. Nie liczy się sam digipack ani samo projektowanie nadruku kupione bez niczego innego.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Czy muszę czekać, aż wszystkie 3 osoby kupią naraz?</h3>
+      <p>Nie. Liczymy narastająco - jak masz już 1 albo 2 zakupy przez swój link, kolejne po prostu dopisują się do licznika.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Czy mogę kupić sam(a) przez swój link?</h3>
+      <p>Nie, własne zakupy się nie liczą - to program dla poleceń, nie dla siebie.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Co jeśli przekroczę 3 osoby?</h3>
+      <p>Program działa dalej - za każde kolejne 3 osoby dostajesz kolejną płytę gratis.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <a href="index.html">KRĄŻEK</a> ·
+    <a href="digipack.html">Digipack</a> ·
+    <a href="regulamin.html">Regulamin</a> ·
+    <a href="prywatnosc.html">Prywatność</a>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  const SITE = window.location.origin;
+
+  async function createLink(){
+    const name = document.getElementById('refName').value.trim();
+    const email = document.getElementById('refEmail').value.trim();
+    const errEl = document.getElementById('createError');
+    const btn = document.getElementById('createBtn');
+    errEl.classList.remove('show');
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+      errEl.textContent = 'Podaj prawidłowy adres e-mail.';
+      errEl.classList.add('show');
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Chwila...';
+    try{
+      const res = await fetch('/.netlify/functions/referral-create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email })
+      });
+      const data = await res.json();
+      if (!res.ok || !data.code) throw new Error(data.error || 'Coś nie zadziałało.');
+
+      const link = SITE + '/?ref=' + data.code;
+      document.getElementById('linkText').textContent = link;
+      document.getElementById('result').classList.add('show');
+      document.getElementById('statusEmail').value = email;
+    }catch(e){
+      errEl.textContent = 'Nie udało się wygenerować linku. Spróbuj ponownie za chwilę.';
+      errEl.classList.add('show');
+    }finally{
+      btn.disabled = false;
+      btn.textContent = 'Wygeneruj mój link';
+    }
+  }
+
+  function copyLink(){
+    const text = document.getElementById('linkText').textContent;
+    navigator.clipboard.writeText(text).then(function(){
+      showToast('Skopiowano link!');
+    });
+  }
+
+  async function checkStatus(){
+    const email = document.getElementById('statusEmail').value.trim();
+    const errEl = document.getElementById('statusError');
+    const btn = document.getElementById('statusBtn');
+    errEl.classList.remove('show');
+    document.getElementById('progressBox').classList.remove('show');
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+      errEl.textContent = 'Podaj prawidłowy adres e-mail.';
+      errEl.classList.add('show');
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Sprawdzam...';
+    try{
+      const res = await fetch('/.netlify/functions/referral-status?email=' + encodeURIComponent(email));
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Nie znaleziono.');
+
+      const pct = Math.round((data.towardsNext / data.goal) * 100);
+      document.getElementById('progressFill').style.width = pct + '%';
+      let text = '<strong>' + data.towardsNext + ' / ' + data.goal + '</strong> zakupów do kolejnej darmowej płyty.';
+      if (data.rewardsEarned > 0){
+        text += ' Do tej pory zarobiono: <strong>' + data.rewardsEarned + '</strong> ' + (data.rewardsEarned === 1 ? 'płytę' : 'płyty') + '.';
+      }
+      document.getElementById('progressText').innerHTML = text;
+      document.getElementById('progressBox').classList.add('show');
+    }catch(e){
+      errEl.textContent = 'Nie znaleźliśmy linku dla tego adresu e-mail. Najpierw wygeneruj link powyżej.';
+      errEl.classList.add('show');
+    }finally{
+      btn.disabled = false;
+      btn.textContent = 'Sprawdź postęp';
+    }
+  }
+
+  function showToast(msg){
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.classList.add('show');
+    clearTimeout(window.__t);
+    window.__t = setTimeout(function(){ el.classList.remove('show'); }, 2000);
+  }
+</script>
+</body>
+</html>
