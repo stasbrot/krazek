@@ -79,6 +79,10 @@ const ALLOWED_COUNTRIES = [
   'AT', 'BE', 'ES', 'PT', 'SE', 'DK', 'FI', 'HU', 'RO', 'BG', 'GR'
 ];
 
+// Products that do NOT count toward the "3 friends bought something" referral
+// reward on their own (they're add-ons, not a disc someone is receiving).
+const NON_QUALIFYING_SKUS = ['digipack', 'design'];
+
 function shippingOption(rate) {
   return {
     shipping_rate_data: {
@@ -106,6 +110,14 @@ exports.handler = async (event) => {
     if (cart.length === 0) {
       return { statusCode: 400, body: JSON.stringify({ error: 'Empty cart' }) };
     }
+
+    // Referral code carried over from ?ref=... on the page (localStorage). Only
+    // keep it if it looks like a real code, never trust it blindly beyond that -
+    // the webhook re-checks it against real stored data before crediting anyone.
+    const ref = /^[A-Z0-9]{4,12}$/.test((body.ref || '').toString().toUpperCase())
+      ? body.ref.toString().toUpperCase()
+      : '';
+    const qualifies = cart.some((item) => !NON_QUALIFYING_SKUS.includes(item.id));
 
     const line_items = cart.map((item) => {
       const product = CATALOG[item.id];
@@ -135,7 +147,8 @@ exports.handler = async (event) => {
       shipping_options: [
         shippingOption(SHIPPING.pl),
         shippingOption(SHIPPING.eu)
-      ]
+      ],
+      metadata: { ref: ref, qualifies: qualifies ? '1' : '0' }
     });
 
     return {

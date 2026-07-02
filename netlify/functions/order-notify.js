@@ -19,6 +19,9 @@
 
 const Stripe = require('stripe');
 const nodemailer = require('nodemailer');
+const { getStore } = require('@netlify/blobs');
+
+const REFERRAL_GOAL = 3; // qualifying purchases needed for one free disc
 
 exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
@@ -170,6 +173,51 @@ https://dashboard.stripe.com/payments/${full.payment_intent}
       html: htmlBody,
       replyTo: full.customer_details.email
     });
+
+    // ---- Referral tracking (does not affect the order notification above) ----
+    // A qualifying purchase (anything except a lone digipack/design add-on) made
+    // through a shared referral link counts toward that person's free-disc goal.
+    try {
+      const ref = full.metadata && full.metadata.ref;
+      const qualifies = full.metadata && full.metadata.qualifies === '1';
+      const buyerEmail = (full.customer_details.email || '').toLowerCase();
+
+      if (ref && qualifies && buyerEmail) {
+        const store = getStore('referrals');
+        const record = await store.get('code:' + ref, { type: 'json' });
+
+        // Guard rails: code must exist, referrer can't credit their own purchase,
+        // and the same buyer email can only ever count once (stops someone from
+        // buying 3 times themselves to fake 3 "friends").
+        if (record && record.email !== buyerEmail && !(record.emails || []).includes(buyerEmail)) {
+          record.emails = record.emails || [];
+          record.emails.push(buyerEmail);
+          record.count = record.emails.length;
+          await store.setJSON('code:' + ref, record);
+
+          if (record.count % REFERRAL_GOAL === 0) {
+            const rewardNumber = record.count / REFERRAL_GOAL;
+            await transporter.sendMail({
+              from: `"KRĄŻEK orders" <${process.env.GMAIL_USER}>`,
+              to: process.env.NOTIFY_TO || process.env.GMAIL_USER,
+              subject: `[KRĄŻEK] Nagroda poleceń: ${record.name} ma ${record.count} poleconych zakupów - wyślij płytę gratis`,
+              text:
+`${record.name} (${record.email}) osiągnął(-ęła) ${record.count} poleconych zakupów przez kod ${ref}.
+To ${rewardNumber === 1 ? 'pierwsza' : rewardNumber + '.'} zarobiona darmowa płyta - czas ją wysłać.
+
+Osoby policzone w tym kodzie:
+${record.emails.map((e) => '  - ' + e).join('\n')}
+
+Skontaktuj się z ${record.email}, żeby ustalić wysyłkę darmowej płyty.`,
+              replyTo: record.email
+            });
+          }
+        }
+      }
+    } catch (refErr) {
+      // Never let a referral-tracking problem break order confirmation - just log it.
+      console.error('Referral tracking error:', refErr);
+    }
 
     return { statusCode: 200, body: 'Notified' };
   } catch (err) {
