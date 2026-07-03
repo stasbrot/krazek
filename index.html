@@ -175,6 +175,11 @@
   }
   .custom__disc{ --disc:clamp(150px,24vw,220px); }
   .custom__buy{ margin-top:22px; display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+  .link-3d{
+    display:inline-flex; align-items:center; gap:6px; margin-top:14px; color:var(--accent);
+    text-decoration:none; font-size:14px; font-weight:700;
+  }
+  .link-3d:hover{ text-decoration:underline; }
   @media (max-width:760px){
     .custom__card{ grid-template-columns:1fr; text-align:center; justify-items:center; padding:30px 24px; }
     .custom__buy{ justify-content:center; }
@@ -593,6 +598,10 @@
             <button class="btn btn--primary" onclick="addToCart('custom')" data-i18n="customCta"></button>
           </div>
           <p class="note" style="margin-top:14px" data-i18n="customNote"></p>
+          <a href="kreator-3d.html" class="link-3d">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+            <span data-i18n="tryIn3d"></span>
+          </a>
         </div>
         <div class="disc custom__disc" style="--art:linear-gradient(155deg, #2a1b4d 0%, #6f63e8 42%, #a78bfa 72%, #d6c8ff 100%)">
           <div class="disc__spin"><div class="disc__art"></div><div class="disc__sheen"></div><div class="disc__rings"></div></div>
@@ -907,6 +916,7 @@
       <div class="brand js-brand" style="font-size:16px"></div>
       <div data-i18n="footerNote"></div>
       <div class="footer__links">
+        <a href="kreator-3d.html">Kreator 3D</a>
         <a href="polecaj.html">Poleć znajomym</a>
         <a href="digipack.html" data-i18n="footerDigipack"></a>
         <a href="regulamin.html" data-i18n="footerTerms"></a>
@@ -1042,7 +1052,7 @@
       heroCta:"Order a custom CD", heroSecondary:"See the editions",
       customBadge:"Custom print", customTitle:"Your design, on a disc.",
       customDesc:"Send us your artwork and we print it straight onto the surface of the CD. Albums, mixtapes, gifts, demos - whatever you make, we turn it into something you can hold.",
-      customCta:"Add a custom CD", customNote:"Full-surface print. You send the artwork after ordering.",
+      customCta:"Add a custom CD", customNote:"Full-surface print. You send the artwork after ordering.", tryIn3d:"Try it in 3D",
       from:"from", customCartName:"Custom CD",
       editionsTitle:"Signature editions", editionsSubtitle:"Six ready-made prints from different corners of our world.",
       editionsBy:"Photo:", authorSam:"Sam Muras", authorStas:"Stanisław Grabowski",
@@ -1100,7 +1110,7 @@
       heroCta:"Zamów własny nadruk", heroSecondary:"Zobacz edycje",
       customBadge:"Własny nadruk", customTitle:"Twój projekt na płycie.",
       customDesc:"Wyślij nam swoją grafikę, a my nadrukujemy ją bezpośrednio na powierzchni płyty CD. Albumy, składanki, prezenty, dema - cokolwiek tworzysz, zamienimy to w coś, co weźmiesz do ręki.",
-      customCta:"Dodaj własną płytę", customNote:"Nadruk na całej powierzchni. Grafikę wysyłasz po złożeniu zamówienia.",
+      customCta:"Dodaj własną płytę", customNote:"Nadruk na całej powierzchni. Grafikę wysyłasz po złożeniu zamówienia.", tryIn3d:"Wypróbuj w 3D",
       from:"od", customCartName:"Płyta z własnym nadrukiem",
       editionsTitle:"Edycje sygnowane", editionsSubtitle:"Sześć gotowych nadruków z różnych zakątków świata.",
       editionsBy:"Foto:",
@@ -1159,7 +1169,7 @@
       heroCta:"Objednat vlastní potisk", heroSecondary:"Prohlédnout edice",
       customBadge:"Vlastní potisk", customTitle:"Váš návrh na disku.",
       customDesc:"Pošlete nám svou grafiku a my ji vytiskneme přímo na povrch CD. Alba, mixy, dárky, dema - cokoliv vytvoříte, proměníme v něco, co můžete držet v ruce.",
-      customCta:"Přidat vlastní CD", customNote:"Potisk celé plochy. Grafiku zašlete po objednání.",
+      customCta:"Přidat vlastní CD", customNote:"Potisk celé plochy. Grafiku zašlete po objednání.", tryIn3d:"Vyzkoušet ve 3D",
       from:"od", customCartName:"CD s vlastním potiskem",
       editionsTitle:"Signované edice", editionsSubtitle:"Šest hotových potisků z různých koutů našeho světa.",
       editionsBy:"Foto:", authorSam:"Sam Muras", authorStas:"Stanisław Grabowski",
@@ -1217,7 +1227,7 @@
       heroCta:"Objednať vlastnú potlač", heroSecondary:"Pozrieť edície",
       customBadge:"Vlastná potlač", customTitle:"Váš návrh na disku.",
       customDesc:"Pošlite nám svoju grafiku a my ju vytlačíme priamo na povrch CD. Albumy, mixy, darčeky, demá - čokoľvek vytvoríte, premeníme na niečo, čo môžete držať v ruke.",
-      customCta:"Pridať vlastné CD", customNote:"Potlač celej plochy. Grafiku pošlete po objednaní.",
+      customCta:"Pridať vlastné CD", customNote:"Potlač celej plochy. Grafiku pošlete po objednaní.", tryIn3d:"Vyskúšať v 3D",
       from:"od", customCartName:"CD s vlastnou potlačou",
       editionsTitle:"Signované edície", editionsSubtitle:"Šesť hotových potlačí z rôznych kútov nášho sveta.",
       editionsBy:"Foto:", authorSam:"Sam Muras", authorStas:"Stanisław Grabowski",
@@ -1275,7 +1285,7 @@
       heroCta:"Commander un CD personnalisé", heroSecondary:"Voir les éditions",
       customBadge:"Impression personnalisée", customTitle:"Votre design, sur un disque.",
       customDesc:"Envoyez-nous votre visuel et nous l'imprimons directement sur la surface du CD. Albums, mixtapes, cadeaux, démos - quoi que vous créiez, nous en faisons un objet que vous pouvez tenir.",
-      customCta:"Ajouter un CD personnalisé", customNote:"Impression pleine surface. Vous envoyez le visuel après la commande.",
+      customCta:"Ajouter un CD personnalisé", customNote:"Impression pleine surface. Vous envoyez le visuel après la commande.", tryIn3d:"Essayer en 3D",
       from:"à partir de", customCartName:"CD personnalisé",
       editionsTitle:"Éditions signées", editionsSubtitle:"Six impressions prêtes, de différents coins de notre monde.",
       editionsBy:"Photo :", authorSam:"Sam Muras", authorStas:"Stanisław Grabowski",
@@ -1333,7 +1343,7 @@
       heroCta:"Ordina un CD personalizzato", heroSecondary:"Vedi le edizioni",
       customBadge:"Stampa personalizzata", customTitle:"Il tuo design, su un disco.",
       customDesc:"Inviaci la tua grafica e la stampiamo direttamente sulla superficie del CD. Album, mixtape, regali, demo - qualunque cosa crei, la trasformiamo in un oggetto che puoi tenere in mano.",
-      customCta:"Aggiungi un CD personalizzato", customNote:"Stampa su tutta la superficie. Invii la grafica dopo l'ordine.",
+      customCta:"Aggiungi un CD personalizzato", customNote:"Stampa su tutta la superficie. Invii la grafica dopo l'ordine.", tryIn3d:"Prova in 3D",
       from:"da", customCartName:"CD personalizzato",
       editionsTitle:"Edizioni d'autore", editionsSubtitle:"Sei stampe pronte, da diversi angoli del nostro mondo.",
       editionsBy:"Foto:", authorSam:"Sam Muras", authorStas:"Stanisław Grabowski",
@@ -1391,7 +1401,7 @@
       heroCta:"Bestel een eigen cd", heroSecondary:"Bekijk de edities",
       customBadge:"Eigen bedrukking", customTitle:"Jouw ontwerp, op een schijf.",
       customDesc:"Stuur ons je ontwerp en wij drukken het rechtstreeks op het oppervlak van de cd. Albums, mixtapes, cadeaus, demo's - wat je ook maakt, wij maken er iets van dat je kunt vasthouden.",
-      customCta:"Eigen cd toevoegen", customNote:"Bedrukking over het hele oppervlak. Je stuurt het ontwerp na de bestelling.",
+      customCta:"Eigen cd toevoegen", customNote:"Bedrukking over het hele oppervlak. Je stuurt het ontwerp na de bestelling.", tryIn3d:"Probeer in 3D",
       from:"vanaf", customCartName:"Eigen cd",
       editionsTitle:"Gesigneerde edities", editionsSubtitle:"Zes kant-en-klare prints, uit verschillende hoeken van onze wereld.",
       editionsBy:"Foto:", authorSam:"Sam Muras", authorStas:"Stanisław Grabowski",
