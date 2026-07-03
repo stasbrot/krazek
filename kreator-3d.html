@@ -1,1 +1,37 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d0817">
+<title>Kreator 3D · KRĄŻEK</title>
+<style>
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  :root{
+    --bg:#F2F2F7; --surface:#ffffff;
+    --ink:#1C1C1E; --ink-2:#86868B; --ink-3:#AEAEB2;
+    --sep:rgba(60,60,67,0.12);
+    --fill:rgba(120,120,128,0.12);
+    --accent:#6f63e8; --accent-press:#5a4fd1;
+    --nav-bg:rgba(242,242,247,0.72);
+    --shadow:0 14px 44px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+    --radius:22px; --radius-lg:30px;
+    --maxw:920px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#000000; --surface:#1C1C1E;
+      --ink:#FFFFFF; --ink-2:#98989F; --ink-3:#636366;
+      --sep:rgba(255,255,255,0.10);
+      --fill:rgba(120,120,128,0.24);
+      --nav-bg:rgba(0,0,0,0.62);
+      --shadow:0 14px 44px rgba(0,0,0,0.55);
+    }
+  }
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    background:var(--bg); color:var(--ink); -webkit-font-smoothing:antialiased;
+  }
+  .nav{
+    position:sticky; top:0; z-index:50;
 
