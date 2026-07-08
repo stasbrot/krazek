@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oferta Letnia - Krążek SHOP</title>
+<style>
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 40px 20px;
+    background: linear-gradient(160deg, #1A1A1C 0%, #2a2a2e 100%);
+    font-family: 'Lucida Sans Unicode', 'Segoe UI', sans-serif;
+    color: white;
+    line-height: 1.6;
+  }
+
+  .hero {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .hero h1 {
+    font-size: clamp(28px, 5vw, 42px);
+    margin: 0 0 10px 0;
+    background: linear-gradient(to right, #7ac1eb, #ffffff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 6px 18px;
+    border-radius: 999px;
+    background: linear-gradient(to bottom, #ffe9a8, #ffdb70);
+    color: #7A5B00;
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 3px 10px rgba(255, 219, 112, 0.35);
+  }
+
+  h2.section-title {
+    text-align: center;
+    font-size: 22px;
+    margin: 50px 0 25px 0;
+    color: #7ac1eb;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .top-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .top-row .card {
+    flex: 0 1 260px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 900px;
+    margin: 20px auto 0 auto;
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 16px;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(122, 193, 235, 0.2);
+    border-color: rgba(122, 193, 235, 0.4);
+  }
+
+  .card img {
+    width: 100%;
+    max-width: 260px;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.5);
+    margin-bottom: 12px;
+  }
+
+  .card b {
+    display: block;
+    font-size: 16px;
+  }
+
+  .price-box {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, rgba(122, 193, 235, 0.12), rgba(58, 140, 184, 0.12));
+    border: 1px solid rgba(122, 193, 235, 0.35);
+  }
+
+  .price-box b {
+    font-size: 20px;
+  }
+
+  .price-box .old-price {
+    color: #999;
+    text-decoration: line-through;
+    font-weight: normal;
+    font-size: 15px;
+  }
+
+  .steps {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+    counter-reset: step;
+  }
+
+  .steps li {
+    counter-increment: step;
+    position: relative;
+    padding: 14px 0 14px 50px;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .steps li:last-child { border-bottom: none; }
+
+  .steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: linear-gradient(to bottom, #7ac1eb, #3a8cb8);
+    color: white;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+
+  .cta {
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 12px 32px;
+    border-radius: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    transition: filter 0.15s ease, transform 0.15s ease;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.4);
+  }
+
+  .btn:hover {
+    filter: brightness(1.12);
+    transform: translateY(-2px);
+  }
+
+  .btn-primary {
+    background-image: linear-gradient(to bottom, #7ac1eb, #3a8cb8);
+    border: 1px solid #225673;
+    color: white;
+    font-size: 18px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 4px 12px rgba(58,140,184,0.4);
+  }
+
+  .btn-secondary {
+    display: block;
+    margin: 18px auto 0 auto;
+    max-width: 180px;
+    background-image: linear-gradient(to bottom, #444, #222);
+    border: 1px solid #000;
+    color: white;
+    font-size: 14px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 1px 2px rgba(0,0,0,0.5);
+  }
+</style>
+</head>
+<body>
+<FONT FACE="LUCIDA GRANDE, LUCIDA SANS UNICODE">
+<div class="hero">
+  <span class="badge">OFERTA LETNIA</span>
+  <h1>Zaoszczędź aż 35,80 zł!</h1>
+</div>
+
+<h2 class="section-title">Co dostajesz w zestawie</h2>
+<div class="top-row">
+  <div class="card">
+    <img src="img/IMG_0711.jpg" alt="Foto 1">
+    <b>3x <u>różne</u> płyty CD</b>
+  </div>
+  <div class="card">
+    <img src="img/IMG_0712.jpg" alt="Foto 2">
+    <b>2x Ekologiczne Digipacki</b>
+  </div>
+</div>
+<div class="grid">
+  <div class="card price-box">
+    <img src="img/IMG_0716.jpg" alt="Foto 3">
+    <b><span class="old-price">105,70 zł</span> &nbsp; SUMA: 69,90 zł</b>
+  </div>
+</div>
+
+<h2 class="section-title">Jak to działa?</h2>
+<ol class="steps">
+  <li>Kupujesz pakiet przez stronę</li>
+  <li>Wysyłasz nam drogą e-mailową swoje grafiki oraz podstawowe dane zamówienia (np. imię i nazwisko) odrazu po kupnie</li>
+  <li>Dostaniesz paczkę w ciągu paru dni roboczych - poinformujemy Cię o ewentualnym opóźnieniu</li>
+</ol>
+
+<div class="cta">
+  <a href="javascript:addBundleAndCheckout()" class="btn btn-primary">Kup pakiet teraz - 69,90 zł</a>
+  <a href="leopard.html" class="btn btn-secondary">Powrót do sklepu</a>
+  <br><br>
+  <font size="1" color="#999">Płatność obsługuje Stripe: BLIK, Apple Pay, karta.</font>
+</div>
+
+<script>
+  var CHECKOUT_URL = "/.netlify/functions/checkout";
+  var THIS_PAGE = "pakiet-letni-leopard.html";
+
+  function loadCart(){
+    try{ return JSON.parse(localStorage.getItem("krazek_cart") || "[]"); }
+    catch(e){ return []; }
+  }
+  function saveCart(cart){
+    try{ localStorage.setItem("krazek_cart", JSON.stringify(cart)); }catch(e){}
+  }
+
+  function addBundleAndCheckout(){
+    // Dodaje pakiet do współdzielonego koszyka i od razu przechodzi do płatności -
+    // to jedyny produkt na tej stronie, więc nie ma sensu robić osobnego kroku "dodaj do koszyka".
+    var cart = loadCart();
+    var found = null;
+    for (var i=0; i<cart.length; i++){ if (cart[i].id === "bundle3"){ found = cart[i]; break; } }
+    if (found){ found.qty = found.qty + 1; } else { cart.push({ id:"bundle3", qty:1 }); }
+    saveCart(cart);
+
+    fetch(CHECKOUT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        cart: cart.map(function(i){ return { id:i.id, qty:i.qty }; }),
+        returnTo: THIS_PAGE
+      })
+    })
+    .then(function(res){ return res.json(); })
+    .then(function(data){
+      if (data && data.url){ window.location.href = data.url; }
+      else { alert("Coś poszło nie tak. Spróbuj ponownie."); }
+    })
+    .catch(function(){ alert("Nie udało się połączyć z płatnością. Spróbuj ponownie."); });
+  }
+</script>
+</FONT>
+</body>
+</html>
