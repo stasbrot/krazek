@@ -2,70 +2,103 @@
 <html lang="pl">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>krazek-lampart</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Krążek SHOP</title>
   <style>
-    body { line-height: 1.6; font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; }
-    img { border-radius: 14px; box-shadow: 0 4px 14px rgba(0,0,0,0.35); }
+    * { box-sizing: border-box; }
+    body { line-height: 1.6; font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; margin: 0; padding: 0 12px; }
+    img { border-radius: 14px; box-shadow: 0 4px 14px rgba(0,0,0,0.35); max-width: 100%; height: auto; }
+    table { max-width: 100%; }
+    td { vertical-align: middle; }
     .btn-gradient { transition: filter 0.15s ease; }
     .btn-gradient:hover { filter: brightness(1.12); }
-    td { vertical-align: middle; white-space: nowrap; }
+
+    .promo-bar {
+      display: block; text-align: center; text-decoration: none;
+      background-image: linear-gradient(to bottom, #7ac1eb, #3a8cb8);
+      color: white; padding: 10px 8px; font-weight: bold; font-size: 14px;
+      margin: 0 -12px 10px -12px;
+    }
+    .lang-switch { text-align: right; padding: 6px 0; font-size: 13px; }
+    .lang-switch a { text-decoration: none; color: #3a8cb8; padding: 2px 6px; }
+    .lang-switch a.active { font-weight: bold; color: #225673; text-decoration: underline; }
+
+    .counter-box {
+      display: inline-block; background: #111; color: #4CFF4C; font-family: 'Courier New', monospace;
+      padding: 8px 14px; border-radius: 6px; letter-spacing: 2px; font-size: 16px;
+      border: 2px solid #333;
+    }
   </style>
 </head>
 <body bgcolor="#F4F8FC" text="black" style="font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;">
+
+<a href="polecaj.html" class="promo-bar">&#127873; <span id="i18n_promoRef">Poleć znajomym - 3 zakupy z Twojego linku i dostajesz płytę gratis</span></a>
+
+<div class="lang-switch">
+  <a href="javascript:setLang('pl')" id="langPl" class="active">PL</a> | <a href="javascript:setLang('en')" id="langEn">EN</a>
+</div>
+
 <center>
-  <h1><font color="darkblue" size="6" face="Lucida Grande, Lucida Sans Unicode">Krążek SHOP - Witamy na stronie sklepu!</font></h1>
+  <h1><font color="darkblue" size="6" face="Lucida Grande, Lucida Sans Unicode"><span id="i18n_heroTitle">Krążek SHOP - Witamy na stronie sklepu!</span></font></h1>
   <img src="img/IMG_0651.jpg" width="600" height="436" alt="Logo sklepu Krążek SHOP - niebieska płyta CD">
 </center>
+
+<CENTER>
+  <a href="pakiet-letni-leopard.html" class="btn-gradient" style="display: inline-block; padding: 14px 30px; border-radius: 14px; width: 70%; background-image: linear-gradient(to bottom, #FFE9A8, #FFDB70); border: 1px solid #E0B84A; text-decoration: none; margin-top: 14px;">
+    <font size="3" face="Lucida Grande, Lucida Sans Unicode" color="#7A5B00"><STRONG><span id="i18n_bundlePromo">NAJNOWSZA PROMOCJA - Pakiet Letni! Oszczędzasz 35,80 zł!</span></STRONG></font>
+  </a>
+</CENTER>
+
 <hr size="4" width="80%" color="darkblue">
 
-<h2><font face="Lucida Grande, Lucida Sans Unicode">O nas</font></h2>
-<p><font size="4" face="Lucida Grande, Lucida Sans Unicode">Wierzymy, że muzyka na nośnikach nadal ma znaczenie w dzisiejszych czasach.<br>Staramy się urozmaicić twoją kolekcję płyt CD!</font></p>
+<h2><font face="Lucida Grande, Lucida Sans Unicode"><span id="i18n_aboutTitle">O nas</span></font></h2>
+<p><font size="4" face="Lucida Grande, Lucida Sans Unicode"><span id="i18n_aboutText">Wierzymy, że muzyka na nośnikach nadal ma znaczenie w dzisiejszych czasach.<br>Staramy się urozmaicić twoją kolekcję płyt CD!</span></font></p>
 
-<table border="0" cellpadding="10" cellspacing="0" width="100%" bgcolor="WHITE">
+<table border="0" cellpadding="10" cellspacing="0" width="100%">
   <tr>
     <td width="55%">
       <img src="img/jak-to-dziala.png" width="500" height="201" alt="Jak to działa">
     </td>
     <td width="45%">
-      <p><font size="5" face="Lucida Grande, Lucida Sans Unicode">Cena <strike>31,90</strike> 28,90zł.<br>Wydrukuj na płycie, co tylko chcesz.</font></p>
-      <a href="javascript:addToCart('custom')" class="btn-gradient" style="display: inline-block; padding: 8px 20px; border-radius: 12px; background-image: linear-gradient(to bottom, #7ac1eb, #3a8cb8); border: 1px solid #225673; color: white; font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; font-size: 14px; font-weight: bold; text-decoration: none;">Dodaj do koszyka &#128722;</a>
+      <p><font size="5" face="Lucida Grande, Lucida Sans Unicode"><span id="i18n_prod1">Cena <strike>31,90</strike> 28,90zł.<br>Wydrukuj na płycie, co tylko chcesz.</span></font></p>
+      <a href="javascript:addToCart('custom')" class="btn-gradient" style="display: inline-block; padding: 8px 20px; border-radius: 12px; background-image: linear-gradient(to bottom, #7ac1eb, #3a8cb8); border: 1px solid #225673; color: white; font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; font-size: 14px; font-weight: bold; text-decoration: none;"><span id="i18n_addToCart1">Dodaj do koszyka</span> &#128722;</a>
     </td>
   </tr>
 </table>
 
-<table border="0" cellpadding="10" cellspacing="0" width="100%" bgcolor="WHITE">
+<table border="0" cellpadding="10" cellspacing="0" width="100%">
   <tr>
     <td width="55%">
       <img src="img/ed1.jpg" width="500" height="201" alt="Edycje">
     </td>
     <td width="45%">
-      <p><font size="5" face="Lucida Grande, Lucida Sans Unicode">Cena <strike>28,90</strike> 24,90zł.<br>Różne edycje fotografii Sama Murasa.</font></p>
-      <a href="javascript:addToCart('editionSamMix')" class="btn-gradient" style="display: inline-block; padding: 8px 20px; border-radius: 12px; background-image: linear-gradient(to bottom, #7ac1eb, #3a8cb8); border: 1px solid #225673; color: white; font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; font-size: 14px; font-weight: bold; text-decoration: none;">Dodaj do koszyka &#128722;</a>
-      <br><font size="1" face="Lucida Grande, Lucida Sans Unicode" color="gray">Którą edycję wybierasz - napiszesz mailem po zamówieniu.</font>
+      <p><font size="5" face="Lucida Grande, Lucida Sans Unicode"><span id="i18n_prod2">Cena <strike>28,90</strike> 24,90zł.<br>Różne edycje fotografii Sama Murasa.</span></font></p>
+      <a href="javascript:addToCart('editionSamMix')" class="btn-gradient" style="display: inline-block; padding: 8px 20px; border-radius: 12px; background-image: linear-gradient(to bottom, #7ac1eb, #3a8cb8); border: 1px solid #225673; color: white; font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; font-size: 14px; font-weight: bold; text-decoration: none;"><span id="i18n_addToCart2">Dodaj do koszyka</span> &#128722;</a>
+      <br><font size="1" face="Lucida Grande, Lucida Sans Unicode" color="gray"><span id="i18n_help2">Którą edycję wybierasz - napiszesz mailem po zamówieniu.</span></font>
     </td>
   </tr>
 </table>
 
-<table border="0" cellpadding="10" cellspacing="0" width="100%" bgcolor="WHITE">
+<table border="0" cellpadding="10" cellspacing="0" width="100%">
   <tr>
     <td width="55%">
       <img src="img/ed2.jpg" width="500" height="201" alt="Edycja 02">
     </td>
     <td width="45%">
-      <p><font size="5" face="Lucida Grande, Lucida Sans Unicode">Cena 23,90zł.<br>Fotografie własne.<br>Zachód słońca w Gdyni i sosny Pomorskiej wsi.</font></p>
-      <a href="javascript:addToCart('editionStasMix')" class="btn-gradient" style="display: inline-block; padding: 8px 20px; border-radius: 12px; background-image: linear-gradient(to bottom, #7ac1eb, #3a8cb8); border: 1px solid #225673; color: white; font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; font-size: 14px; font-weight: bold; text-decoration: none;">Dodaj do koszyka &#128722;</a>
-      <br><font size="1" face="Lucida Grande, Lucida Sans Unicode" color="gray">Którą edycję wybierasz - napiszesz mailem po zamówieniu.</font>
+      <p><font size="5" face="Lucida Grande, Lucida Sans Unicode"><span id="i18n_prod3">Cena 23,90zł.<br>Fotografie własne.<br>Zachód słońca w Gdyni i sosny Pomorskiej wsi.</span></font></p>
+      <a href="javascript:addToCart('editionStasMix')" class="btn-gradient" style="display: inline-block; padding: 8px 20px; border-radius: 12px; background-image: linear-gradient(to bottom, #7ac1eb, #3a8cb8); border: 1px solid #225673; color: white; font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; font-size: 14px; font-weight: bold; text-decoration: none;"><span id="i18n_addToCart3">Dodaj do koszyka</span> &#128722;</a>
+      <br><font size="1" face="Lucida Grande, Lucida Sans Unicode" color="gray"><span id="i18n_help3">Którą edycję wybierasz - napiszesz mailem po zamówieniu.</span></font>
     </td>
   </tr>
 </table>
 
-<table border="0" cellpadding="10" cellspacing="0" width="100%" bgcolor="WHITE">
+<table border="0" cellpadding="10" cellspacing="0" width="100%">
   <tr>
     <td width="55%">
      <img src="img/ed3.jpg" width="500" height="201" alt="Edycja 03">
     </td>
     <td width="45%">
-      <p><font size="5" face="Lucida Grande, Lucida Sans Unicode">Nagramy audio (MP3, WAV)<br> na CD, lub filmy<br>i inne na DVD.</font></p>
+      <p><font size="5" face="Lucida Grande, Lucida Sans Unicode"><span id="i18n_prod4">37,90 - 38,90zł.<br>Nagramy twoje pliki<br>(MP3, WAV, AIFF)<br>na CD, lub filmy<br>i inne na DVD.</span></font></p>
       <a href="javascript:addToCart('recAudioCd')" class="btn-gradient" style="display: inline-block; padding: 8px 16px; border-radius: 12px; background-image: linear-gradient(to bottom, #7ac1eb, #3a8cb8); border: 1px solid #225673; color: white; font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; font-size: 13px; font-weight: bold; text-decoration: none;">+ CD (37,90zł) &#128722;</a>
       <a href="javascript:addToCart('recVideoDvdPlusR')" class="btn-gradient" style="display: inline-block; padding: 8px 16px; border-radius: 12px; background-image: linear-gradient(to bottom, #7ac1eb, #3a8cb8); border: 1px solid #225673; color: white; font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; font-size: 13px; font-weight: bold; text-decoration: none;">+ DVD (38,90zł) &#128722;</a>
     </td>
@@ -73,62 +106,59 @@
 </table>
 <hr>
 
-<CENTER><h2><font face="Lucida Grande, Lucida Sans Unicode">Twój koszyk</font></h2></CENTER>
-<table border="1" cellpadding="8" cellspacing="0" width="90%" bgcolor="WHITE" align="center">
+<CENTER><h2><font face="Lucida Grande, Lucida Sans Unicode"><span id="i18n_cartTitle">Twój koszyk</span></font></h2></CENTER>
+<table border="1" cellpadding="8" cellspacing="0" width="90%" align="center">
   <tr bgcolor="#E8F2FA">
-    <td><font face="Lucida Grande, Lucida Sans Unicode"><b>Produkt</b></font></td>
-    <td align="center"><font face="Lucida Grande, Lucida Sans Unicode"><b>Ilość</b></font></td>
-    <td align="right"><font face="Lucida Grande, Lucida Sans Unicode"><b>Cena</b></font></td>
+    <td><font face="Lucida Grande, Lucida Sans Unicode"><b><span id="i18n_cartCol1">Produkt</span></b></font></td>
+    <td align="center"><font face="Lucida Grande, Lucida Sans Unicode"><b><span id="i18n_cartCol2">Ilość</span></b></font></td>
+    <td align="right"><font face="Lucida Grande, Lucida Sans Unicode"><b><span id="i18n_cartCol3">Cena</span></b></font></td>
   </tr>
   <tbody id="cartBody">
-    <tr><td colspan="3" align="center"><font face="Lucida Grande, Lucida Sans Unicode"><i>Koszyk jest pusty</i></font></td></tr>
+    <tr><td colspan="3" align="center"><font face="Lucida Grande, Lucida Sans Unicode"><i><span id="i18n_cartEmpty">Koszyk jest pusty</span></i></font></td></tr>
   </tbody>
   <tr bgcolor="#E8F2FA">
-    <td colspan="2" align="right"><font face="Lucida Grande, Lucida Sans Unicode"><b>Razem:</b></font></td>
+    <td colspan="2" align="right"><font face="Lucida Grande, Lucida Sans Unicode"><b><span id="i18n_cartTotalLabel">Razem:</span></b></font></td>
     <td align="right"><font face="Lucida Grande, Lucida Sans Unicode"><b id="cartTotal">0,00 zł</b></font></td>
   </tr>
 </table>
 <br>
 <CENTER>
-  <a href="javascript:goToCheckout()" class="btn-gradient" style="display: inline-block; padding: 14px 40px; border-radius: 16px; background-image: linear-gradient(to bottom, #8CE196, #4CAF50); border: 1px solid #2E7D32; color: white; font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; font-size: 18px; font-weight: bold; text-decoration: none;">Przejdź do płatności &#128179;</a>
-  <br><font size="1" face="Lucida Grande, Lucida Sans Unicode" color="gray">Płatność obsługuje Stripe: BLIK, Apple Pay, karta.</font>
+  <a href="javascript:goToCheckout()" class="btn-gradient" style="display: inline-block; padding: 14px 40px; border-radius: 16px; background-image: linear-gradient(to bottom, #8CE196, #4CAF50); border: 1px solid #2E7D32; color: white; font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; font-size: 18px; font-weight: bold; text-decoration: none;"><span id="i18n_checkoutBtn">Przejdź do płatności</span> &#128179;</a>
+  <br><font size="1" face="Lucida Grande, Lucida Sans Unicode" color="gray"><span id="i18n_stripeNote">Płatność obsługuje Stripe: BLIK, Apple Pay, karta.</span></font>
 </CENTER>
 <hr>
 
-<h2><font face="Lucida Grande, Lucida Sans Unicode">Kontakt</font></h2>
+<h2><font face="Lucida Grande, Lucida Sans Unicode"><span id="i18n_contactTitle">Kontakt</span></font></h2>
 <p><font face="Lucida Grande, Lucida Sans Unicode">
-  Napisz do nas:
+  <span id="i18n_writeUs">Napisz do nas:</span>
   <a href="mailto:shopkrazek.eu@gmail.com" class="btn-gradient" style="display: inline-block; padding: 6px 16px; border-radius: 12px; background-image: linear-gradient(to bottom, #7ac1eb, #3a8cb8); border: 1px solid #225673; color: white; font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; font-size: 14px; font-weight: bold; text-decoration: none;">shopkrazek.eu@gmail.com &#9993;</a>
   <BR><BR>
-  Odwiedź nasz Instagram:
-  <a href="https://www.instagram.com/krazek.eu.shop?utm_source=qr" target="_blank" class="btn-gradient" style="display: inline-block; padding: 6px 16px; border-radius: 12px; background-image: linear-gradient(to bottom, #7ac1eb, #3a8cb8); border: 1px solid #225673; color: white; font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; font-size: 14px; font-weight: bold; text-decoration: none;">Kliknij tu &#10003;</a>
-</FONT></p>
+  <span id="i18n_visitInsta">Odwiedź nasz Instagram:</span>
+  <a href="https://www.instagram.com/krazek.eu.shop?utm_source=qr" target="_blank" class="btn-gradient" style="display: inline-block; padding: 6px 16px; border-radius: 12px; background-image: linear-gradient(to bottom, #7ac1eb, #3a8cb8); border: 1px solid #225673; color: white; font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; font-size: 14px; font-weight: bold; text-decoration: none;"><span id="i18n_clickHere">Kliknij tu</span> &#10003;</a>
+</font></p>
 
 <CENTER>
-  <a href="pakiet-letni-leopard.html" class="btn-gradient" style="display: inline-block; padding: 14px 30px; border-radius: 14px; width: 70%; background-image: linear-gradient(to bottom, #FFE9A8, #FFDB70); border: 1px solid #E0B84A; text-decoration: none;">
-    <font size="3" face="Lucida Grande, Lucida Sans Unicode" color="#7A5B00"><STRONG>NAJNOWSZA PROMOCJA - Pakiet Letni! Oszczędzasz 35,80 zł!</STRONG></FONT>
-  </a>
+  <div class="counter-box">
+    <span id="i18n_visitorLabel">Jesteś odwiedzającym numer:</span> <span id="visitorCount">------</span>
+  </div>
 </CENTER>
 
 <center><br>
-  <a href="reg.-lampart.html" class="btn-gradient" style="display: inline-block; padding: 10px 30px; border-radius: 20px; background-image: linear-gradient(to bottom, #7ac1eb, #3a8cb8); border: 1px solid #225673; font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; font-size: 18px; font-weight: bold; color: white; text-decoration: none;">Regulamin sklepu</a>
-  <br><br>
   <font face="Lucida Grande, Lucida Sans Unicode" size="2">
-    <a href="polecaj.html" style="color: #3a8cb8;">Poleć znajomym</a>
+    <a href="reg.-lampart.html" style="color: #3a8cb8;"><span id="i18n_footerTerms">Regulamin sklepu</span></a>
     &nbsp;&#8226;&nbsp;
-    <a href="prywatnosc.html" style="color: #3a8cb8;">Polityka prywatności</a>
+    <a href="prywatnosc.html" style="color: #3a8cb8;"><span id="i18n_footerPrivacy">Polityka prywatności</span></a>
     &nbsp;&#8226;&nbsp;
-    <a href="odstapienie.html" style="color: #3a8cb8;">Odstąpienie od umowy</a>
+    <a href="odstapienie.html" style="color: #3a8cb8;"><span id="i18n_footerWithdrawal">Odstąpienie od umowy</span></a>
   </font>
   <br><br>
-  <small><font color="gray" face="Times">&copy; 2026 Nierejestrowana działalność gospodarcza - Krążek SHOP.</font></small>
+  <small><font color="gray" face="Times">&copy; 2026 <span id="i18n_footerCopy">Nierejestrowana działalność gospodarcza - Krążek SHOP.</span></font></small>
 </center>
 
 <script>
-  // Koszyk zapisywany w localStorage pod tym samym kluczem co reszta sklepu -
-  // dzięki temu koszyk "przeżywa" nawet jeśli ktoś przejdzie na inną stronę sklepu.
+  // ===== Koszyk (localStorage współdzielony z resztą sklepu) =====
   var CHECKOUT_URL = "/.netlify/functions/checkout";
-  var THIS_PAGE = "leopard.html";
+  var THIS_PAGE = "index.html";
 
   var PRODUCT_NAMES = {
     custom: "Płyta CD - własny nadruk",
@@ -163,7 +193,7 @@
     if (found){ found.qty = found.qty + 1; } else { cart.push({ id:id, qty:1 }); }
     saveCart(cart);
     renderCart();
-    alert("Dodano do koszyka: " + PRODUCT_NAMES[id]);
+    alert((currentLang === "en" ? "Added to cart: " : "Dodano do koszyka: ") + PRODUCT_NAMES[id]);
   }
 
   function changeQty(id, delta){
@@ -187,7 +217,8 @@
     var body = document.getElementById("cartBody");
     var totalEl = document.getElementById("cartTotal");
     if (cart.length === 0){
-      body.innerHTML = '<tr><td colspan="3" align="center"><font face="Lucida Grande, Lucida Sans Unicode"><i>Koszyk jest pusty</i></font></td></tr>';
+      var emptyText = currentLang === "en" ? "Cart is empty" : "Koszyk jest pusty";
+      body.innerHTML = '<tr><td colspan="3" align="center"><font face="Lucida Grande, Lucida Sans Unicode"><i>' + emptyText + '</i></font></td></tr>';
       totalEl.innerHTML = fmt(0);
       return;
     }
@@ -214,7 +245,7 @@
 
   function goToCheckout(){
     var cart = loadCart();
-    if (cart.length === 0){ alert("Koszyk jest pusty."); return; }
+    if (cart.length === 0){ alert(currentLang === "en" ? "Your cart is empty." : "Koszyk jest pusty."); return; }
     fetch(CHECKOUT_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -226,10 +257,77 @@
     .then(function(res){ return res.json(); })
     .then(function(data){
       if (data && data.url){ window.location.href = data.url; }
-      else { alert("Coś poszło nie tak. Spróbuj ponownie."); }
+      else { alert(currentLang === "en" ? "Something went wrong. Please try again." : "Coś poszło nie tak. Spróbuj ponownie."); }
     })
-    .catch(function(){ alert("Nie udało się połączyć z płatnością. Spróbuj ponownie."); });
+    .catch(function(){ alert(currentLang === "en" ? "Could not connect to payment. Please try again." : "Nie udało się połączyć z płatnością. Spróbuj ponownie."); });
   }
+
+  // ===== Licznik odwiedzin (Netlify Blobs, prawdziwe zliczanie) =====
+  fetch("/.netlify/functions/visitor-count")
+    .then(function(res){ return res.json(); })
+    .then(function(data){
+      var el = document.getElementById("visitorCount");
+      if (el && data && typeof data.count === "number"){
+        el.textContent = String(data.count).padStart(6, "0");
+      }
+    })
+    .catch(function(){ /* cicho pomijamy - licznik to dodatek, nie coś krytycznego */ });
+
+  // ===== Język PL / EN =====
+  var currentLang = "pl";
+  var TRANSLATIONS = {
+    en: {
+      promoRef: "Refer friends - 3 purchases through your link and you get a free disc",
+      heroTitle: "Krążek SHOP - Welcome to our store!",
+      bundlePromo: "LATEST DEAL - Summer Bundle! Save 35.80 zł!",
+      aboutTitle: "About us",
+      aboutText: "We believe music on physical media still matters today.<br>We're here to add something new to your CD collection!",
+      prod1: "Price <strike>31.90</strike> 28.90 zł.<br>Print whatever you want on the disc.",
+      prod2: "Price <strike>28.90</strike> 24.90 zł.<br>Various editions of Sam Muras's photography.",
+      prod3: "Price 23.90 zł.<br>Our own photography.<br>Sunset in Gdynia and pines from a Pomeranian village.",
+      prod4: "37.90 - 38.90 zł.<br>We'll burn your files<br>(MP3, WAV, AIFF)<br>onto CD, or videos<br>and more onto DVD.",
+      addToCart1: "Add to cart", addToCart2: "Add to cart", addToCart3: "Add to cart",
+      help2: "Which edition you'd like - tell us by email after ordering.",
+      help3: "Which edition you'd like - tell us by email after ordering.",
+      cartTitle: "Your cart", cartCol1: "Product", cartCol2: "Qty", cartCol3: "Price",
+      cartEmpty: "Cart is empty", cartTotalLabel: "Total:", checkoutBtn: "Proceed to payment",
+      stripeNote: "Payments handled by Stripe: BLIK, Apple Pay, card.",
+      contactTitle: "Contact", writeUs: "Write to us:", visitInsta: "Visit our Instagram:", clickHere: "Click here",
+      visitorLabel: "You are visitor number:",
+      footerTerms: "Terms of service", footerPrivacy: "Privacy policy", footerWithdrawal: "Right of withdrawal",
+      footerCopy: "Unregistered business activity - Krążek SHOP."
+    }
+  };
+  var ORIGINAL_PL = {};
+
+  function setLang(lang){
+    var ids = ["promoRef","heroTitle","bundlePromo","aboutTitle","aboutText","prod1","prod2","prod3","prod4",
+      "addToCart1","addToCart2","addToCart3","help2","help3","cartTitle","cartCol1","cartCol2","cartCol3",
+      "cartEmpty","cartTotalLabel","checkoutBtn","stripeNote","contactTitle","writeUs","visitInsta","clickHere",
+      "visitorLabel","footerTerms","footerPrivacy","footerWithdrawal","footerCopy"];
+    for (var i=0; i<ids.length; i++){
+      var key = ids[i];
+      var el = document.getElementById("i18n_" + key);
+      if (!el) continue;
+      if (!ORIGINAL_PL[key]) ORIGINAL_PL[key] = el.innerHTML;
+      if (lang === "en" && TRANSLATIONS.en[key]){
+        el.innerHTML = TRANSLATIONS.en[key];
+      } else {
+        el.innerHTML = ORIGINAL_PL[key];
+      }
+    }
+    currentLang = lang;
+    document.getElementById("langPl").className = (lang === "pl") ? "active" : "";
+    document.getElementById("langEn").className = (lang === "en") ? "active" : "";
+    try{ localStorage.setItem("krazek_lang_retro", lang); }catch(e){}
+    renderCart();
+  }
+
+  (function(){
+    var saved = null;
+    try{ saved = localStorage.getItem("krazek_lang_retro"); }catch(e){}
+    if (saved === "en") setLang("en");
+  })();
 
   renderCart();
 </script>
