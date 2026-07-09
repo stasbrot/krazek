@@ -28,6 +28,25 @@
       padding: 8px 14px; border-radius: 6px; letter-spacing: 2px; font-size: 16px;
       border: 2px solid #333;
     }
+
+    /* Na wąskim ekranie: obrazek i tekst przestają być obok siebie (bo się ściskają
+       do maleńkich, nieczytelnych kolumn) - zamiast tego układają się jeden pod drugim. */
+    @media (max-width: 620px) {
+      table.product-row, table.product-row tr, table.product-row td {
+        display: block;
+        width: 100% !important;
+      }
+      table.product-row td {
+        text-align: center;
+        padding: 8px 4px !important;
+      }
+      table.product-row img {
+        max-width: 85%;
+        margin: 0 auto;
+      }
+      h1 font { font-size: 30px !important; }
+      #cartBody font, #cartBody b { font-size: 13px !important; }
+    }
   </style>
 </head>
 <body bgcolor="#F4F8FC" text="black" style="font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;">
@@ -52,9 +71,9 @@
 <hr size="4" width="80%" color="darkblue">
 
 <h2><font face="Lucida Grande, Lucida Sans Unicode"><span id="i18n_aboutTitle">O nas</span></font></h2>
-<p><font size="4" face="Lucida Grande, Lucida Sans Unicode"><span id="i18n_aboutText">Wierzymy, że muzyka na nośnikach nadal ma znaczenie w dzisiejszych czasach.<br>Staramy się urozmaicić twoją kolekcję płyt CD!</span></font></p>
+<p><font size="4" face="Lucida Grande, Lucida Sans Unicode"><span id="i18n_aboutText">Wierzymy, że muzyka na nośnikach nadal ma znaczenie w dzisiejszych czasach.<br>Nie jesteśmy korporacją, drukujemy płyty ręcznie w polsce. <BR>Staramy się urozmaicić twoją kolekcję płyt CD!</span></font></p>
 
-<table border="0" cellpadding="10" cellspacing="0" width="100%">
+<table border="0" cellpadding="10" cellspacing="0" width="100%" class="product-row">
   <tr>
     <td width="55%">
       <img src="img/jak-to-dziala.png" width="500" height="201" alt="Jak to działa">
@@ -66,7 +85,7 @@
   </tr>
 </table>
 
-<table border="0" cellpadding="10" cellspacing="0" width="100%">
+<table border="0" cellpadding="10" cellspacing="0" width="100%" class="product-row">
   <tr>
     <td width="55%">
       <img src="img/ed1.jpg" width="500" height="201" alt="Edycje">
@@ -79,7 +98,7 @@
   </tr>
 </table>
 
-<table border="0" cellpadding="10" cellspacing="0" width="100%">
+<table border="0" cellpadding="10" cellspacing="0" width="100%" class="product-row">
   <tr>
     <td width="55%">
       <img src="img/ed2.jpg" width="500" height="201" alt="Edycja 02">
@@ -92,13 +111,13 @@
   </tr>
 </table>
 
-<table border="0" cellpadding="10" cellspacing="0" width="100%">
+<table border="0" cellpadding="10" cellspacing="0" width="100%" class="product-row">
   <tr>
     <td width="55%">
      <img src="img/ed3.jpg" width="500" height="201" alt="Edycja 03">
     </td>
     <td width="45%">
-      <p><font size="5" face="Lucida Grande, Lucida Sans Unicode"><span id="i18n_prod4">37,90 - 38,90zł.<br>Nagramy twoje pliki (MP3, WAV)<br>na CD, lub filmy<br>i inne na DVD.</span></font></p>
+      <p><font size="5" face="Lucida Grande, Lucida Sans Unicode"><span id="i18n_prod4">37,90 - 38,90zł.<br>Nagramy twoje pliki<br>(MP3, WAV, AIFF)<br>na CD, lub filmy<br>i inne na DVD.</span></font></p>
       <a href="javascript:addToCart('recAudioCd')" class="btn-gradient" style="display: inline-block; padding: 8px 16px; border-radius: 12px; background-image: linear-gradient(to bottom, #7ac1eb, #3a8cb8); border: 1px solid #225673; color: white; font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; font-size: 13px; font-weight: bold; text-decoration: none;">+ CD (37,90zł) &#128722;</a>
       <a href="javascript:addToCart('recVideoDvdPlusR')" class="btn-gradient" style="display: inline-block; padding: 8px 16px; border-radius: 12px; background-image: linear-gradient(to bottom, #7ac1eb, #3a8cb8); border: 1px solid #225673; color: white; font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; font-size: 13px; font-weight: bold; text-decoration: none;">+ DVD (38,90zł) &#128722;</a>
     </td>
@@ -108,7 +127,7 @@
 
 <CENTER><h2><font face="Lucida Grande, Lucida Sans Unicode"><span id="i18n_cartTitle">Twój koszyk</span></font></h2></CENTER>
 <table border="1" cellpadding="8" cellspacing="0" width="90%" align="center">
-  <tr bgcolor="#E8F2FA"
+  <tr bgcolor="#E8F2FA">
     <td><font face="Lucida Grande, Lucida Sans Unicode"><b><span id="i18n_cartCol1">Produkt</span></b></font></td>
     <td align="center"><font face="Lucida Grande, Lucida Sans Unicode"><b><span id="i18n_cartCol2">Ilość</span></b></font></td>
     <td align="right"><font face="Lucida Grande, Lucida Sans Unicode"><b><span id="i18n_cartCol3">Cena</span></b></font></td>
@@ -285,7 +304,7 @@
       prod1: "Price <strike>31.90</strike> 28.90 zł.<br>Print whatever you want on the disc.",
       prod2: "Price <strike>28.90</strike> 24.90 zł.<br>Various editions of Sam Muras's photography.",
       prod3: "Price 23.90 zł.<br>Our own photography.<br>Sunset in Gdynia and pines from a Pomeranian village.",
-      prod4: "37.90 - 38.90 zł.<br>We'll burn your files (MP3, WAV)<br>onto CD, or videos<br>and more onto DVD.",
+      prod4: "37.90 - 38.90 zł.<br>We'll burn your files<br>(MP3, WAV, AIFF)<br>onto CD, or videos<br>and more onto DVD.",
       addToCart1: "Add to cart", addToCart2: "Add to cart", addToCart3: "Add to cart",
       help2: "Which edition you'd like - tell us by email after ordering.",
       help3: "Which edition you'd like - tell us by email after ordering.",
