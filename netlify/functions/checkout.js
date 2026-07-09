@@ -22,7 +22,7 @@ const Stripe = require('stripe');
 
 // Prices in grosze (1 zł = 100). Keep in sync with PRICES (pl) on the page.
 const CATALOG = {
-  custom:    { name: 'CD - custom print',                            amount: 2890 }, // 28,90 zł
+  custom:    { name: 'CD - custom print',                            amount: 1990 }, // 19,90 zł (obniżka ~30%, było 28,90)
   edition1:  { name: 'Edition 01 - Sam Muras',                       amount: 2490 }, // 24,90 zł
   edition2:  { name: 'Edition 02 - Sam Muras',                       amount: 2490 }, // 24,90 zł
   edition3:  { name: 'Edition 03 - Stanisław Grabowski',             amount: 2390 }, // 23,90 zł
@@ -30,16 +30,25 @@ const CATALOG = {
   edition5:  { name: 'Edition 05 - Sam Muras',                       amount: 2490 }, // 24,90 zł
   edition6:  { name: 'Edition 06 - Sam Muras',                       amount: 2490 }, // 24,90 zł
   digipack:  { name: 'Digipack ECO',                                 amount:  490 }, //  4,90 zł
-  bundle3:   { name: 'Pakiet wakacyjny (3x CD custom + 2x digipack)', amount: 6990 }, // 69,90 zł
+  bundle3:   { name: 'Pakiet wakacyjny (3x CD custom + 2x digipack)', amount: 4890 }, // 48,90 zł (obniżka ~30%, było 69,90)
   design:    { name: 'Projektowanie nadruku',                        amount: 5000 }, // 50,00 zł
+
+  // Strona retro (leopard.html): kolaż kilku edycji naraz, klient wybiera
+  // konkretne zdjęcie mailem po zamówieniu - tak jak przy "design".
+  editionSamMix:       { name: 'Edycja Sama Murasa - CD (do wyboru)',        amount: 1790 }, // 17,90 zł
+  editionSamMixDvd:    { name: 'Edycja Sama Murasa - DVD+R (do wyboru)',     amount: 2090 }, // 20,90 zł
+  editionSamMixBluray: { name: 'Edycja Sama Murasa - Blu-ray (do wyboru)',   amount: 2390 }, // 23,90 zł
+  editionStasMix:       { name: 'Edycja własna - CD (do wyboru)',            amount: 1690 }, // 16,90 zł
+  editionStasMixDvd:    { name: 'Edycja własna - DVD+R (do wyboru)',         amount: 1990 }, // 19,90 zł
+  editionStasMixBluray: { name: 'Edycja własna - Blu-ray (do wyboru)',       amount: 2290 }, // 22,90 zł
 
   // Custom print on other blank media
   customDvdPlusR: { name: 'DVD+R - custom print',                    amount: 3190 }, // 31,90 zł
   customBluray:  { name: 'Blu-ray (BD-R) - custom print',            amount: 3990 }, // 39,90 zł
 
   // Recording service (customer's own files burned to disc)
-  recAudioCd:      { name: 'Nagranie audio na CD',                   amount: 3790 }, // 37,90 zł
-  recVideoDvdPlusR:{ name: 'Nagranie wideo na DVD+R (DVD-Video)',     amount: 3890 }, // 38,90 zł
+  recAudioCd:      { name: 'Nagranie audio na CD',                   amount: 2690 }, // 26,90 zł (obniżka ~30%, było 37,90)
+  recVideoDvdPlusR:{ name: 'Nagranie wideo na DVD+R (DVD-Video)',     amount: 2790 }, // 27,90 zł (obniżka ~30%, było 38,90)
 
   // Signature editions on DVD+R / BD-R
   // "Sam" tier = editions 01, 02, 05, 06.  "Stanisław" tier = editions 03, 04 (always 1 zł cheaper).
@@ -111,6 +120,11 @@ exports.handler = async (event) => {
       : '';
     const qualifies = cart.some((item) => !NON_QUALIFYING_SKUS.includes(item.id));
 
+    // Where to send the buyer back to after paying. Whitelisted against a fixed
+    // list of real pages on the site - never trust an arbitrary redirect target.
+    const ALLOWED_RETURN_PAGES = ['index.html', 'leopard.html', 'pakiet-letni-leopard.html'];
+    const returnPage = ALLOWED_RETURN_PAGES.includes(body.returnTo) ? body.returnTo : '';
+
     const line_items = cart.map((item) => {
       const product = CATALOG[item.id];
       if (!product) throw new Error('Unknown product: ' + item.id);
@@ -132,8 +146,8 @@ exports.handler = async (event) => {
       line_items: line_items,
       // No payment_method_types listed on purpose: Stripe then shows every method
       // you enabled in the Dashboard (BLIK, Apple Pay / cards, Przelewy24, ...).
-      success_url: site + '/?paid=1',
-      cancel_url: site + '/?canceled=1',
+      success_url: site + '/' + returnPage + '?paid=1',
+      cancel_url: site + '/' + returnPage + '?canceled=1',
       shipping_address_collection: { allowed_countries: ALLOWED_COUNTRIES },
       // Buyer picks the matching option themselves at checkout (Poland vs Rest of EU).
       shipping_options: [
