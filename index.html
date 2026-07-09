@@ -28,6 +28,9 @@
       padding: 8px 14px; border-radius: 6px; letter-spacing: 2px; font-size: 16px;
       border: 2px solid #333;
     }
+    /* Jednolity odstęp między wierszami produktowymi - niezależnie od tego, ile
+       linijek ma opis w danym wierszu (dłuższy tekst nie ma tworzyć większej luki). */
+    table.product-row { margin-bottom: 22px; }
 
     /* Na wąskim ekranie: obrazek i tekst przestają być obok siebie (bo się ściskają
        do maleńkich, nieczytelnych kolumn) - zamiast tego układają się jeden pod drugim. */
@@ -71,7 +74,7 @@
 <hr size="4" width="80%" color="darkblue">
 
 <h2><font face="Lucida Grande, Lucida Sans Unicode"><span id="i18n_aboutTitle">O nas</span></font></h2>
-<p><font size="4" face="Lucida Grande, Lucida Sans Unicode"><span id="i18n_aboutText">Wierzymy, że muzyka na nośnikach nadal ma znaczenie w dzisiejszych czasach.<br>Nie jesteśmy korporacją, drukujemy płyty ręcznie w polsce. <BR>Staramy się urozmaicić twoją kolekcję płyt CD!</span></font></p>
+<p><font size="4" face="Lucida Grande, Lucida Sans Unicode"><span id="i18n_aboutText">Wierzymy, że muzyka na nośnikach nadal ma znaczenie w dzisiejszych czasach.<br>Nie jesteśmy korporacją, drukujemy płyty ręcznie w Polsce.<br>Staramy się urozmaicić twoją kolekcję płyt CD!</span></font></p>
 
 <table border="0" cellpadding="10" cellspacing="0" width="100%" class="product-row">
   <tr>
@@ -79,7 +82,7 @@
       <img src="img/jak-to-dziala.png" width="500" height="201" alt="Jak to działa">
     </td>
     <td width="45%">
-      <p><font size="5" face="Lucida Grande, Lucida Sans Unicode"><span id="i18n_prod1">Cena <strike>31,90</strike> 28,90zł.<br>Wydrukuj na płycie, co tylko chcesz.</span></font></p>
+      <p><font size="5" face="Lucida Grande, Lucida Sans Unicode"><span id="i18n_prod1">Cena <strike>31,90</strike> 19,90zł.<br>Wydrukuj na płycie, co tylko chcesz.</span></font></p>
       <a href="javascript:addToCart('custom')" class="btn-gradient" style="display: inline-block; padding: 8px 20px; border-radius: 12px; background-image: linear-gradient(to bottom, #7ac1eb, #3a8cb8); border: 1px solid #225673; color: white; font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; font-size: 14px; font-weight: bold; text-decoration: none;"><span id="i18n_addToCart1">Dodaj do koszyka</span> &#128722;</a>
     </td>
   </tr>
@@ -91,8 +94,10 @@
       <img src="img/ed1.jpg" width="500" height="201" alt="Edycje">
     </td>
     <td width="45%">
-      <p><font size="5" face="Lucida Grande, Lucida Sans Unicode"><span id="i18n_prod2">Cena <strike>28,90</strike> 24,90zł.<br>Różne edycje fotografii Sama Murasa.</span></font></p>
-      <a href="javascript:addToCart('editionSamMix')" class="btn-gradient" style="display: inline-block; padding: 8px 20px; border-radius: 12px; background-image: linear-gradient(to bottom, #7ac1eb, #3a8cb8); border: 1px solid #225673; color: white; font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; font-size: 14px; font-weight: bold; text-decoration: none;"><span id="i18n_addToCart2">Dodaj do koszyka</span> &#128722;</a>
+      <p><font size="5" face="Lucida Grande, Lucida Sans Unicode"><span id="i18n_prod2">Cena od <strike>28,90</strike> 17,90zł.<br>Różne edycje fotografii Sama Murasa.</span></font></p>
+      <a href="javascript:addToCart('editionSamMix')" class="btn-gradient" style="display: inline-block; padding: 8px 16px; border-radius: 12px; background-image: linear-gradient(to bottom, #7ac1eb, #3a8cb8); border: 1px solid #225673; color: white; font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; font-size: 13px; font-weight: bold; text-decoration: none;">+ CD (17,90zł) &#128722;</a>
+      <a href="javascript:addToCart('editionSamMixDvd')" class="btn-gradient" style="display: inline-block; padding: 8px 16px; border-radius: 12px; background-image: linear-gradient(to bottom, #7ac1eb, #3a8cb8); border: 1px solid #225673; color: white; font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; font-size: 13px; font-weight: bold; text-decoration: none;">+ DVD (20,90zł) &#128722;</a>
+      <a href="javascript:addToCart('editionSamMixBluray')" class="btn-gradient" style="display: inline-block; padding: 8px 16px; border-radius: 12px; background-image: linear-gradient(to bottom, #7ac1eb, #3a8cb8); border: 1px solid #225673; color: white; font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; font-size: 13px; font-weight: bold; text-decoration: none;">+ Blu-ray (23,90zł) &#128722;</a>
       <br><font size="1" face="Lucida Grande, Lucida Sans Unicode" color="gray"><span id="i18n_help2">Którą edycję wybierasz - napiszesz mailem po zamówieniu.</span></font>
     </td>
   </tr>
@@ -104,8 +109,10 @@
       <img src="img/ed2.jpg" width="500" height="201" alt="Edycja 02">
     </td>
     <td width="45%">
-      <p><font size="5" face="Lucida Grande, Lucida Sans Unicode"><span id="i18n_prod3">Cena 23,90zł.<br>Fotografie własne.<br>Zachód słońca w Gdyni i sosny Pomorskiej wsi.</span></font></p>
-      <a href="javascript:addToCart('editionStasMix')" class="btn-gradient" style="display: inline-block; padding: 8px 20px; border-radius: 12px; background-image: linear-gradient(to bottom, #7ac1eb, #3a8cb8); border: 1px solid #225673; color: white; font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; font-size: 14px; font-weight: bold; text-decoration: none;"><span id="i18n_addToCart3">Dodaj do koszyka</span> &#128722;</a>
+      <p><font size="5" face="Lucida Grande, Lucida Sans Unicode"><span id="i18n_prod3">Cena od 16,90zł.<br>Fotografie własne.<br>Zachód słońca w Gdyni i sosny Pomorskiej wsi.</span></font></p>
+      <a href="javascript:addToCart('editionStasMix')" class="btn-gradient" style="display: inline-block; padding: 8px 16px; border-radius: 12px; background-image: linear-gradient(to bottom, #7ac1eb, #3a8cb8); border: 1px solid #225673; color: white; font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; font-size: 13px; font-weight: bold; text-decoration: none;">+ CD (16,90zł) &#128722;</a>
+      <a href="javascript:addToCart('editionStasMixDvd')" class="btn-gradient" style="display: inline-block; padding: 8px 16px; border-radius: 12px; background-image: linear-gradient(to bottom, #7ac1eb, #3a8cb8); border: 1px solid #225673; color: white; font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; font-size: 13px; font-weight: bold; text-decoration: none;">+ DVD (19,90zł) &#128722;</a>
+      <a href="javascript:addToCart('editionStasMixBluray')" class="btn-gradient" style="display: inline-block; padding: 8px 16px; border-radius: 12px; background-image: linear-gradient(to bottom, #7ac1eb, #3a8cb8); border: 1px solid #225673; color: white; font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; font-size: 13px; font-weight: bold; text-decoration: none;">+ Blu-ray (22,90zł) &#128722;</a>
       <br><font size="1" face="Lucida Grande, Lucida Sans Unicode" color="gray"><span id="i18n_help3">Którą edycję wybierasz - napiszesz mailem po zamówieniu.</span></font>
     </td>
   </tr>
@@ -117,9 +124,9 @@
      <img src="img/ed3.jpg" width="500" height="201" alt="Edycja 03">
     </td>
     <td width="45%">
-      <p><font size="5" face="Lucida Grande, Lucida Sans Unicode"><span id="i18n_prod4">37,90 - 38,90zł.<br>Nagramy twoje pliki<br>(MP3, WAV, AIFF)<br>na CD, lub filmy<br>i inne na DVD.</span></font></p>
-      <a href="javascript:addToCart('recAudioCd')" class="btn-gradient" style="display: inline-block; padding: 8px 16px; border-radius: 12px; background-image: linear-gradient(to bottom, #7ac1eb, #3a8cb8); border: 1px solid #225673; color: white; font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; font-size: 13px; font-weight: bold; text-decoration: none;">+ CD (37,90zł) &#128722;</a>
-      <a href="javascript:addToCart('recVideoDvdPlusR')" class="btn-gradient" style="display: inline-block; padding: 8px 16px; border-radius: 12px; background-image: linear-gradient(to bottom, #7ac1eb, #3a8cb8); border: 1px solid #225673; color: white; font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; font-size: 13px; font-weight: bold; text-decoration: none;">+ DVD (38,90zł) &#128722;</a>
+      <p><font size="5" face="Lucida Grande, Lucida Sans Unicode"><span id="i18n_prod4">26,90 - 27,90zł.<br>Nagramy twoje pliki<br>(MP3, WAV, AIFF, AAC)<br>na CD, lub filmy<br>i inne na DVD.</span></font></p>
+      <a href="javascript:addToCart('recAudioCd')" class="btn-gradient" style="display: inline-block; padding: 8px 16px; border-radius: 12px; background-image: linear-gradient(to bottom, #7ac1eb, #3a8cb8); border: 1px solid #225673; color: white; font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; font-size: 13px; font-weight: bold; text-decoration: none;">+ CD (26,90zł) &#128722;</a>
+      <a href="javascript:addToCart('recVideoDvdPlusR')" class="btn-gradient" style="display: inline-block; padding: 8px 16px; border-radius: 12px; background-image: linear-gradient(to bottom, #7ac1eb, #3a8cb8); border: 1px solid #225673; color: white; font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; font-size: 13px; font-weight: bold; text-decoration: none;">+ DVD (27,90zł) &#128722;</a>
     </td>
   </tr>
 </table>
@@ -181,17 +188,25 @@
 
   var PRODUCT_NAMES = {
     custom: "Płyta CD - własny nadruk",
-    editionSamMix: "Edycja Sama Murasa (wybór po zamówieniu)",
-    editionStasMix: "Edycja własna - Gdynia/Szczodrowo (wybór po zamówieniu)",
+    editionSamMix: "Edycja Sama Murasa - CD (wybór po zamówieniu)",
+    editionSamMixDvd: "Edycja Sama Murasa - DVD+R (wybór po zamówieniu)",
+    editionSamMixBluray: "Edycja Sama Murasa - Blu-ray (wybór po zamówieniu)",
+    editionStasMix: "Edycja własna - CD (wybór po zamówieniu)",
+    editionStasMixDvd: "Edycja własna - DVD+R (wybór po zamówieniu)",
+    editionStasMixBluray: "Edycja własna - Blu-ray (wybór po zamówieniu)",
     recAudioCd: "Nagranie audio na CD",
     recVideoDvdPlusR: "Nagranie wideo na DVD+R"
   };
   var PRODUCT_PRICES = {
-    custom: 28.90,
-    editionSamMix: 24.90,
-    editionStasMix: 23.90,
-    recAudioCd: 37.90,
-    recVideoDvdPlusR: 38.90
+    custom: 19.90,
+    editionSamMix: 17.90,
+    editionSamMixDvd: 20.90,
+    editionSamMixBluray: 23.90,
+    editionStasMix: 16.90,
+    editionStasMixDvd: 19.90,
+    editionStasMixBluray: 22.90,
+    recAudioCd: 26.90,
+    recVideoDvdPlusR: 27.90
   };
 
   function loadCart(){
@@ -300,11 +315,11 @@
       heroTitle: "Krążek SHOP - Welcome to our store!",
       bundlePromo: "LATEST DEAL - Summer Bundle! Save 35.80 zł!",
       aboutTitle: "About us",
-      aboutText: "We believe music on physical media still matters today.<br>We're here to add something new to your CD collection!",
-      prod1: "Price <strike>31.90</strike> 28.90 zł.<br>Print whatever you want on the disc.",
-      prod2: "Price <strike>28.90</strike> 24.90 zł.<br>Various editions of Sam Muras's photography.",
-      prod3: "Price 23.90 zł.<br>Our own photography.<br>Sunset in Gdynia and pines from a Pomeranian village.",
-      prod4: "37.90 - 38.90 zł.<br>We'll burn your files<br>(MP3, WAV, AIFF)<br>onto CD, or videos<br>and more onto DVD.",
+      aboutText: "We believe music on physical media still matters today.<br>We're not a corporation - we print discs by hand in Poland.<br>We're here to add something new to your CD collection!",
+      prod1: "Price <strike>31.90</strike> 19.90 zł.<br>Print whatever you want on the disc.",
+      prod2: "Price from <strike>28.90</strike> 17.90 zł.<br>Various editions of Sam Muras's photography.",
+      prod3: "Price from 16.90 zł.<br>Our own photography.<br>Sunset in Gdynia and pines from a Pomeranian village.",
+      prod4: "26.90 - 27.90 zł.<br>We'll burn your files<br>(MP3, WAV, AIFF, AAC)<br>onto CD, or videos<br>and more onto DVD.",
       addToCart1: "Add to cart", addToCart2: "Add to cart", addToCart3: "Add to cart",
       help2: "Which edition you'd like - tell us by email after ordering.",
       help3: "Which edition you'd like - tell us by email after ordering.",
