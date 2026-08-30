@@ -1,13 +1,850 @@
-<HTML>
- <HEAD>
-  <TITLE>Under construction</TITLE>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML LANG="pl">
+<HEAD>
+<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=UTF-8">
+<META NAME="VIEWPORT" CONTENT="width=device-width, initial-scale=1.0">
+<TITLE>Krążek SHOP</TITLE>
+<LINK REL="STYLESHEET" HREF="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&subset=latin-ext">
 </HEAD>
+<BODY BGCOLOR="#EDEFF1" TEXT="#3A4149" LINK="#2F8FD8" VLINK="#2F8FD8" ALINK="#E8467C" TOPMARGIN="0" LEFTMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0">
 
-<BODY BGCOLOR="LIGHTBLUE">
-<CENTER><FONT SIZE="8"><B>Krążek SHOP</B></FONT></CENTER>
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="9" CELLSPACING="0" BGCOLOR="#2F8FD8">
+<TR>
+<TD ALIGN="CENTER">
+<FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="2" COLOR="#FFFFFF">
+<A HREF="polecaj.html"><FONT COLOR="#FFFFFF"><B>&#127873; <SPAN ID="i18n_promoRef">💑 Poleć znajomym - 3 zakupy z Twojego linku i dostajesz płytę gratis!</SPAN></B></FONT></A>
+</FONT>
+</TD>
+</TR>
+</TABLE>
+
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="12" CELLSPACING="0" BGCOLOR="#FFFFFF">
+<TR>
+<TD ALIGN="LEFT" VALIGN="MIDDLE">
+<IMG SRC="logo.png" HEIGHT="46" ALT="Krążek SHOP">
+</TD>
+<TD ALIGN="RIGHT" VALIGN="MIDDLE">
+<FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="2" COLOR="#98A2AA">
+<A HREF="javascript:setLang('pl')" ID="langPl" CLASS="active">PL</A>
+&nbsp;<FONT COLOR="#D3DADF">|</FONT>&nbsp;
+<A HREF="javascript:setLang('en')" ID="langEn">EN</A>
+</FONT>
+</TD>
+</TR>
+</TABLE>
+
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR>
+<TD BGCOLOR="#12B5A5" WIDTH="20%"><FONT SIZE="1">&nbsp;</FONT></TD>
+<TD BGCOLOR="#2F8FD8" WIDTH="20%"><FONT SIZE="1">&nbsp;</FONT></TD>
+<TD BGCOLOR="#7B5CD6" WIDTH="20%"><FONT SIZE="1">&nbsp;</FONT></TD>
+<TD BGCOLOR="#E8467C" WIDTH="20%"><FONT SIZE="1">&nbsp;</FONT></TD>
+<TD BGCOLOR="#F2A73B" WIDTH="20%"><FONT SIZE="1">&nbsp;</FONT></TD>
+</TR>
+</TABLE>
+
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR>
+<TD BGCOLOR="#1F2A33" BACKGROUND="grafika/naglowek.jpg" ALIGN="CENTER">
+
+<TABLE WIDTH="92%" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR><TD HEIGHT="30"><FONT SIZE="1">&nbsp;</FONT></TD></TR>
+<TR>
+<TD ALIGN="CENTER">
+<H1><FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="6" COLOR="#FFFFFF"><SPAN ID="i18n_heroTitle">Krążek SHOP - Witamy na stronie sklepu!</SPAN></FONT></H1>
+<FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="3" COLOR="#93A3B0"><SPAN ID="i18n_creatorTitle">Zaprojektuj swoją płytę i obejrzyj ją w 3D</SPAN></FONT>
+</TD>
+</TR>
+<TR><TD HEIGHT="18"><FONT SIZE="1">&nbsp;</FONT></TD></TR>
+<TR>
+<TD ALIGN="CENTER">
+<CANVAS ID="disc3d" WIDTH="940" HEIGHT="400"></CANVAS>
+<NOSCRIPT><IMG SRC="pan.demo.png" WIDTH="100%" ALT="Krążek SHOP - niebieska płyta CD"></NOSCRIPT>
+</TD>
+</TR>
+<TR>
+<TD ALIGN="CENTER">
+
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="0" CELLSPACING="0" BGCOLOR="#2A3742">
+<TR>
+<TD>
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="12" CELLSPACING="0">
+<TR>
+<TD ALIGN="CENTER" VALIGN="MIDDLE">
+<FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="1" COLOR="#93A3B0"><SPAN ID="i18n_creatorPhoto">TWOJE ZDJĘCIE</SPAN></FONT><BR>
+<INPUT TYPE="FILE" ID="discFile" ACCEPT="image/*" ONCHANGE="discLoad(this)">
+</TD>
+<TD ALIGN="CENTER" VALIGN="MIDDLE">
+<FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="1" COLOR="#93A3B0"><SPAN ID="i18n_creatorText">NAPIS NA PŁYCIE</SPAN></FONT><BR>
+<INPUT TYPE="TEXT" ID="discTitle" SIZE="18" MAXLENGTH="26" ONKEYUP="discSetText(this.value)" ONCHANGE="discSetText(this.value)">
+</TD>
+<TD ALIGN="CENTER" VALIGN="MIDDLE">
+<FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="1" COLOR="#93A3B0"><SPAN ID="i18n_creatorColor">TŁO NADRUKU</SPAN></FONT><BR>
+<SELECT ID="discColor" ONCHANGE="discSetColor(this.value)">
+<OPTION VALUE="#2F8FD8">Niebieski</OPTION>
+<OPTION VALUE="#12B5A5">Turkusowy</OPTION>
+<OPTION VALUE="#7B5CD6">Fioletowy</OPTION>
+<OPTION VALUE="#E8467C">Magenta</OPTION>
+<OPTION VALUE="#F2A73B">Bursztynowy</OPTION>
+<OPTION VALUE="#1F2A33">Grafitowy</OPTION>
+<OPTION VALUE="#F4F7F8">Biały</OPTION>
+</SELECT>
+</TD>
+<TD ALIGN="CENTER" VALIGN="MIDDLE">
+<FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="1" COLOR="#93A3B0"><SPAN ID="i18n_creatorTurn">OBRÓT</SPAN></FONT><BR>
+<INPUT TYPE="RANGE" ID="discRange" MIN="0" MAX="628" VALUE="60" ONINPUT="discSetAngle(this.value)" ONCHANGE="discSetAngle(this.value)">
+<INPUT TYPE="BUTTON" ID="discToggleBtn" VALUE="Zatrzymaj" ONCLICK="discToggle(this)">
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+</TD>
+</TR>
+<TR><TD HEIGHT="18"><FONT SIZE="1">&nbsp;</FONT></TD></TR>
+<TR>
+<TD ALIGN="CENTER">
+<TABLE BORDER="0" CELLPADDING="14" CELLSPACING="0" BGCOLOR="#3DBE63">
+<TR>
+<TD ALIGN="CENTER">
+<FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="4"><B><A HREF="javascript:addToCart('custom')"><FONT COLOR="#FFFFFF"><SPAN ID="i18n_creatorAdd">Zamów taką płytę - 19,90 zł</SPAN> &#128722;</FONT></A></B></FONT>
+</TD>
+</TR>
+</TABLE>
 <BR>
-<FONT SIZE="5" FACE="TIMES NEW ROMAN">Strona jest modyfikowana, wróć później.
+<FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="1" COLOR="#7E8D99"><SPAN ID="i18n_creatorHint">Podgląd działa w Twojej przeglądarce - zdjęcie nigdzie się nie wysyła. Projekt dosyłasz mailem po zamówieniu.</SPAN></FONT>
+</TD>
+</TR>
+<TR><TD HEIGHT="30"><FONT SIZE="1">&nbsp;</FONT></TD></TR>
+</TABLE>
+
+</TD>
+</TR>
+</TABLE>
+
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR>
+<TD BGCOLOR="#F2A73B" WIDTH="20%"><FONT SIZE="1">&nbsp;</FONT></TD>
+<TD BGCOLOR="#E8467C" WIDTH="20%"><FONT SIZE="1">&nbsp;</FONT></TD>
+<TD BGCOLOR="#7B5CD6" WIDTH="20%"><FONT SIZE="1">&nbsp;</FONT></TD>
+<TD BGCOLOR="#2F8FD8" WIDTH="20%"><FONT SIZE="1">&nbsp;</FONT></TD>
+<TD BGCOLOR="#12B5A5" WIDTH="20%"><FONT SIZE="1">&nbsp;</FONT></TD>
+</TR>
+</TABLE>
+
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="18" CELLSPACING="0" BGCOLOR="#F2A73B">
+<TR>
+<TD ALIGN="CENTER">
+<FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="4" COLOR="#4A3600">
+<B><A HREF="pakiet-letni-leopard.html"><FONT COLOR="#4A3600"><SPAN ID="i18n_bundlePromo">NAJNOWSZA PROMOCJA - Pakiet Letni! Oszczędzasz 20,60 zł! <FONT SIZE="4">😸</FONT></SPAN></FONT></A></B>
+</FONT>
+</TD>
+</TR>
+</TABLE>
+
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="0" CELLSPACING="0" BGCOLOR="#FFFFFF">
+<TR>
+<TD ALIGN="CENTER">
+<TABLE WIDTH="92%" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR><TD HEIGHT="24"><FONT SIZE="1">&nbsp;</FONT></TD></TR>
+<TR>
+<TD>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR>
+<TD WIDTH="44" VALIGN="MIDDLE">
+<TABLE BORDER="0" CELLPADDING="7" CELLSPACING="0" BGCOLOR="#12B5A5">
+<TR><TD ALIGN="CENTER" WIDTH="16"><FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="3" COLOR="#FFFFFF"><B>&#9835;</B></FONT></TD></TR>
+</TABLE>
+</TD>
+<TD VALIGN="MIDDLE">
+<H2><FONT FACE="OPEN SANS, HELVETICA, ARIAL" COLOR="#1F2A33"><SPAN ID="i18n_aboutTitle">O nas</SPAN></FONT></H2>
+</TD>
+</TR>
+</TABLE>
+<P><FONT SIZE="4" FACE="OPEN SANS, HELVETICA, ARIAL"><SPAN ID="i18n_aboutText">💿 Wierzymy, że muzyka na nośnikach nadal ma znaczenie w dzisiejszych czasach.
 <BR>
-The site is under costruction, please come back later.</FONT>
+❤️ Nie jesteśmy korporacją, drukujemy płyty ręcznie w Polsce.
+<BR>
+🎸 Zapełnimy Twoje półki samymi konkretnymi krążkami!</SPAN></FONT></P>
+</TD>
+</TR>
+<TR><TD HEIGHT="14"><FONT SIZE="1">&nbsp;</FONT></TD></TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="0" CELLSPACING="0" BGCOLOR="#EDEFF1">
+<TR>
+<TD ALIGN="CENTER">
+<TABLE WIDTH="92%" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR><TD HEIGHT="28" COLSPAN="3"><FONT SIZE="1">&nbsp;</FONT></TD></TR>
+<TR>
+<TD COLSPAN="3">
+<H2><FONT FACE="OPEN SANS, HELVETICA, ARIAL" COLOR="#1F2A33"><SPAN ID="i18n_howTitle">Jak to działa</SPAN></FONT></H2>
+</TD>
+</TR>
+<TR>
+<TD WIDTH="33%" VALIGN="TOP">
+<TABLE WIDTH="98%" BORDER="0" CELLPADDING="0" CELLSPACING="0" BGCOLOR="#FFFFFF">
+<TR>
+<TD WIDTH="5" BGCOLOR="#2F8FD8"><FONT SIZE="1">&nbsp;</FONT></TD>
+<TD>
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="14" CELLSPACING="0">
+<TR><TD VALIGN="TOP">
+<FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="5" COLOR="#2F8FD8"><B>1</B></FONT><BR>
+<FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="2" COLOR="#3A4149"><SPAN ID="i18n_how1">Wybierasz płytę i dodajesz ją do koszyka.</SPAN></FONT>
+</TD></TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<TABLE WIDTH="98%" BORDER="0" CELLPADDING="0" CELLSPACING="0" BGCOLOR="#FFFFFF">
+<TR>
+<TD WIDTH="5" BGCOLOR="#7B5CD6"><FONT SIZE="1">&nbsp;</FONT></TD>
+<TD>
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="14" CELLSPACING="0">
+<TR><TD VALIGN="TOP">
+<FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="5" COLOR="#7B5CD6"><B>2</B></FONT><BR>
+<FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="2" COLOR="#3A4149"><SPAN ID="i18n_how2">Po zamówieniu piszesz do nas mailem, co ma być na płycie.</SPAN></FONT>
+</TD></TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<TABLE WIDTH="98%" BORDER="0" CELLPADDING="0" CELLSPACING="0" BGCOLOR="#FFFFFF">
+<TR>
+<TD WIDTH="5" BGCOLOR="#E8467C"><FONT SIZE="1">&nbsp;</FONT></TD>
+<TD>
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="14" CELLSPACING="0">
+<TR><TD VALIGN="TOP">
+<FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="5" COLOR="#E8467C"><B>3</B></FONT><BR>
+<FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="2" COLOR="#3A4149"><SPAN ID="i18n_how3">Drukujemy ręcznie w Polsce i wysyłamy do Ciebie.</SPAN></FONT>
+</TD></TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR><TD HEIGHT="28" COLSPAN="3"><FONT SIZE="1">&nbsp;</FONT></TD></TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="0" CELLSPACING="0" BGCOLOR="#FFFFFF">
+<TR>
+<TD ALIGN="CENTER">
+<TABLE WIDTH="92%" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR><TD HEIGHT="28"><FONT SIZE="1">&nbsp;</FONT></TD></TR>
+<TR><TD>
+
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR>
+<TD WIDTH="5" BGCOLOR="#12B5A5"><FONT SIZE="1">&nbsp;</FONT></TD>
+<TD BGCOLOR="#F7F9FA">
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="16" CELLSPACING="0">
+<TR>
+<TD WIDTH="46%" VALIGN="TOP">
+<IMG SRC="img/jak-to-dziala.png" WIDTH="100%" ALT="Jak to działa">
+</TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<FONT SIZE="5" FACE="OPEN SANS, HELVETICA, ARIAL"><SPAN ID="i18n_prod1">Cena <STRIKE>31,90</STRIKE> 19,90zł.<BR>Wydrukuj na płycie, co tylko chcesz.</SPAN></FONT>
+<BR><BR>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" BGCOLOR="#2F8FD8">
+<TR><TD ALIGN="CENTER"><FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="2"><B><A HREF="javascript:addToCart('custom')"><FONT COLOR="#FFFFFF"><SPAN ID="i18n_addToCart1">Dodaj do koszyka</SPAN> &#128722;</FONT></A></B></FONT></TD></TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+<BR>
+
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR>
+<TD WIDTH="5" BGCOLOR="#2F8FD8"><FONT SIZE="1">&nbsp;</FONT></TD>
+<TD BGCOLOR="#F7F9FA">
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="16" CELLSPACING="0">
+<TR>
+<TD WIDTH="46%" VALIGN="TOP">
+<IMG SRC="img/ed1.jpg" WIDTH="100%" ALT="Edycje Sama Murasa">
+</TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<FONT SIZE="5" FACE="OPEN SANS, HELVETICA, ARIAL"><SPAN ID="i18n_prod2">Cena od <STRIKE>28,90</STRIKE> 17,90zł.<BR>Różne edycje fotografii Sama Murasa.</SPAN></FONT>
+<BR><BR>
+<TABLE BORDER="0" CELLPADDING="9" CELLSPACING="6">
+<TR>
+<TD BGCOLOR="#2F8FD8" ALIGN="CENTER"><FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="2"><B><A HREF="javascript:addToCart('editionSamMix')"><FONT COLOR="#FFFFFF">+ CD (17,90zł) &#128722;</FONT></A></B></FONT></TD>
+<TD BGCOLOR="#2F8FD8" ALIGN="CENTER"><FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="2"><B><A HREF="javascript:addToCart('editionSamMixDvd')"><FONT COLOR="#FFFFFF">+ DVD (20,90zł) &#128722;</FONT></A></B></FONT></TD>
+<TD BGCOLOR="#2F8FD8" ALIGN="CENTER"><FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="2"><B><A HREF="javascript:addToCart('editionSamMixBluray')"><FONT COLOR="#FFFFFF">+ Blu-ray (23,90zł) &#128722;</FONT></A></B></FONT></TD>
+</TR>
+</TABLE>
+<FONT SIZE="1" FACE="OPEN SANS, HELVETICA, ARIAL" COLOR="#8B959E"><SPAN ID="i18n_help2">Którą edycję wybierasz - napiszesz mailem po zamówieniu.</SPAN></FONT>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+<BR>
+
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR>
+<TD WIDTH="5" BGCOLOR="#7B5CD6"><FONT SIZE="1">&nbsp;</FONT></TD>
+<TD BGCOLOR="#F7F9FA">
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="16" CELLSPACING="0">
+<TR>
+<TD WIDTH="46%" VALIGN="TOP">
+<IMG SRC="img/ed2.jpg" WIDTH="100%" ALT="Edycja 02">
+</TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<FONT SIZE="5" FACE="OPEN SANS, HELVETICA, ARIAL"><SPAN ID="i18n_prod3">Cena od <STRIKE>23,90zł</STRIKE> 16,90zł.<BR>Fotografie własne.<BR>Zachód słońca w Gdyni i sosny Pomorskiej wsi.</SPAN></FONT>
+<BR><BR>
+<TABLE BORDER="0" CELLPADDING="9" CELLSPACING="6">
+<TR>
+<TD BGCOLOR="#7B5CD6" ALIGN="CENTER"><FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="2"><B><A HREF="javascript:addToCart('editionStasMix')"><FONT COLOR="#FFFFFF">+ CD (16,90zł) &#128722;</FONT></A></B></FONT></TD>
+<TD BGCOLOR="#7B5CD6" ALIGN="CENTER"><FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="2"><B><A HREF="javascript:addToCart('editionStasMixDvd')"><FONT COLOR="#FFFFFF">+ DVD (19,90zł) &#128722;</FONT></A></B></FONT></TD>
+<TD BGCOLOR="#7B5CD6" ALIGN="CENTER"><FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="2"><B><A HREF="javascript:addToCart('editionStasMixBluray')"><FONT COLOR="#FFFFFF">+ Blu-ray (22,90zł) &#128722;</FONT></A></B></FONT></TD>
+</TR>
+</TABLE>
+<FONT SIZE="1" FACE="OPEN SANS, HELVETICA, ARIAL" COLOR="#8B959E"><SPAN ID="i18n_help3">Którą edycję wybierasz - napiszesz mailem po zamówieniu.</SPAN></FONT>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+<BR>
+
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR>
+<TD WIDTH="5" BGCOLOR="#E8467C"><FONT SIZE="1">&nbsp;</FONT></TD>
+<TD BGCOLOR="#F7F9FA">
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="16" CELLSPACING="0">
+<TR>
+<TD WIDTH="46%" VALIGN="TOP">
+<IMG SRC="img/ed3.jpg" WIDTH="100%" ALT="Edycja 03">
+</TD>
+<TD WIDTH="54%" VALIGN="TOP">
+<FONT SIZE="5" FACE="OPEN SANS, HELVETICA, ARIAL"><SPAN ID="i18n_prod4">Cena od 26,90zł.<BR>Nagramy twoje pliki (MP3, WAV)<BR>na CD, lub filmy i inne na DVD.</SPAN></FONT>
+<BR><BR>
+<TABLE BORDER="0" CELLPADDING="9" CELLSPACING="6">
+<TR>
+<TD BGCOLOR="#E8467C" ALIGN="CENTER"><FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="2"><B><A HREF="javascript:addToCart('recAudioCd')"><FONT COLOR="#FFFFFF">+ CD (26,90zł) &#128722;</FONT></A></B></FONT></TD>
+<TD BGCOLOR="#E8467C" ALIGN="CENTER"><FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="2"><B><A HREF="javascript:addToCart('recVideoDvdPlusR')"><FONT COLOR="#FFFFFF">+ DVD (27,90zł) &#128722;</FONT></A></B></FONT></TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+</TD></TR>
+<TR><TD HEIGHT="28"><FONT SIZE="1">&nbsp;</FONT></TD></TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="20" CELLSPACING="0" BGCOLOR="#12B5A5" BACKGROUND="grafika/pasek.jpg">
+<TR>
+<TD ALIGN="CENTER">
+<FONT SIZE="4" FACE="OPEN SANS, HELVETICA, ARIAL" COLOR="#FFFFFF">
+<B><SPAN ID="i18n_deliveryNote">NOWOŚĆ: Dostaniesz zwrot kosztu dostawy od zamówienia powyżej 130 zł!</SPAN></B>
+</FONT>
+</TD>
+</TR>
+</TABLE>
+
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="0" CELLSPACING="0" BGCOLOR="#FFFFFF">
+<TR>
+<TD ALIGN="CENTER">
+<TABLE WIDTH="92%" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR><TD HEIGHT="28"><FONT SIZE="1">&nbsp;</FONT></TD></TR>
+<TR>
+<TD ALIGN="CENTER">
+<H2><FONT FACE="OPEN SANS, HELVETICA, ARIAL" COLOR="#1F2A33"><SPAN ID="i18n_cartTitle">Twój koszyk</SPAN></FONT></H2>
+</TD>
+</TR>
+<TR>
+<TD>
+<TABLE BORDER="0" CELLPADDING="12" CELLSPACING="1" WIDTH="100%" BGCOLOR="#DDE2E6">
+<TR BGCOLOR="#1F2A33">
+<TD><FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="2" COLOR="#FFFFFF"><B><SPAN ID="i18n_cartCol1">Produkt</SPAN></B></FONT></TD>
+<TD ALIGN="CENTER"><FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="2" COLOR="#FFFFFF"><B><SPAN ID="i18n_cartCol2">Ilość</SPAN></B></FONT></TD>
+<TD ALIGN="RIGHT"><FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="2" COLOR="#FFFFFF"><B><SPAN ID="i18n_cartCol3">Cena</SPAN></B></FONT></TD>
+</TR>
+<TBODY ID="cartBody">
+<TR BGCOLOR="#FFFFFF"><TD COLSPAN="3" ALIGN="CENTER"><FONT FACE="OPEN SANS, HELVETICA, ARIAL"><I><SPAN ID="i18n_cartEmpty">Koszyk jest pusty</SPAN></I></FONT></TD></TR>
+</TBODY>
+<TR BGCOLOR="#EDEFF1">
+<TD COLSPAN="2" ALIGN="RIGHT"><FONT FACE="OPEN SANS, HELVETICA, ARIAL"><B><SPAN ID="i18n_cartTotalLabel">Razem:</SPAN></B></FONT></TD>
+<TD ALIGN="RIGHT"><FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="4" COLOR="#1F2A33"><B ID="cartTotal">0,00 zł</B></FONT></TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR><TD HEIGHT="18"><FONT SIZE="1">&nbsp;</FONT></TD></TR>
+<TR>
+<TD ALIGN="CENTER">
+<TABLE BORDER="0" CELLPADDING="15" CELLSPACING="0" BGCOLOR="#3DBE63">
+<TR>
+<TD ALIGN="CENTER">
+<FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="4"><B><A HREF="javascript:goToCheckout()"><FONT COLOR="#FFFFFF"><SPAN ID="i18n_checkoutBtn">Przejdź do płatności</SPAN> &#128179;</FONT></A></B></FONT>
+</TD>
+</TR>
+</TABLE>
+<BR>
+<FONT SIZE="1" FACE="OPEN SANS, HELVETICA, ARIAL" COLOR="#8B959E"><SPAN ID="i18n_stripeNote">Płatność obsługuje Stripe: BLIK, Apple Pay, karta.</SPAN></FONT>
+</TD>
+</TR>
+<TR><TD HEIGHT="28"><FONT SIZE="1">&nbsp;</FONT></TD></TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="0" CELLSPACING="0" BGCOLOR="#EDEFF1">
+<TR>
+<TD ALIGN="CENTER">
+<TABLE WIDTH="92%" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR><TD HEIGHT="28"><FONT SIZE="1">&nbsp;</FONT></TD></TR>
+<TR>
+<TD>
+<H2><FONT FACE="OPEN SANS, HELVETICA, ARIAL" COLOR="#1F2A33"><SPAN ID="i18n_contactTitle">Kontakt</SPAN></FONT></H2>
+</TD>
+</TR>
+<TR>
+<TD>
+<TABLE BORDER="0" CELLPADDING="8" CELLSPACING="0">
+<TR>
+<TD VALIGN="MIDDLE"><FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="3"><SPAN ID="i18n_writeUs">Napisz do nas:</SPAN></FONT></TD>
+<TD VALIGN="MIDDLE">
+<TABLE BORDER="0" CELLPADDING="9" CELLSPACING="0" BGCOLOR="#2F8FD8">
+<TR><TD><FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="2"><B><A HREF="mailto:shopkrazek.eu@gmail.com"><FONT COLOR="#FFFFFF">shopkrazek.eu@gmail.com &#9993;</FONT></A></B></FONT></TD></TR>
+</TABLE>
+</TD>
+</TR>
+<TR>
+<TD VALIGN="MIDDLE"><FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="3"><SPAN ID="i18n_visitInsta">Odwiedź nasz Instagram:</SPAN></FONT></TD>
+<TD VALIGN="MIDDLE">
+<TABLE BORDER="0" CELLPADDING="9" CELLSPACING="0" BGCOLOR="#E8467C">
+<TR><TD><FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="2"><B><A HREF="https://www.instagram.com/krazek.eu.shop?utm_source=qr" TARGET="_blank"><FONT COLOR="#FFFFFF"><SPAN ID="i18n_clickHere">Kliknij tu</SPAN> &#10003;</FONT></A></B></FONT></TD></TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR><TD HEIGHT="28"><FONT SIZE="1">&nbsp;</FONT></TD></TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR>
+<TD BGCOLOR="#12B5A5" WIDTH="20%"><FONT SIZE="1">&nbsp;</FONT></TD>
+<TD BGCOLOR="#2F8FD8" WIDTH="20%"><FONT SIZE="1">&nbsp;</FONT></TD>
+<TD BGCOLOR="#7B5CD6" WIDTH="20%"><FONT SIZE="1">&nbsp;</FONT></TD>
+<TD BGCOLOR="#E8467C" WIDTH="20%"><FONT SIZE="1">&nbsp;</FONT></TD>
+<TD BGCOLOR="#F2A73B" WIDTH="20%"><FONT SIZE="1">&nbsp;</FONT></TD>
+</TR>
+</TABLE>
+
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="0" CELLSPACING="0" BGCOLOR="#1F2A33">
+<TR>
+<TD ALIGN="CENTER">
+<TABLE WIDTH="92%" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR><TD HEIGHT="26" COLSPAN="2"><FONT SIZE="1">&nbsp;</FONT></TD></TR>
+<TR>
+<TD WIDTH="55%" VALIGN="TOP">
+<FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="4" COLOR="#FFFFFF"><B>Krążek SHOP</B></FONT>
+<BR><BR>
+<FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="2" COLOR="#8B959E">
+<A HREF="reg.-lampart.html"><FONT COLOR="#B7C0C7"><SPAN ID="i18n_footerTerms">Regulamin sklepu</SPAN></FONT></A><BR><BR>
+<A HREF="prywatnosc.html"><FONT COLOR="#B7C0C7"><SPAN ID="i18n_footerPrivacy">Polityka prywatności</SPAN></FONT></A><BR><BR>
+<A HREF="odstapienie.html"><FONT COLOR="#B7C0C7"><SPAN ID="i18n_footerWithdrawal">Odstąpienie od umowy</SPAN></FONT></A>
+</FONT>
+</TD>
+<TD WIDTH="45%" VALIGN="TOP" ALIGN="RIGHT">
+<FONT FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="1" COLOR="#7E8D99"><SPAN ID="i18n_visitorLabel">Jesteś odwiedzającym numer:</SPAN></FONT>
+<BR><BR>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" BGCOLOR="#141C23" ALIGN="RIGHT">
+<TR><TD ALIGN="CENTER"><TT><FONT FACE="COURIER NEW, COURIER" SIZE="5" COLOR="#12B5A5"><B ID="visitorCount">000000</B></FONT></TT></TD></TR>
+</TABLE>
+</TD>
+</TR>
+<TR><TD HEIGHT="26" COLSPAN="2"><FONT SIZE="1">&nbsp;</FONT></TD></TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+
+<TABLE WIDTH="100%" BORDER="0" CELLPADDING="14" CELLSPACING="0" BGCOLOR="#141C23">
+<TR>
+<TD ALIGN="CENTER">
+<SMALL><FONT COLOR="#6C7780" FACE="OPEN SANS, HELVETICA, ARIAL" SIZE="1">2026 <SPAN ID="i18n_footerCopy">Nierejestrowana działalność gospodarcza - Krążek SHOP.</SPAN></FONT></SMALL>
+</TD>
+</TR>
+</TABLE>
+
+<SCRIPT>
+  //
+  var CHECKOUT_URL = "/.netlify/functions/checkout";
+  var THIS_PAGE = "index.html";
+
+  var PRODUCT_NAMES = {
+    custom: "Płyta CD - własny nadruk",
+    editionSamMix: "Edycja Sama Murasa - CD (wybór po zamówieniu)",
+    editionSamMixDvd: "Edycja Sama Murasa - DVD+R (wybór po zamówieniu)",
+    editionSamMixBluray: "Edycja Sama Murasa - Blu-ray (wybór po zamówieniu)",
+    editionStasMix: "Edycja własna - CD (wybór po zamówieniu)",
+    editionStasMixDvd: "Edycja własna - DVD+R (wybór po zamówieniu)",
+    editionStasMixBluray: "Edycja własna - Blu-ray (wybór po zamówieniu)",
+    recAudioCd: "Nagranie audio na CD",
+    recVideoDvdPlusR: "Nagranie wideo na DVD+R"
+  };
+  var PRODUCT_PRICES = {
+    custom: 19.90,
+    editionSamMix: 17.90,
+    editionSamMixDvd: 20.90,
+    editionSamMixBluray: 23.90,
+    editionStasMix: 16.90,
+    editionStasMixDvd: 19.90,
+    editionStasMixBluray: 22.90,
+    recAudioCd: 26.90,
+    recVideoDvdPlusR: 27.90
+  };
+
+  function loadCart(){
+    try{ return JSON.parse(localStorage.getItem("krazek_cart") || "[]"); }
+    catch(e){ return []; }
+  }
+  function saveCart(cart){
+    try{ localStorage.setItem("krazek_cart", JSON.stringify(cart)); }catch(e){}
+  }
+  function fmt(n){
+    return n.toFixed(2).replace(".", ",") + " zł";
+  }
+
+  function addToCart(id){
+    var cart = loadCart();
+    var found = null;
+    for (var i=0; i<cart.length; i++){ if (cart[i].id === id){ found = cart[i]; break; } }
+    if (found){ found.qty = found.qty + 1; } else { cart.push({ id:id, qty:1 }); }
+    saveCart(cart);
+    renderCart();
+    alert((currentLang === "en" ? "Added to cart: " : "Dodano do koszyka: ") + PRODUCT_NAMES[id]);
+  }
+
+  function changeQty(id, delta){
+    var cart = loadCart();
+    var next = [];
+    for (var i=0; i<cart.length; i++){
+      var item = cart[i];
+      if (item.id === id){
+        item.qty = item.qty + delta;
+        if (item.qty > 0) next.push(item);
+      } else {
+        next.push(item);
+      }
+    }
+    saveCart(next);
+    renderCart();
+  }
+
+  function renderCart(){
+    var cart = loadCart();
+    var body = document.getElementById("cartBody");
+    var totalEl = document.getElementById("cartTotal");
+    if (cart.length === 0){
+      var emptyText = currentLang === "en" ? "Cart is empty" : "Koszyk jest pusty";
+      body.innerHTML = '<tr bgcolor="#FFFFFF"><td colspan="3" align="center"><font face="Open Sans, Helvetica, Arial"><i>' + emptyText + '</i></font></td></tr>';
+      totalEl.innerHTML = fmt(0);
+      return;
+    }
+    var total = 0;
+    var html = "";
+    for (var i=0; i<cart.length; i++){
+      var item = cart[i];
+      var price = PRODUCT_PRICES[item.id] || 0;
+      var name = PRODUCT_NAMES[item.id] || item.id;
+      total += price * item.qty;
+      html += '<tr bgcolor="#FFFFFF">'
+        + '<td><font face="Open Sans, Helvetica, Arial">' + name + '</font></td>'
+        + '<td align="center"><font face="Open Sans, Helvetica, Arial">'
+        +   '<a href="javascript:changeQty(\'' + item.id + '\',-1)">&#8722;</a>&nbsp;&nbsp;'
+        +   '<b>' + item.qty + '</b>'
+        +   '&nbsp;&nbsp;<a href="javascript:changeQty(\'' + item.id + '\',1)">&#43;</a>'
+        + '</font></td>'
+        + '<td align="right"><font face="Open Sans, Helvetica, Arial">' + fmt(price * item.qty) + '</font></td>'
+        + '</tr>';
+    }
+    body.innerHTML = html;
+    totalEl.innerHTML = fmt(total);
+  }
+
+  function goToCheckout(){
+    var cart = loadCart();
+    if (cart.length === 0){ alert(currentLang === "en" ? "Your cart is empty." : "Koszyk jest pusty."); return; }
+    fetch(CHECKOUT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        cart: cart.map(function(i){ return { id:i.id, qty:i.qty }; }),
+        returnTo: THIS_PAGE
+      })
+    })
+    .then(function(res){ return res.json(); })
+    .then(function(data){
+      if (data && data.url){ window.location.href = data.url; }
+      else { alert(currentLang === "en" ? "Something went wrong. Please try again." : "Coś poszło nie tak. Spróbuj ponownie."); }
+    })
+    .catch(function(){ alert(currentLang === "en" ? "Could not connect to payment. Please try again." : "Nie udało się połączyć z płatnością. Spróbuj ponownie."); });
+  }
+
+  // ===== Licznik odwiedzin (Netlify Blobs, prawdziwe zliczanie) =====
+  fetch("/.netlify/functions/visitor-count")
+    .then(function(res){ return res.json(); })
+    .then(function(data){
+      var el = document.getElementById("visitorCount");
+      if (el && data && typeof data.count === "number"){
+        el.textContent = String(data.count).padStart(6, "0");
+      }
+    })
+    .catch(function(){  });
+
+  // ===== Język PL / EN =====
+  var currentLang = "pl";
+  var TRANSLATIONS = {
+    en: {
+      promoRef: "Refer friends - 3 purchases through your link and you get a free disc",
+      heroTitle: "Krążek SHOP - Welcome to our store!",
+      creatorTitle: "Design your disc and see it in 3D",
+      creatorPhoto: "YOUR PHOTO",
+      creatorText: "TEXT ON DISC",
+      creatorColor: "PRINT BACKGROUND",
+      creatorTurn: "ROTATION",
+      creatorAdd: "Order a disc like this - 19,90 zł",
+      creatorHint: "The preview runs in your browser - your photo is not uploaded anywhere. You send the artwork by email after ordering.",
+      bundlePromo: "LATEST DEAL - Summer Bundle! Save 20,60 zł!",
+      aboutTitle: "About us",
+      aboutText: "We believe music on physical media still matters today.<br>We're not a corporation - we print discs by hand in Poland.<br>We're here to add something new to your CD collection!",
+      howTitle: "How it works",
+      how1: "You pick a disc and add it to the cart.",
+      how2: "After ordering you email us what should be on the disc.",
+      how3: "We print it by hand in Poland and ship it to you.",
+      prod1: "Price <strike>31.90</strike> 19.90 zł.<br>Print whatever you want on the disc.",
+      prod2: "Price from <strike>28.90</strike> 17.90 zł.<br>Various editions of Sam Muras's photography.",
+      prod3: "Price from 16.90 zł.<br>Our own photography.<br>Sunset in Gdynia and pines from a Pomeranian village.",
+      prod4: "26.90 - 27.90 zł.<br>We'll burn your files<br>(MP3, WAV, AIFF, AAC)<br>onto CD, or videos<br>and more onto DVD.",
+      addToCart1: "Add to cart", addToCart2: "Add to cart", addToCart3: "Add to cart",
+      help2: "Which edition you'd like - tell us by email after ordering.",
+      help3: "Which edition you'd like - tell us by email after ordering.",
+      deliveryNote: "NEW: We refund your shipping cost on orders above 130 zł!",
+      cartTitle: "Your cart", cartCol1: "Product", cartCol2: "Qty", cartCol3: "Price",
+      cartEmpty: "Cart is empty", cartTotalLabel: "Total:", checkoutBtn: "Proceed to payment",
+      stripeNote: "Payments handled by Stripe: BLIK, Apple Pay, card.",
+      contactTitle: "Contact", writeUs: "Write to us:", visitInsta: "Visit our Instagram:", clickHere: "Click here",
+      visitorLabel: "You are visitor number:",
+      footerTerms: "Terms of service", footerPrivacy: "Privacy policy", footerWithdrawal: "Right of withdrawal",
+      footerCopy: "Unregistered business activity - Krążek SHOP."
+    }
+  };
+  var ORIGINAL_PL = {};
+
+  function setLang(lang){
+    var ids = ["promoRef","heroTitle","creatorTitle","creatorPhoto","creatorText","creatorColor","creatorTurn",
+      "creatorAdd","creatorHint","bundlePromo","aboutTitle","aboutText","howTitle","how1","how2","how3",
+      "prod1","prod2","prod3","prod4","addToCart1","addToCart2","addToCart3","help2","help3","deliveryNote",
+      "cartTitle","cartCol1","cartCol2","cartCol3","cartEmpty","cartTotalLabel","checkoutBtn","stripeNote",
+      "contactTitle","writeUs","visitInsta","clickHere","visitorLabel","footerTerms","footerPrivacy",
+      "footerWithdrawal","footerCopy"];
+    for (var i=0; i<ids.length; i++){
+      var key = ids[i];
+      var el = document.getElementById("i18n_" + key);
+      if (!el) continue;
+      if (!ORIGINAL_PL[key]) ORIGINAL_PL[key] = el.innerHTML;
+      if (lang === "en" && TRANSLATIONS.en[key]){
+        el.innerHTML = TRANSLATIONS.en[key];
+      } else {
+        el.innerHTML = ORIGINAL_PL[key];
+      }
+    }
+    currentLang = lang;
+    document.getElementById("langPl").className = (lang === "pl") ? "active" : "";
+    document.getElementById("langEn").className = (lang === "en") ? "active" : "";
+    var tb = document.getElementById("discToggleBtn");
+    if (tb){ tb.value = discSpin ? ((lang === "en") ? "Pause" : "Zatrzymaj") : ((lang === "en") ? "Spin" : "Obracaj"); }
+    try{ localStorage.setItem("krazek_lang_retro", lang); }catch(e){}
+    renderCart();
+  }
+
+  var DISC_C = document.getElementById("disc3d");
+  var DISC_X = DISC_C ? DISC_C.getContext("2d") : null;
+  var DISC_TILT = 0.40;
+  var discAngle = 0.6;
+  var discSpin = true;
+  var discImg = null;
+  var discBase = "#2F8FD8";
+  var discCap = "";
+
+  function discResize(){
+    if (!DISC_C) return;
+    var avail = (window.innerWidth || 960) - 40;
+    var w = avail > 940 ? 940 : avail;
+    if (w < 280) w = 280;
+    DISC_C.width = w;
+    DISC_C.height = Math.round(w * 0.42);
+  }
+
+  function discSetColor(v){ discBase = v; discDraw(); }
+  function discSetText(v){ discCap = v; discDraw(); }
+
+  function discSetAngle(v){
+    discSpin = false;
+    var tb = document.getElementById("discToggleBtn");
+    if (tb){ tb.value = (currentLang === "en") ? "Spin" : "Obracaj"; }
+    discAngle = Number(v) / 100;
+    discDraw();
+  }
+
+  function discToggle(btn){
+    discSpin = !discSpin;
+    btn.value = discSpin ? ((currentLang === "en") ? "Pause" : "Zatrzymaj") : ((currentLang === "en") ? "Spin" : "Obracaj");
+  }
+
+  function discLoad(input){
+    if (!input.files || !input.files[0]) return;
+    var r = new FileReader();
+    r.onload = function(e){
+      var im = new Image();
+      im.onload = function(){ discImg = im; discDraw(); };
+      im.src = e.target.result;
+    };
+    r.readAsDataURL(input.files[0]);
+  }
+
+  function discHub(R){
+    var g = DISC_X;
+    g.beginPath(); g.arc(0,0,R*0.34,0,Math.PI*2);
+    g.fillStyle = "#DCE2E6"; g.fill();
+    g.beginPath(); g.arc(0,0,R*0.30,0,Math.PI*2);
+    g.strokeStyle = "#AAB5BD"; g.lineWidth = Math.max(1, R*0.010); g.stroke();
+    g.beginPath(); g.arc(0,0,R*0.155,0,Math.PI*2);
+    g.fillStyle = "#1F2A33"; g.fill();
+  }
+
+  function discFace(R){
+    var g = DISC_X;
+    g.save();
+    g.beginPath(); g.arc(0,0,R,0,Math.PI*2); g.closePath(); g.clip();
+    g.fillStyle = discBase;
+    g.fillRect(-R,-R,R*2,R*2);
+    if (discImg && discImg.width){
+      var s = Math.max((R*2)/discImg.width, (R*2)/discImg.height);
+      var dw = discImg.width*s, dh = discImg.height*s;
+      g.drawImage(discImg, -dw/2, -dh/2, dw, dh);
+    }
+    if (discCap){
+      g.font = "700 " + Math.round(R*0.16) + "px 'Open Sans', Helvetica, Arial, sans-serif";
+      g.textAlign = "center";
+      g.fillStyle = "rgba(0,0,0,0.35)";
+      g.fillText(discCap, 0, R*0.70 + Math.max(1, R*0.012));
+      g.fillStyle = "#FFFFFF";
+      g.fillText(discCap, 0, R*0.70);
+    }
+    g.restore();
+    g.beginPath(); g.arc(0,0,R*0.985,0,Math.PI*2);
+    g.strokeStyle = "rgba(255,255,255,0.45)"; g.lineWidth = Math.max(1, R*0.012); g.stroke();
+    discHub(R);
+  }
+
+  function discBack(R){
+    var g = DISC_X;
+    g.save();
+    g.beginPath(); g.arc(0,0,R,0,Math.PI*2); g.closePath(); g.clip();
+    g.fillStyle = "#C6CDD3";
+    g.fillRect(-R,-R,R*2,R*2);
+    var steps = 42;
+    for (var i=0; i<steps; i++){
+      var a0 = (i/steps)*Math.PI*2 + discAngle*1.7;
+      g.beginPath();
+      g.moveTo(0,0);
+      g.arc(0,0,R,a0,a0+(Math.PI*2/steps)+0.02);
+      g.closePath();
+      g.globalAlpha = 0.34;
+      g.fillStyle = "hsl(" + Math.round((i*(360/steps))%360) + ",78%,60%)";
+      g.fill();
+    }
+    g.globalAlpha = 1;
+    g.beginPath(); g.arc(0,0,R*0.62,0,Math.PI*2);
+    g.strokeStyle = "rgba(255,255,255,0.30)"; g.lineWidth = Math.max(1, R*0.05); g.stroke();
+    g.restore();
+    discHub(R);
+  }
+
+  function discDraw(){
+    if (!DISC_X) return;
+    var w = DISC_C.width, h = DISC_C.height;
+    DISC_X.setTransform(1,0,0,1,0,0);
+    DISC_X.clearRect(0,0,w,h);
+    var R = Math.min(h*0.44, w*0.30);
+    var cx = w/2, cy = h/2;
+    var ca = Math.cos(discAngle), sa = Math.sin(discAngle);
+    var st = Math.sin(DISC_TILT), ct = Math.cos(DISC_TILT);
+    if (Math.abs(ca) < 0.035){
+      DISC_X.fillStyle = "#9AA5AD";
+      DISC_X.fillRect(cx - Math.max(2, R*0.012), cy - R*ct, Math.max(3, R*0.024), R*2*ct);
+      return;
+    }
+    DISC_X.setTransform(ca, sa*st, 0, ct, cx, cy + Math.max(3, R*0.035));
+    DISC_X.beginPath(); DISC_X.arc(0,0,R,0,Math.PI*2);
+    DISC_X.fillStyle = "#12191F"; DISC_X.fill();
+    DISC_X.setTransform(ca, sa*st, 0, ct, cx, cy);
+    if (ca > 0){ discFace(R); } else { discBack(R); }
+    DISC_X.setTransform(1,0,0,1,0,0);
+  }
+
+  function discTick(){
+    if (discSpin){
+      discAngle = discAngle + 0.013;
+      if (discAngle > Math.PI*2) discAngle = discAngle - Math.PI*2;
+      var rg = document.getElementById("discRange");
+      if (rg) rg.value = Math.round(discAngle*100);
+      discDraw();
+    }
+    window.setTimeout(discTick, 33);
+  }
+
+  window.onresize = function(){ discResize(); discDraw(); };
+
+  (function(){
+    var saved = null;
+    try{ saved = localStorage.getItem("krazek_lang_retro"); }catch(e){}
+    if (saved === "en") setLang("en");
+  })();
+
+  discResize();
+  discDraw();
+  discTick();
+  renderCart();
+</SCRIPT>
+
 </BODY>
 </HTML>
